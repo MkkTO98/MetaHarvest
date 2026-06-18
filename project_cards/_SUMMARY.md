@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/project_cards
+# Folder Summary: MetaHarvest/project_cards
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/project_cards`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/project_cards`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

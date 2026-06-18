@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/retired
+# Folder Summary: MetaHarvest/retired
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/retired`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/retired`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

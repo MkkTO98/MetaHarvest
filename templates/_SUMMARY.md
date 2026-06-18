@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/templates
+# Folder Summary: MetaHarvest/templates
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/templates`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/templates`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

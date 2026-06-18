@@ -1,20 +1,18 @@
 # MetaHarvest Constitution
 
-MetaHarvest is currently hosted within ProjectForge as a reusable librarian, reference system, evidence repository, and advisory subsystem. Its conceptual long-term name is MetaHarvest because its durable purpose now extends beyond architecture patterns into reusable non-domain knowledge.
-
-The current physical directory remains `MetaHarvest/`. This doctrine update does not split the subsystem, create a new project, relocate files, create InterfaceHarvest/ConceptHarvest/MethodologyHarvest/DecisionHarvest/GovernanceHarvest/HeuristicHarvest, or grant governance authority.
+MetaHarvest is an active sibling EIP project and advisory system for reusable non-domain knowledge. It is historically descended from ArchitectureHarvest, whose name remains valid only for historical provenance and compatibility paths.
 
 MetaHarvest extracts reusable non-domain evidence and recommendation-grade judgment from projects, systems, architectures, implementations, successes, failures, concepts, methodologies, interfaces, governance structures, decision patterns, and heuristics. It does not collect projects or knowledge for their own sake. Every harvested source must be decomposed into reusable lessons, mapped to the problems or failure modes those lessons address, evaluated against target constraints, and converted into compact Hermes-usable records plus evidence-backed recommendations for project-local judgment.
 
 ## Doctrine
 
-1. MetaHarvest / MetaHarvest is a librarian, reference system, evidence repository, and advisory system, not a passive research folder, standard-setting authority, or project controller.
+1. MetaHarvest is a librarian, reference system, evidence repository, and advisory system, not a passive research folder, standard-setting authority, or project controller.
 2. The default output is evidence-backed recommendation: adopt, adapt, reject, retire, simplify, replace, defer, preserve vocabulary, preserve methodology, preserve decision pattern, preserve governance pattern, or preserve heuristic. Strong recommendations are acceptable, but adoption remains project-local.
 3. External projects and observed ecosystem projects are evidence sources. They do not become authority over ProjectForge or generated projects.
 4. Project cards are not enough. Analysis must produce the layers needed for the problem: project, component, pattern, concept/vocabulary, methodology, decision, governance, heuristic, relevance, and recommendation layers where applicable.
 5. Cross-project reusable knowledge is preferred over one-off enthusiasm. If multiple projects solve or name a similar problem, compare them in compact reusable records.
 6. The most valuable recommendation is often deletion, simplification, non-adoption, or preservation of negative knowledge.
-7. MetaHarvest / MetaHarvest may create recommendations and candidate task proposals, but it must not decide adoption, force migration, act as controller, create tasks inside ProjectForge, MacroForge, or any target project, or directly modify those projects from research findings.
+7. MetaHarvest may create recommendations and candidate task proposals, but it must not decide adoption, force migration, act as controller, create tasks inside ProjectForge, MacroForge, or any target project, or directly modify those projects from research findings.
 8. MetaHarvest remains non-domain. Domain conclusions such as GDP analysis, inflation analysis, energy-market conclusions, investment theses, company research, and macroeconomic findings belong to domain projects, not MetaHarvest. MetaHarvest may preserve reusable non-domain methods discovered while working on those projects.
 
 ## Hard constraints for v1

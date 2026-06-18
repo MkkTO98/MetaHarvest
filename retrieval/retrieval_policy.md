@@ -1,6 +1,6 @@
-# ArchitectureHarvest Retrieval Policy
+# MetaHarvest Retrieval Policy
 
-ArchitectureHarvest answers architectural questions through a problem-first, compact-context workflow.
+MetaHarvest answers reusable non-domain knowledge and architecture-pattern questions through a problem-first, compact-context workflow.
 
 ## Query shape
 
@@ -51,4 +51,4 @@ Use tags, relevance scores, maturity fields, lifecycle status, concise YAML card
 
 ## Safety limits
 
-ArchitectureHarvest may recommend, reject, simplify, replace, defer, or retire. It may not override project governance, create implementation work without a recommendation record, automatically refactor projects, or introduce databases/vector stores/UI systems for v1.
+MetaHarvest may recommend, reject, simplify, replace, defer, or retire. It may not override project governance, create implementation work without a recommendation record, automatically refactor projects, or introduce databases/vector stores/UI systems for v1.

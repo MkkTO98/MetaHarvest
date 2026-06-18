@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/adoption_candidates
+# Folder Summary: MetaHarvest/adoption_candidates
 
 ## Purpose
-This folder stores ArchitectureHarvest recommendation candidate records for `ArchitectureHarvest/adoption_candidates`.
+This folder stores ArchitectureHarvest recommendation candidate records for `MetaHarvest/adoption_candidates`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

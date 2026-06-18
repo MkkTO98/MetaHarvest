@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/decisions
+# Folder Summary: MetaHarvest/decisions
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/decisions`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/decisions`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

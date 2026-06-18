@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/outcome_models
+# Folder Summary: MetaHarvest/outcome_models
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/outcome_models`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/outcome_models`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

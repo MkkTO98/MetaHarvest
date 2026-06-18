@@ -1,7 +1,7 @@
 schema_version: 1
 kind: recommendation_rules
 updated: 2026-06-06
-purpose: Explainable rules for ArchitectureHarvest recommendations. No opaque scoring.
+purpose: Explainable rules for MetaHarvest recommendations. No opaque scoring.
 scales:
   evidence_strength: [low, medium, high]
   local_fit: [poor, moderate, strong]
@@ -47,8 +47,8 @@ negative_rules:
     rule: Do not adopt enterprise/cloud-first patterns without a local minimal extraction.
   - id: no_hypothetical_safeguard_frameworks
     rule: Do not build safeguards against purely hypothetical failure modes.
-  - id: no_architectureharvest_as_runtime_dependency
-    rule: ArchitectureHarvest may inform implementation, but must not become a mandatory runtime dependency.
+  - id: no_metaharvest_as_runtime_dependency
+    rule: MetaHarvest may inform implementation, but must not become a mandatory runtime dependency.
 local_fit_constraints:
   - solo_developer
   - local_first

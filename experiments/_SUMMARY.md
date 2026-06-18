@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/experiments
+# Folder Summary: MetaHarvest/experiments
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/experiments`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/experiments`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

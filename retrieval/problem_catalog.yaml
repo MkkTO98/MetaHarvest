@@ -1,8 +1,8 @@
 schema_version: 1
 kind: problem_catalog
 updated: '2026-06-06'
-purpose: Problem-first entry point for ArchitectureHarvest consultation. Hermes should
-  start here when the user asks which architectural patterns fit a problem.
+purpose: Problem-first entry point for MetaHarvest consultation. Hermes should
+  start here when the user asks which architectural or reusable non-domain patterns fit a problem.
 status_values:
 - active
 - dormant

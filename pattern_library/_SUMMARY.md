@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/pattern_library
+# Folder Summary: MetaHarvest/pattern_library
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/pattern_library`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/pattern_library`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

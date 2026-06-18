@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/contradictions
+# Folder Summary: MetaHarvest/contradictions
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/contradictions`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/contradictions`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

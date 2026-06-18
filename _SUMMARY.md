@@ -35,10 +35,10 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
-- `CONSTITUTION.md`, `README.md`, and `INTEGRATION.md` now frame MetaHarvest as currently hosted within ProjectForge as an advisory subsystem, conceptually separable but not split.
-- Recommendation language now uses candidate task proposals/task recommendations and forbids task creation inside target projects.
+- `CONSTITUTION.md`, `README.md`, and `INTEGRATION.md` frame MetaHarvest as an active sibling EIP advisory project with historical ArchitectureHarvest provenance preserved only where it is evidence or compatibility language.
+- Recommendation language uses candidate task proposals/task recommendations and forbids task creation inside target projects.
 - `templates/recommendation.template.yaml` defines recommendation schema v2 while historical artifacts remain unmigrated.
 
 ## Needs Attention
-- Do not split MetaHarvest, create a separate MetaHarvest project, add automation, or implement future-project functionality without a separate approved architecture review.
+- Do not let MetaHarvest govern, directly modify, or create tasks inside consumer projects without separate project-local approval.
 - Historical v1 adoption candidates remain as-is; use the v2 recommendation template for new recommendation artifacts when appropriate.

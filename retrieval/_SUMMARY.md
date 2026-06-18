@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/retrieval
+# Folder Summary: MetaHarvest/retrieval
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/retrieval`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/retrieval`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

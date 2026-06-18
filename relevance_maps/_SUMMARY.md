@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/relevance_maps
+# Folder Summary: MetaHarvest/relevance_maps
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/relevance_maps`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/relevance_maps`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

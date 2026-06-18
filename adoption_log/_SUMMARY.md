@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/adoption_log
+# Folder Summary: MetaHarvest/adoption_log
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/adoption_log`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/adoption_log`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

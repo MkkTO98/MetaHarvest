@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/relevance_maps/macroforge
+# Folder Summary: MetaHarvest/relevance_maps/macroforge
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/relevance_maps/macroforge`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/relevance_maps/macroforge`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

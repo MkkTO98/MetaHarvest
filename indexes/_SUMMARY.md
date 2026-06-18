@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/indexes
+# Folder Summary: MetaHarvest/indexes
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/indexes`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/indexes`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

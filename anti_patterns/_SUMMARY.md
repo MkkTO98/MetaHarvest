@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/anti_patterns
+# Folder Summary: MetaHarvest/anti_patterns
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/anti_patterns`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/anti_patterns`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

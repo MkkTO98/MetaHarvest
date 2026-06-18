@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/reports
+# Folder Summary: MetaHarvest/reports
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/reports`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/reports`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

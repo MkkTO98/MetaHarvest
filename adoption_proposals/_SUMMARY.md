@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/adoption_proposals
+# Folder Summary: MetaHarvest/adoption_proposals
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/adoption_proposals`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/adoption_proposals`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

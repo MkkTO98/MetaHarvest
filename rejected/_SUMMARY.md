@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/rejected
+# Folder Summary: MetaHarvest/rejected
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/rejected`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/rejected`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

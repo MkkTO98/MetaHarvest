@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/synthesis
+# Folder Summary: MetaHarvest/synthesis
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/synthesis`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/synthesis`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

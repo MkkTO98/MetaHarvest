@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/reviews
+# Folder Summary: MetaHarvest/reviews
 
 ## Purpose
-This folder stores ArchitectureHarvest review and recommendation artifacts for `ArchitectureHarvest/reviews`.
+This folder stores MetaHarvest review and recommendation artifacts for `MetaHarvest/reviews`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->

@@ -1,8 +1,8 @@
-# MetaHarvest (conceptual name: MetaHarvest)
+# MetaHarvest
 
-MetaHarvest is currently hosted within ProjectForge as an advisory subsystem. Its conceptual long-term name is MetaHarvest: a file-backed system for discovering, preserving, organizing, analyzing, and recommending reusable non-domain knowledge.
+MetaHarvest is an active sibling EIP project and advisory system: a file-backed system for discovering, preserving, organizing, analyzing, and recommending reusable non-domain knowledge.
 
-The current physical directory remains `MetaHarvest/`. This conceptual rename does not split the subsystem, create a new project, relocate files, or change governance authority.
+MetaHarvest is historically descended from ArchitectureHarvest. Historical ArchitectureHarvest references remain valid as provenance or generated-project compatibility language, but new active references should use MetaHarvest.
 
 MetaHarvest's purpose is broader than architecture patterns alone. It preserves reusable non-domain knowledge from projects, systems, architectures, implementations, successes, failures, concepts, methodologies, interfaces, governance structures, decision patterns, and heuristics. It helps ProjectForge, MacroForge, and future projects avoid reinventing infrastructure, reduce unnecessary complexity, preserve lessons, and selectively consider proven patterns through project-local governance.
 
@@ -34,7 +34,7 @@ These categories guide retrieval and recommendations. They do not create mandato
 
 ## v1 scope
 
-MetaHarvest / MetaHarvest v1 is local-first and file-only:
+MetaHarvest v1 is local-first and file-only:
 
 - YAML source registry and cards
 - Markdown summaries, reports, decisions, and indexes
@@ -47,10 +47,10 @@ MetaHarvest / MetaHarvest v1 is local-first and file-only:
 
 ## Storage
 
-Subsystem files live in this ProjectForge repository at:
+MetaHarvest files live in this repository at the project root:
 
 ```text
-MetaHarvest/
+/home/mkkto/srv/EIP/projects/MetaHarvest/
 ```
 
 Raw cloned third-party repositories must live outside the git-tracked source tree, normally at:

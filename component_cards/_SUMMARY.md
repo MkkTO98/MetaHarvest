@@ -1,7 +1,7 @@
-# Folder Summary: ArchitectureHarvest/component_cards
+# Folder Summary: MetaHarvest/component_cards
 
 ## Purpose
-This folder is part of the ProjectForge file-backed operating system for `ArchitectureHarvest/component_cards`.
+This folder is part of the ProjectForge file-backed operating system for `MetaHarvest/component_cards`.
 
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->
