@@ -5,12 +5,11 @@ MetaHarvest is an advisory project/subsystem for reusable non-domain knowledge, 
 ## Interface status
 
 - Interface owner: MetaHarvest
-- Current physical status: hosted in ProjectForge until copy-first extraction is executed
-- Approved extraction destination: `/home/mkkto/srv/EIP/projects/MetaHarvest`
+- Current physical status: active sibling EIP project at `/home/mkkto/srv/EIP/projects/MetaHarvest`
 - Historical name: ArchitectureHarvest
 - Historical references: preserved as historical or compatibility references
 - Generated-project compatibility path: `architecture/architectureharvest/`
-- Source-cache policy: first extraction keeps caches under `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources` as transitional cache hints
+- Source-cache policy: local cloned repositories are replaceable cache hints, currently under `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources`
 
 ## Authority boundary
 
