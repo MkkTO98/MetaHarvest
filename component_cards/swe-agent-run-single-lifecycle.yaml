@@ -1,0 +1,78 @@
+schema_version: 1
+kind: component_card
+component:
+  id: swe-agent-run-single-lifecycle
+  source_project_id: swe-agent
+  name: RunSingle task lifecycle and output directory
+  category: task_lifecycle
+analysis:
+  analyzed_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  analysis_date: '2026-06-06'
+  evidence_files_inspected:
+  - sweagent/run/run_single.py
+  evidence_quality: high
+  evidence_strength: high
+  confidence: high
+  analysis_limitations:
+  - Static inspection only; behavior was not executed.
+architecture:
+  problem_solved: RunSingle creates an output directory, starts environment, runs agent, invokes run hooks, saves predictions, and closes the environment.
+  problems_solved:
+  - task completion lifecycle
+  - execution loops
+  related_problems:
+  - architecture_decision_reuse
+  - long_running_agent_state
+  anti_problems:
+  - trivial one-shot edits
+  - tasks where ProjectForge existing task/state/handoff artifacts are sufficient
+  failure_modes_addressed:
+  - hidden mutable repository state
+  - unbounded context loading
+  - unclear completion evidence
+  - weak recovery after interruption
+  failure_modes_introduced:
+  - additional lifecycle/schema overhead
+  - risk of importing tool-specific workflow assumptions into ProjectForge
+  architectural_principle: RunSingle creates an output directory, starts environment, runs agent, invokes run hooks, saves predictions, and closes the environment.
+  required_assumptions:
+  - Reuse remains pattern-level unless a separate implementation decision is approved.
+  - ProjectForge dry-run, approval, and coherence gates remain authoritative.
+  useful_patterns:
+  - trajectory_artifact_recovery
+fit:
+  projectforge_relevance:
+    score: 9
+    rationale: Matches the approved ArchitectureHarvest focus areas for this source cycle.
+  macroforge_relevance:
+    score: 4
+    rationale: Placeholder only; no MacroForge change.
+  local_fit: strong
+  mismatch_with_local_constraints:
+  - Do not embed external runtime or publish changes without ProjectForge approval.
+reuse:
+  minimum_useful_extraction: Record as ArchitectureHarvest evidence and adapt as file-backed governance vocabulary only after separate approval.
+  use_when:
+  - Repository-changing workflows need explicit context, lifecycle, review, or recovery evidence.
+  - Human oversight boundaries must be preserved across agent edits.
+  do_not_use_when:
+  - A normal Hermes edit with direct tests and a final diff is sufficient.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - swe-agent
+  maintenance_cost: medium
+  recommendation_strength: strong
+  explanation: Backed by inspected source files in an approved mature coding-agent project; cross-source reinforcement is noted in final comparative report.
+links:
+  problem_catalog_entries:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/trajectory_artifact_recovery.yaml
+  contradiction_records: []
+  adoption_outcomes: []

@@ -1,0 +1,61 @@
+schema_version: 1
+kind: project_card
+project:
+  id: openhands
+  name: OpenHands
+  category: agent_system
+  repository_url: https://github.com/All-Hands-AI/OpenHands
+  license: MIT except enterprise/ source-available
+  maturity_estimate: mature
+analysis:
+  analyzed_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  analysis_date: '2026-06-06'
+  evidence_quality: high
+  confidence: medium
+  analysis_limitations:
+  - Repository was inspected statically only; external code was not installed, imported, built, or executed.
+  - OpenHands analysis covers the approved OpenHands repository; README points its Software Agent SDK to a separate repository that was not cloned in this cycle.
+summary:
+  primary_problem_solved: Sandboxed software-agent product/runtime with conversation lifecycle, event persistence, pending-message queues, sandbox management, and MCP/source-control tools. Best reused as patterns, not as a dependency for ProjectForge.
+  core_architectural_principles:
+  - Make long-running agent work explicit as lifecycle/state records.
+  - Separate orchestration/control flow from side-effecting tool/runtime boundaries.
+  - Expose observable status and failure states instead of hiding runtime progress in logs.
+  main_assumptions:
+  - Users accept explicit setup, approvals, and durable state for nontrivial agent work.
+  - Reuse for ProjectForge should be pattern-level unless a separate dependency decision is approved.
+fit:
+  relevance_to_projectforge:
+    score: 8
+    rationale: Directly relevant to ProjectForge agent orchestration, context/state, checkpointing, approvals, and task lifecycle questions.
+  relevance_to_macroforge:
+    score: 5
+    rationale: Potential future relevance for research workflow orchestration, but no MacroForge changes were made.
+  local_first_fit: high
+  solo_developer_fit: medium
+  cloud_dependency_risk: high
+  complexity_risk: medium
+  maintenance_burden: high
+reuse:
+  minimum_useful_extraction: 'Extract small YAML/Markdown governance patterns: lifecycle status records, checkpoint/resume semantics, interrupt/approval gates, task stream events, and sandbox/tool boundary descriptions.'
+  recommendation: adapt
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: caution
+staleness:
+  latest_seen_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  status: current
+  staleness_policy: Refresh before adopting any recommendation or when upstream commits materially change orchestration/state/runtime files.
+links:
+  human_summary: ArchitectureHarvest/reports/R-20260606-openhands-deep-analysis.md
+  deep_report: ArchitectureHarvest/reports/R-20260606-openhands-deep-analysis.md
+  component_cards:
+  - ArchitectureHarvest/component_cards/openhands-conversation-lifecycle.yaml
+  - ArchitectureHarvest/component_cards/openhands-event-service.yaml
+  - ArchitectureHarvest/component_cards/openhands-mcp-source-control-tools.yaml
+  - ArchitectureHarvest/component_cards/openhands-pending-message-queue.yaml
+  - ArchitectureHarvest/component_cards/openhands-sandbox-boundary.yaml
+  relevance_maps:
+  - ArchitectureHarvest/relevance_maps/projectforge/openhands-relevance-map.yaml

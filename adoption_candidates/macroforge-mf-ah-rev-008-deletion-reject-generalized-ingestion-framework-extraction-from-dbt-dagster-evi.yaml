@@ -1,0 +1,72 @@
+schema_version: 1
+kind: macroforge_architectureharvest_recommendation_candidate
+candidate:
+  id: MF-AH-REV-008
+  title: Reject generalized ingestion-framework extraction from dbt/Dagster evidence
+  type: deletion
+  status: proposed
+  created_from_review: macroforge-first-architectureharvest-review
+ranking:
+  expected_benefit: 3
+  implementation_effort: 1
+  maintenance_impact: 1
+  architectural_confidence: 5
+  benefit_to_effort_ratio: 3.0
+  ranking_scale: 1=low, 2=low-medium, 3=medium, 4=high, 5=very high. Benefit-to-effort
+    score = expected_benefit / implementation_effort.
+  disposition: cheap_guardrail_not_highest_benefit
+recommendation:
+  summary: Contradictions strongly favor source-specific loaders for now; deleting/retiring
+    generic ingestion ambitions prevents framework creep.
+  implementation_boundary: Not implemented. This artifact is recommendation evidence
+    only. Any MacroForge change requires a separate user-approved MacroForge task,
+    dry-run, tests, coherence, and audit.
+  minimum_useful_extraction: Start with the smallest file-backed MacroForge-native
+    shape; do not adopt dbt or Dagster runtimes.
+  do_not_expand_into:
+  - dbt runtime adoption
+  - Dagster runtime adoption
+  - generalized ingestion framework
+  - automatic database writes/materialization
+  - large always-loaded lineage/context bundles
+evidence:
+  allowed_sources_only: true
+  source_files:
+    dbt_comparative: ArchitectureHarvest/reports/R-20260608-dbt-dagster-macroforge-comparative-final-report.md
+    dbt_relevance: ArchitectureHarvest/relevance_maps/macroforge/dbt-relevance-map.yaml
+    dagster_relevance: ArchitectureHarvest/relevance_maps/macroforge/dagster-relevance-map.yaml
+    patterns:
+    - ArchitectureHarvest/synthesis/typed_canonical_manifest.yaml
+    - ArchitectureHarvest/synthesis/asset_key_lineage_graph.yaml
+    - ArchitectureHarvest/synthesis/data_contract_check_gate.yaml
+    - ArchitectureHarvest/synthesis/provider_evidence_not_canonical_truth.yaml
+    - ArchitectureHarvest/synthesis/definition_execution_boundary.yaml
+    - ArchitectureHarvest/synthesis/schema_evolution_policy_surface.yaml
+    - ArchitectureHarvest/synthesis/metadata_first_lineage_evidence.yaml
+    contradictions:
+    - ArchitectureHarvest/contradictions/definition_execution_boundary_vs_runtime_platform.yaml
+    - ArchitectureHarvest/contradictions/asset_manifest_vs_source_specific_simplicity.yaml
+    - ArchitectureHarvest/contradictions/contracts_vs_flexible_exploration.yaml
+    - ArchitectureHarvest/contradictions/lineage_completeness_vs_context_bloat.yaml
+    - ArchitectureHarvest/contradictions/auto_orchestration_vs_governance_boundaries.yaml
+    candidates:
+    - ArchitectureHarvest/adoption_candidates/dbt-adoption-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dbt-simplification-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dbt-replacement-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dbt-deletion-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dagster-adoption-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dagster-simplification-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dagster-replacement-candidate.yaml
+    - ArchitectureHarvest/adoption_candidates/dagster-deletion-candidate.yaml
+  contradiction_weighting:
+  - Prefer file-backed definitions before runtime platform adoption.
+  - Keep source-specific loaders until repeated boilerplate proves abstraction value.
+  - Use strict contracts for accepted canonical state and lighter reports for spikes.
+  - Store full lineage as artifacts and load compact summaries/pointers.
+  - Separate static definitions/checks from live writes, schedules, and materialization.
+target:
+  project_id: macroforge
+  implementation_performed: false
+links:
+  review: ArchitectureHarvest/reviews/R-20260608-macroforge-first-architectureharvest-review.yaml
+  report: ArchitectureHarvest/reviews/R-20260608-macroforge-first-architectureharvest-review.md

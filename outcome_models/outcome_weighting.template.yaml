@@ -1,0 +1,25 @@
+schema_version: 1
+kind: outcome_weighting_record
+pattern_id: REQUIRED
+updated: YYYY-MM-DD
+status: active|dormant|stale|superseded|retired
+generic_recommendation:
+  strength: weak|moderate|strong
+  rationale: REQUIRED
+ecosystem_weighted_recommendation:
+  strength: weak|moderate|strong|insufficient_outcome_history
+  outcome_class: proven_successful_in_ecosystem|mixed_in_ecosystem|repeatedly_failed_in_ecosystem|excessive_maintenance|insufficient_outcome_history
+  rationale: REQUIRED
+outcome_evidence:
+  successful_adoptions: []
+  failed_adoptions: []
+  rejected_adoptions: []
+  maintenance_cost_observations: []
+recommendation_delta:
+  from_generic_to_ecosystem: no_change|increase|decrease|retire|supersede
+  explanation: REQUIRED
+review:
+  last_reviewed: YYYY-MM-DD
+  next_review_trigger: source_change|target_change|new_outcome|scheduled_review|manual
+  confidence: low|medium|high
+  limitations: []

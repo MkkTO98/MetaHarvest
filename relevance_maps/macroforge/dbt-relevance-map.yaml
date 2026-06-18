@@ -1,0 +1,59 @@
+schema_version: 1
+kind: target_relevance_map
+target:
+  project_id: macroforge
+  project_name: MacroForge
+source:
+  project_id: dbt
+  analyzed_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+relevance:
+  overall_score: 9
+  fit_summary: dbt Core is highly relevant as architectural evidence for MacroForge
+    canonicalization, lineage, metadata, validation, and deferred orchestration boundaries,
+    but not as implementation approval.
+  best_fit_areas:
+  - canonicalization workflows
+  - transformation pipelines
+  - lineage
+  - dependency management
+  - data contracts
+  - metadata handling
+  - testing and validation
+  - schema evolution
+  - governance boundaries
+  poor_fit_areas:
+  - immediate framework/runtime adoption
+  - live/default database writes
+  - generalized ingestion framework extraction
+macroforge_decision_comparison:
+  reinforced_decisions:
+  - DEC-010 canonical-domain schema evolution over provider-centric identities
+  - DEC-011 provider mappings and source-agnostic facts
+  - DEC-013 defer generalized ingestion/orchestration framework
+  - DEC-018 proposals and accepted mapping state as governance gate
+  weakened_decisions:
+  - No accepted MacroForge decision lost confidence; some deferred capabilities gained
+    evidence as future needs.
+  missing_capabilities:
+  - static canonical asset/manifest registry
+  - asset/check contract model for accepted mappings
+  - compact lineage edge artifacts
+  - schema/mapping version and deprecation policy
+  - loadable-definition validation for canonical assets
+recommendations:
+  adoption: Adopt compact file-backed patterns only after a separate MacroForge governance
+    task.
+  simplification: Use manifest/asset definitions to simplify scattered report/lineage
+    evidence, not to replace source-specific loaders now.
+  replacement: Potentially replace ad hoc validation reports with reusable check artifacts
+    later.
+  deletion: Delete/retire framework adoption candidates if future evidence still shows
+    source-specific simplicity is sufficient.
+links:
+  project_card: ArchitectureHarvest/project_cards/dbt.yaml
+  deep_report: ArchitectureHarvest/reports/R-20260608-dbt-deep-analysis.md
+  candidate_artifacts:
+  - ArchitectureHarvest/adoption_candidates/dbt-adoption-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/dbt-simplification-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/dbt-replacement-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/dbt-deletion-candidate.yaml

@@ -1,0 +1,52 @@
+schema_version: 1
+kind: synthesized_pattern_record
+example_only: true
+pattern:
+  id: checkpointing
+  name: Checkpointing for resumable workflows
+  status: active
+  problems_solved: [long_running_agent_state]
+  related_problems: [task_handoff, replayable_workflows]
+  anti_problems:
+    - one_shot_scripts
+    - cheap_recompute_tasks
+observed_in:
+  analyzed_projects: []
+  candidate_sources_pending_analysis: [langgraph, openhands, autogen]
+common_elements:
+  - compact persisted state at step/task boundaries
+  - explicit resume point
+  - enough metadata to validate compatibility with current code/configuration
+differing_assumptions:
+  - graph runtimes may treat checkpoints as part of orchestration semantics
+  - coding agents may treat checkpoints as task/session recovery aids
+minimum_useful_extraction: >-
+  Persist a concise YAML/Markdown checkpoint containing current goal, state summary,
+  evidence links, last verified command, known blockers, and resume instruction.
+implementation_complexity: low_to_medium
+maturity:
+  evidence_strength: low
+  adoption_count: 0
+  projects_observed: []
+  confidence: low
+  maintenance_cost: low
+  local_fit: strong
+  recommendation_strength: moderate
+  explanation: Example synthesis created before source analysis; local fit is strong because it matches existing ProjectForge state/handoff practice.
+tradeoffs:
+  benefits:
+    - resumability without loading raw logs
+    - better audit trail than hidden chat memory
+  costs:
+    - stale checkpoint maintenance
+    - risk of over-recording context
+contradictions:
+  - contradictions/event-sourcing-vs-snapshot-persistence.example.yaml
+recommendation:
+  generic: Use compact checkpoints for long-running architectural/governance work.
+  ecosystem_weighted: insufficient_outcome_history
+  do_not_use_when:
+    - the task is trivial
+    - a generated artifact can be recreated more cheaply than maintained
+analysis_limitations:
+  - Candidate external projects are not yet approved or analyzed.

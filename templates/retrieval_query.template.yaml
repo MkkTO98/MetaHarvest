@@ -1,0 +1,28 @@
+schema_version: 1
+kind: retrieval_query_result
+query:
+  date: YYYY-MM-DD
+  target_project_id: REQUIRED
+  problem_interpreted: REQUIRED
+  problem_ids: []
+results:
+  relevant_patterns: []
+  relevant_components: []
+  relevant_projects: []
+  contradiction_records: []
+  adoption_outcomes: []
+recommendation:
+  generic_recommendation: REQUIRED
+  ecosystem_weighted_recommendation: REQUIRED
+  recommendation_strength: weak|moderate|strong
+  evidence_strength: low|medium|high
+  local_fit: poor|moderate|strong
+  confidence: low|medium|high
+  tradeoffs: []
+  minimum_useful_extraction: REQUIRED
+  do_not_use_when: []
+next_gate:
+  create_recommendation_record: true
+  requires_project_decision_before_implementation: true
+  requires_dry_run_before_implementation: true
+limitations: []

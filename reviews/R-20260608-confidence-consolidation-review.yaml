@@ -1,0 +1,401 @@
+schema_version: 1
+kind: architectureharvest_confidence_consolidation_review
+review:
+  id: R-20260608-confidence-consolidation-review
+  title: First ArchitectureHarvest confidence consolidation review
+  created_utc: '2026-06-08T15:30:53Z'
+  target_project: projectforge
+  status: completed
+  boundary:
+    recommendation_artifacts_only: true
+    implementation_performed: false
+    doctrine_changed: false
+    external_code_execution: false
+  inputs:
+    source_analyses:
+    - openhands
+    - langgraph
+    - aider
+    - swe-agent
+    source_reports:
+    - ArchitectureHarvest/reports/R-20260606-openhands-deep-analysis.md
+    - ArchitectureHarvest/reports/R-20260606-langgraph-deep-analysis.md
+    - ArchitectureHarvest/reports/R-20260606-aider-deep-analysis.md
+    - ArchitectureHarvest/reports/R-20260606-swe-agent-deep-analysis.md
+    - ArchitectureHarvest/reports/R-20260606-openhands-langgraph-first-cycle-final-report.md
+    - ArchitectureHarvest/reports/R-20260606-aider-swe-agent-comparative-final-report.md
+    contradiction_records:
+    - ArchitectureHarvest/contradictions/event-log-vs-state-snapshot.yaml
+    - ArchitectureHarvest/contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+    - ArchitectureHarvest/contradictions/sandbox-tool-proxy-vs-hermes-tool-approval.yaml
+    - ArchitectureHarvest/contradictions/autocommit-vs-dry-run-approval.yaml
+    - ArchitectureHarvest/contradictions/trajectory-replay-vs-compact-state.yaml
+    - ArchitectureHarvest/contradictions/benchmark-agent-loop-vs-human-governance.yaml
+    - ArchitectureHarvest/contradictions/repo-map-vs-explicit-context-bundles.yaml
+    adoption_outcomes:
+    - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+    local_experiment: PF-AH-REC-010 lifecycle/checkpoint validation outcome
+  classification_scale:
+  - Architectural Principle
+  - Strong Recommendation
+  - Emerging Pattern
+  - Insufficient Evidence
+  doctrine_additions_recommended:
+  - bounded_context_selection
+  - git_anchored_coding_workflow
+  - patch_submission_boundary
+  - thread_checkpoint_contract
+  - trajectory_artifact_recovery
+  - plan_execute_split
+  - problem_first_decision_support
+  remain_recommendations:
+  - observable_task_stream
+  - environment_reset_boundary
+  - interrupt_as_approval_gate
+  - typed_state_graph
+  - reviewer_retry_loop
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - credential_scoped_tool_proxy
+  - checkpointing
+pattern_classifications:
+- id: bounded_context_selection
+  name: Bounded context selection / evidence split
+  classification: Architectural Principle
+  doctrine: add_explicitly
+  confidence: high
+  supporting:
+  - Aider editable/read-only file sets, repo map, chat summarization
+  - SWE-agent history processors plus persisted trajectories
+  - LangGraph checkpoints and OpenHands event/lifecycle records reinforce active-context
+    vs evidence split
+  - Matches ProjectForge raw-log exclusion and summary-first context policy
+  contradictory:
+  - Aider dynamic repo map is less explicit than ProjectForge context manifests
+  - Full trajectory/event replay can tempt agents to load too much context
+  local: Indirectly supported by ProjectForge context policy and coherence behavior;
+    no single local A/B experiment for repo-map-like context yet.
+  maintenance: Low-to-medium if framed as doctrine; medium if it creates new generated
+    repo-map artifacts. Prefer existing context bundles/summaries before new machinery.
+  recommendation: 'Add to doctrine as an explicit principle: active context is bounded,
+    while durable evidence remains file-backed and available by pointer.'
+- id: git_anchored_coding_workflow
+  name: Git/diff anchored coding workflow
+  classification: Architectural Principle
+  doctrine: add_explicitly
+  confidence: high
+  supporting:
+  - Aider GitRepo centralizes dirty-file detection, tracked files, diffs, commits,
+    attribution, and undo handles
+  - SWE-agent finalizes changes as model.patch and patch/apply/PR hook artifacts
+  - OpenHands source-control tooling reinforces explicit side-effect records
+  contradictory:
+  - Aider autocommit ergonomics conflict with ProjectForge dry-run and approval discipline
+  - Git is not sufficient for non-code architecture recommendations or generated evidence
+  local: ProjectForge already requires tests before code-change summary and human
+    approval before pushes; no local patch-as-submission experiment yet.
+  maintenance: Low if expressed as doctrine around diff/patch evidence; medium if
+    every small edit requires extra patch artifacts. Keep proportional to risk.
+  recommendation: 'Add to doctrine for repository-changing work: final claims require
+    inspectable diff/patch/commit evidence plus validation; publication remains separate.'
+- id: patch_submission_boundary
+  name: Patch/submission boundary before publication
+  classification: Architectural Principle
+  doctrine: add_explicitly
+  confidence: high
+  supporting:
+  - SWE-agent submit tool stores git diff as /root/model.patch
+  - SWE-agent apply_patch/open_pr hooks separate patch capture from local apply and
+    draft PR publication
+  - Aider diffs/commits and OpenHands source-control tool boundary reinforce inspect-before-publish
+  contradictory:
+  - Automatic apply/open-PR is useful externally but would bypass ProjectForge governance
+    if made default
+  - For tiny docs edits, mandatory patch artifacts can be ceremony
+  local: ProjectForge constitution already separates local validation and human-approved
+    push; no local universal patch requirement exists.
+  maintenance: Low if principle remains publication-boundary doctrine; medium/high
+    if required for every file change.
+  recommendation: Add doctrine that publication/push/PR is separate from generation
+    and must pass approval/validation; do not require heavyweight patch workflow for
+    every small edit yet.
+- id: thread_checkpoint_contract
+  name: Minimal file-backed checkpoint/current-state contract
+  classification: Architectural Principle
+  doctrine: add_explicitly_narrowly
+  confidence: high
+  supporting:
+  - LangGraph checkpoint contract provides stable thread/checkpoint/parent/step semantics
+  - SWE-agent trajectories and OpenHands event streams reinforce reconstructable state
+  - PF-AH-REC-010 showed a minimal sidecar improved resume coverage from 62.5% to
+    87.5% and ambiguity from 3 to 1
+  contradictory:
+  - Full graph/checkpointer dependency is not justified
+  - Checkpoint sidecars can duplicate state and add overhead
+  - PF-AH-REC-010 found file-scope ambiguity remained partly unresolved
+  local: 'Strongest local evidence: PF-AH-REC-010 met Adopt threshold narrowly with
+    8 minute overhead and no contradictions.'
+  maintenance: Low-to-medium if limited to long-running architecture/governance tasks;
+    high if required for ordinary tasks.
+  recommendation: 'Add to doctrine narrowly: long-running or interruption-prone governance/architecture
+    work should use compact file-backed checkpoints/current-state pointers; ordinary
+    tasks are exempt.'
+- id: trajectory_artifact_recovery
+  name: Trajectory/evidence artifact for recovery
+  classification: Architectural Principle
+  doctrine: add_explicitly_narrowly
+  confidence: high
+  supporting:
+  - SWE-agent repeatedly persists .traj/history/info/replay_config
+  - Aider persists practical recovery through git commits/diffs and summarized history
+  - OpenHands event stream and LangGraph checkpoint stream reinforce durable evidence
+  contradictory:
+  - Normal ProjectForge startup must not load raw trajectories/logs
+  - Trajectory capture can become storage/context bloat
+  local: PF-AH-REC-010 supports pointer-style recovery, not full trajectory replay.
+    ProjectForge raw-log policy already aligns.
+  maintenance: Low if implemented as pointers to evidence; high if agents maintain
+    verbose replay records for ordinary work.
+  recommendation: 'Add doctrine: recovery evidence may be stored, but normal context
+    loads compact state and pointers, not raw trajectories.'
+- id: plan_execute_split
+  name: Planning/recommendation vs execution split
+  classification: Architectural Principle
+  doctrine: add_explicitly
+  confidence: high_for_doctrine_medium_in_synthesis
+  supporting:
+  - Aider ask/code/architect/context modes separate discussion/planning from editing
+  - SWE-agent separates problem statement/templates from action loop
+  - LangGraph graph/state and OpenHands runtime lifecycle reinforce explicit phase
+    boundaries
+  - Current user task explicitly forbids implementation while requesting recommendations
+  contradictory:
+  - Aider mode switching is product-specific
+  - Over-formal phase boundaries can slow tiny tasks
+  local: ProjectForge already requires ArchitectureHarvest recommendations not force
+    implementation; this task itself validates recommendation-only workflow.
+  maintenance: Low as doctrine; medium if every task must create separate planning
+    artifacts.
+  recommendation: 'Add to doctrine: ArchitectureHarvest outputs are decision inputs;
+    implementation requires a separate approval/dry-run/test cycle.'
+- id: problem_first_decision_support
+  name: Problem-first ArchitectureHarvest retrieval
+  classification: Architectural Principle
+  doctrine: add_explicitly_or_preserve
+  confidence: medium_high_local
+  supporting:
+  - ProjectForge ArchitectureHarvest integration already starts from problem catalog
+    and retrieval index
+  - OpenHands/LangGraph/Aider/SWE-agent artifacts became useful through compact synthesis/relevance/contradiction
+    records rather than raw reports first
+  contradictory:
+  - Can hide useful source nuance if compact records are stale
+  - Not directly proven by external projects
+  local: Direct ProjectForge usage in this and prior ArchitectureHarvest cycles; no
+    quantitative retrieval experiment yet.
+  maintenance: Low if compact indexes stay current; medium if every source cycle requires
+    broad index churn.
+  recommendation: 'Keep/add as doctrine: ArchitectureHarvest consultation starts problem-first
+    and compact-first, then expands only when needed.'
+- id: observable_task_stream
+  name: Observable task/checkpoint stream
+  classification: Strong Recommendation
+  doctrine: recommendation_only
+  confidence: high
+  supporting:
+  - LangGraph exposes task/checkpoint start/result/error/interrupt stream modes
+  - OpenHands event service reinforces observable lifecycle evidence
+  - PF-AH-REC-010 supports compact lifecycle state
+  contradictory:
+  - Event streams are too verbose for normal ProjectForge context
+  - ProjectForge already has logs and summaries; duplicative event streams risk bloat
+  local: PF-AH-REC-010 validates compact checkpoint/lifecycle fields, not full task
+    streams.
+  maintenance: Low if derived summaries; medium/high if full event stream schema becomes
+    mandatory.
+  recommendation: 'Remain a strong recommendation: use derived task/lifecycle event
+    summaries where needed, not a core doctrine requiring streams everywhere.'
+- id: environment_reset_boundary
+  name: Environment reset boundary
+  classification: Strong Recommendation
+  doctrine: recommendation_only
+  confidence: high
+  supporting:
+  - SWE-agent environment starts deployment/session, copies repo, resets to base commit,
+    interrupts timeouts, closes deployment
+  - OpenHands sandbox lifecycle and readiness states reinforce resettable execution
+    boundaries
+  contradictory:
+  - ProjectForge is mostly file-first/Hermes-native, not a persistent sandbox product
+  - Heavy sandbox/reset machinery is unnecessary for ordinary docs/code tasks
+  local: No direct ProjectForge sandbox/reset adoption outcome yet.
+  maintenance: Medium/high; requires lifecycle hooks, cleanup, timeout states, tests,
+    and safety policy.
+  recommendation: Remain a strong recommendation for future sandboxed workers/services,
+    not ProjectForge doctrine today.
+- id: interrupt_as_approval_gate
+  name: Interrupt/resume as approval gate
+  classification: Strong Recommendation
+  doctrine: recommendation_only
+  confidence: high_source_medium_local
+  supporting:
+  - LangGraph interrupt/resume shows approval as durable interrupted state
+  - Aider confirmations and SWE-agent patch-before-publication reinforce explicit
+    human gates
+  - ProjectForge constitution already requires human approval for high-risk actions
+  contradictory:
+  - SWE-agent autosubmission and Aider autocommit show external tools can bypass approvals
+    when configured
+  - ProjectForge already has Hermes approval semantics; adding interrupt records may
+    duplicate them
+  local: PF-AH-REC-010 supports checkpoint vocabulary but did not test high-risk approval
+    interruption.
+  maintenance: Medium; needs clear schema and refusal/resume semantics to avoid confusing
+    approvals.
+  recommendation: Remain a strong recommendation until a concrete high-risk approval
+    workflow is tested.
+- id: typed_state_graph
+  name: Typed state graph orchestration
+  classification: Emerging Pattern
+  doctrine: recommendation_only
+  confidence: high_source_low_local
+  supporting:
+  - LangGraph StateGraph provides mature typed state-machine orchestration
+  - Planning/execution and checkpoint patterns can be expressed cleanly with graph
+    semantics
+  contradictory:
+  - Aider/SWE-agent show many benefits can be captured with git/patch/files without
+    graph dependency
+  - ProjectForge architecture is explicitly file-first and local-execution/cloud-governance
+  local: No ProjectForge adoption outcome for graph runtime; PF-AH-REC-010 intentionally
+    avoided graph/runtime vocabulary.
+  maintenance: Medium/high if adopted; adds dependency, schema, runtime concepts,
+    and debugging burden.
+  recommendation: 'Keep as emerging; do not add to doctrine except as a negative/default
+    rule: prefer file-backed extraction before graph runtime adoption.'
+- id: reviewer_retry_loop
+  name: Reviewer/retry loop for high-value attempts
+  classification: Emerging Pattern
+  doctrine: recommendation_only
+  confidence: medium
+  supporting:
+  - SWE-agent RetryAgent/reviewer/chooser preserves multiple attempts and best submission
+  - Potentially useful for high-value architecture/coding tasks with explicit budgets
+  contradictory:
+  - Benchmark autonomy conflicts with ProjectForge human-governed lifecycle if generalized
+  - Can create autonomous refactoring campaigns or token/tool waste
+  local: No local reviewer/retry experiment. User constraints repeatedly emphasize
+    not implementing recommendations automatically.
+  maintenance: Medium/high; requires budget, stop conditions, reviewer criteria, and
+    audit records.
+  recommendation: Keep emerging; only test under explicit human-approved high-value
+    workflow.
+- id: sandboxed_conversation_runtime
+  name: Sandboxed conversation runtime
+  classification: Emerging Pattern
+  doctrine: recommendation_only
+  confidence: medium
+  supporting:
+  - OpenHands provides concrete conversation/sandbox lifecycle, readiness, timeout,
+    and exportable trajectory patterns
+  - SWE-agent environment reset partially reinforces sandbox isolation
+  contradictory:
+  - Product-level runtime is heavier than ProjectForge needs
+  - Hermes-native tools already provide controlled local execution
+  local: No local sandbox runtime outcome.
+  maintenance: High if adopted; requires lifecycle management, cleanup, permissions,
+    and observability.
+  recommendation: Keep emerging/optional for future generated projects or workers;
+    do not add to ProjectForge doctrine now.
+- id: pending_input_queue
+  name: Pending input queue during lifecycle transitions
+  classification: Emerging Pattern
+  doctrine: recommendation_only
+  confidence: medium
+  supporting:
+  - OpenHands pending message queue preserves ordered input during readiness/identity
+    transitions
+  contradictory:
+  - No current ProjectForge async/gateway worker pressure requiring this
+  - Could add queue semantics before needed
+  local: No local outcome.
+  maintenance: Medium; needs ordering, dedupe, identity, retry, and stale-message
+    rules.
+  recommendation: Keep emerging for future async workers/gateways only.
+- id: credential_scoped_tool_proxy
+  name: Credential-scoped tool proxy
+  classification: Insufficient Evidence
+  doctrine: do_not_add
+  confidence: medium_source_low_fit
+  supporting:
+  - OpenHands demonstrates provider/user-aware tool proxy boundaries
+  contradictory:
+  - ProjectForge must not bypass Hermes approval or dry-run gates
+  - Credential handling is high-risk and not needed for current ArchitectureHarvest
+    use
+  local: No local outcome; ProjectForge already has permissions/approval policies.
+  maintenance: High security and policy burden.
+  recommendation: Do not add to doctrine now; retain as cautionary reference for future
+    permission-system design.
+- id: checkpointing
+  name: Generic checkpointing example
+  classification: Insufficient Evidence
+  doctrine: superseded_by_specific_patterns
+  confidence: low
+  supporting:
+  - Conceptually related to LangGraph/PF-AH-REC-010
+  contradictory:
+  - Example record had no analyzed projects and has been superseded by thread_checkpoint_contract
+    and trajectory_artifact_recovery
+  local: PF-AH-REC-010 supports a specific minimal checkpoint vocabulary, not this
+    generic example.
+  maintenance: Low but noisy if retained as decision input.
+  recommendation: Do not promote; prefer specific checkpoint/trajectory/current-state
+    patterns.
+doctrine_guidance:
+  should_be_added_explicitly_to_projectforge_doctrine:
+  - principle_id: bounded_context_selection
+    wording: Active context must stay bounded; durable evidence lives in files and
+      is loaded by pointer only when needed.
+  - principle_id: git_anchored_coding_workflow
+    wording: Repository-changing work must be grounded in inspectable git/diff/patch
+      evidence and validated before completion claims.
+  - principle_id: patch_submission_boundary
+    wording: Publication, push, PR creation, or external side effects are separate
+      approval-gated steps after generation and validation.
+  - principle_id: thread_checkpoint_contract
+    wording: Long-running or interruption-prone architecture/governance work should
+      use compact file-backed checkpoints/current-state pointers; ordinary tasks are
+      exempt.
+  - principle_id: trajectory_artifact_recovery
+    wording: Recovery evidence may be stored, but normal startup loads compact state
+      and evidence pointers rather than raw trajectories or logs.
+  - principle_id: plan_execute_split
+    wording: ArchitectureHarvest recommendations are decision inputs; implementation
+      requires separate approval, dry-run, validation, and coherence.
+  - principle_id: problem_first_decision_support
+    wording: ArchitectureHarvest consultation remains problem-first and compact-first
+      before deep source reports.
+  should_remain_recommendations:
+  - observable_task_stream
+  - environment_reset_boundary
+  - interrupt_as_approval_gate
+  - typed_state_graph
+  - reviewer_retry_loop
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - credential_scoped_tool_proxy
+  - checkpointing
+  explicit_non_recommendations:
+  - Do not adopt external graph/runtime/sandbox dependencies by default.
+  - Do not standardize autocommit, autosubmit, automatic PR, or autonomous retry loops
+    as ProjectForge defaults.
+  - Do not load full event streams, trajectories, or raw logs into normal context.
+validation_plan:
+  dry_run: simulation/dry_runs/20260608_153053-dry-run.md
+  required_checks:
+  - validate dry-run
+  - parse ArchitectureHarvest YAML
+  - ProjectForge coherence
+  - full pytest suite via uv
+  - Architecture-to-Reality audit JSON mode

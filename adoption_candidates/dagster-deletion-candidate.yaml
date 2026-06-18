@@ -1,0 +1,88 @@
+schema_version: 1
+kind: adoption_candidate
+candidate:
+  id: dagster-deletion-candidate
+  title: Retire premature Dagster runtime adoption candidates if evidence remains
+    insufficient
+  type: deletion
+  status: proposed
+problem_context:
+  problem_ids:
+  - macroforge_canonicalization
+  - data_lineage
+  - governed_validation
+  problem_statement: Delete or retire any broad runtime/framework adoption candidate
+    unless MacroForge develops real orchestration/materialization pressure.
+  anti_problems:
+  - immediate runtime/framework adoption
+  - automatic live database writes
+  - generic ingestion framework before evidence
+source_evidence:
+  source_projects:
+  - dagster
+  component_cards:
+  - ArchitectureHarvest/component_cards/dagster-asset-spec-graph.yaml
+  - ArchitectureHarvest/component_cards/dagster-asset-checks-validation.yaml
+  - ArchitectureHarvest/component_cards/dagster-metadata-schema-versioning.yaml
+  - ArchitectureHarvest/component_cards/dagster-source-external-assets.yaml
+  - ArchitectureHarvest/component_cards/dagster-orchestration-definitions.yaml
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/typed_canonical_manifest.yaml
+  - ArchitectureHarvest/synthesis/asset_key_lineage_graph.yaml
+  - ArchitectureHarvest/synthesis/data_contract_check_gate.yaml
+  - ArchitectureHarvest/synthesis/provider_evidence_not_canonical_truth.yaml
+  - ArchitectureHarvest/synthesis/definition_execution_boundary.yaml
+  - ArchitectureHarvest/synthesis/schema_evolution_policy_surface.yaml
+  - ArchitectureHarvest/synthesis/metadata_first_lineage_evidence.yaml
+  contradiction_records:
+  - ArchitectureHarvest/contradictions/definition_execution_boundary_vs_runtime_platform.yaml
+  - ArchitectureHarvest/contradictions/asset_manifest_vs_source_specific_simplicity.yaml
+  - ArchitectureHarvest/contradictions/contracts_vs_flexible_exploration.yaml
+  - ArchitectureHarvest/contradictions/lineage_completeness_vs_context_bloat.yaml
+  - ArchitectureHarvest/contradictions/auto_orchestration_vs_governance_boundaries.yaml
+  reports:
+  - ArchitectureHarvest/reports/R-20260608-dagster-deep-analysis.md
+  - ArchitectureHarvest/reports/R-20260608-dbt-dagster-macroforge-comparative-final-report.md
+outcome_weighting:
+  generic_recommendation_strength: moderate
+  ecosystem_recommendation_strength: moderate
+  outcome_records: []
+  weighting_rationale: Mature source evidence is strong, but MacroForge local adoption
+    evidence is not yet available; implementation remains unapproved.
+target:
+  project_id: macroforge
+  affected_area: canonicalization_lineage_validation_governance
+recommendation:
+  decision_grade_summary: Delete or retire any broad runtime/framework adoption candidate
+    unless MacroForge develops real orchestration/materialization pressure.
+  problem_addressed: Improve MacroForge traceability and governance without premature
+    framework adoption.
+  minimum_useful_extraction: Create a separate MacroForge governance task before implementing
+    any pattern.
+  expected_benefit: Better canonicalization contracts, lineage, validation, and schema-evolution
+    governance.
+  implementation_outline:
+  - Not implemented in this task.
+  - If approved later, start with file-backed definitions/checks over existing fixtures.
+  do_not_expand_into:
+  - Do not adopt dbt/Dagster runtime by default.
+  - Do not replace source-specific loaders prematurely.
+  - Do not bypass dry-run, tests, coherence, or human approval.
+  recommendation_strength: moderate
+risks:
+  complexity_risk: medium
+  adoption_risk: medium
+  maintenance_burden: medium
+  license_risk: low
+  rollback_plan: Reject or supersede this candidate; no implementation was performed.
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []

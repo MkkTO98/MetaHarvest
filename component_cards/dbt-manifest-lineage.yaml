@@ -1,0 +1,92 @@
+schema_version: 1
+kind: component_card
+component:
+  id: dbt-manifest-lineage
+  source_project_id: dbt
+  name: Parse/manifest lineage compiler
+  category: transformation_metadata_graph
+analysis:
+  analyzed_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  analysis_date: '2026-06-08'
+  evidence_files_inspected:
+  - crates/dbt-compilation/src/core.rs
+  - crates/dbt-parser/src/resolver.rs
+  - crates/dbt-schemas/src/schemas/manifest/manifest.rs
+  - crates/dbt-schemas/src/schemas/common.rs
+  evidence_quality: high
+  evidence_strength: high
+  confidence: high
+  analysis_limitations:
+  - Static source inspection only; no external code execution.
+architecture:
+  problem_solved: Source files, YAML properties, SQL/Jinja, refs, sources, macros,
+    and configs are resolved into a typed manifest graph with depends_on edges.
+  problems_solved:
+  - lineage
+  - metadata handling
+  - validation
+  - governance boundary
+  related_problems:
+  - canonicalization workflows
+  - dependency management
+  - schema evolution
+  anti_problems:
+  - premature runtime adoption
+  - opaque automatic canonicalization
+  failure_modes_addressed:
+  - hidden dependency drift
+  - untraceable transformation semantics
+  - schema/contract changes without review
+  failure_modes_introduced:
+  - framework complexity if adopted wholesale
+  - ceremony if every tiny source slice uses full abstraction
+  architectural_principle: Make semantic definitions, lineage, metadata, and validation
+    statically inspectable before runtime orchestration.
+  required_assumptions:
+  - definitions are file-backed
+  - validation artifacts are reviewed before adoption
+  useful_patterns:
+  - Parse/manifest lineage compiler
+fit:
+  projectforge_relevance:
+    score: 5
+    rationale: Useful evidence; not a ProjectForge runtime need.
+  macroforge_relevance:
+    score: 9
+    rationale: MacroForge should materialize canonicalization mapping/state as typed
+      artifacts with source paths, checksums, and graph edges rather than inferring
+      lineage ad hoc.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - MacroForge currently defers generalized frameworks/orchestration.
+  - MacroForge must not hide source-specific semantics behind generic loaders.
+reuse:
+  minimum_useful_extraction: MacroForge should materialize canonicalization mapping/state
+    as typed artifacts with source paths, checksums, and graph edges rather than inferring
+    lineage ad hoc.
+  use_when:
+  - MacroForge has multiple canonical assets or mappings needing static validation.
+  - A future decision approves broader metadata/lineage hardening.
+  do_not_use_when:
+  - A source-specific bounded loader or fixture task is enough.
+  - Adoption would create a framework before evidence requires it.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - dbt
+  maintenance_cost: medium
+  recommendation_strength: strong
+  explanation: Direct mature-source evidence, but local adoption must remain bounded
+    and ProjectForge/MacroForge-native.
+links:
+  problem_catalog_entries:
+  - canonicalization_state
+  - data_lineage
+  - governed_validation
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

@@ -1,0 +1,72 @@
+schema_version: 1
+kind: adoption_outcome
+outcome:
+  id: O-20260608-macroforge-canonical-asset-manifest-registry
+  date: '2026-06-08'
+  status: active
+source:
+  source_project_id: macroforge
+  problem_ids:
+  - macroforge_canonicalization
+  - data_lineage
+  - metadata_governance
+  pattern_id: MF-AH-REV-001
+  synthesized_pattern: ArchitectureHarvest/synthesis/typed_canonical_manifest.yaml
+  component_card: null
+  pattern_card: null
+target:
+  project_id: macroforge
+  target_area: canonicalization_asset_manifest_registry
+implementation:
+  action: modified
+  implementation_effort: low
+  maintenance_cost_observed: low
+  complexity_observed: reduced
+  files_or_decisions_touched:
+  - architecture/architecture_state.md
+  - architecture/architectureharvest/relevance_map.yaml
+  - architecture/architectureharvest/adoption_candidates.md
+  - architecture/architectureharvest/rejected_candidates.md
+  - architecture/architectureharvest/review_history.md
+  - artifacts/manifests/canonical_assets.json
+  - tests/test_architectureharvest_integration.py
+  approval_gate: dry_run,test,coherence,audit
+result:
+  outcome_summary: MF-AH-REV-001 was adopted in modified/narrow form as a file-backed
+    JSON manifest registry seeded only from existing MacroForge canonicalization artifacts.
+    The implementation deliberately avoided dbt, Dagster, orchestration runtime behavior,
+    generalized ingestion framework behavior, database migrations, and raw loader
+    changes.
+  worked_well:
+  - Coherence placeholder retrofit is lightweight and file-backed.
+  - Manifest captures stable asset keys, roles, statuses, ownership/review authority,
+    provider evidence pointers, related artifacts, canonical concept/mapping pointers,
+    version/supersession fields, and caveats.
+  - Provider identities remain evidence/mapping metadata rather than canonical truth.
+  failed_or_hurt: []
+  lessons_learned:
+  - The smallest useful extraction is a static registry, not a runtime graph.
+  - JSON avoided adding a YAML parsing dependency to MacroForge.
+  - Full lineage/check/schema-evolution systems remain follow-up candidates rather
+    than part of the first adoption.
+  follow_up_recommendations:
+  - Use the manifest in the next canonicalization workflow only if it reduces scattered
+    artifact lookup.
+  - Do not add lineage/check sub-registries until repeated local pressure appears.
+  should_update_pattern_card: false
+  should_update_relevance_map: true
+  should_update_outcome_model: true
+weighting_effect:
+  ecosystem_outcome_class: proven_successful_in_ecosystem
+  recommendation_delta: increase
+  rationale: A high-confidence dbt/Dagster-derived pattern produced a minimal MacroForge-native
+    file-backed implementation with low observed maintenance cost and no runtime/framework
+    adoption.
+confidence: high
+links:
+  local_project_record: /home/mkkto/srv/projectforge/workspace/projects/macroforge/architecture/architectureharvest/review_history.md
+  architectureharvest_log_entry: ArchitectureHarvest/adoption_log/O-20260608-macroforge-canonical-asset-manifest-registry.yaml
+  related_decisions:
+  - DEC-018
+  - DEC-019
+  related_tasks: []

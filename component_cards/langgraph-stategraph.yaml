@@ -1,0 +1,83 @@
+schema_version: 1
+kind: component_card
+component:
+  id: langgraph-stategraph
+  source_project_id: langgraph
+  name: StateGraph builder
+  category: orchestration_graph
+analysis:
+  analyzed_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  analysis_date: '2026-06-06'
+  evidence_files_inspected:
+  - libs/langgraph/langgraph/graph/state.py
+  evidence_quality: high
+  evidence_strength: high
+  confidence: high
+  analysis_limitations:
+  - Static inspection only; behavior not executed.
+architecture:
+  problem_solved: Typed state schema, reducers, context schema, nodes, edges, branches, and compile boundary produce executable invoke/stream graph.
+  problems_solved:
+  - agent orchestration
+  - agent state management
+  - task lifecycle management
+  - failure recovery
+  related_problems:
+  - long_running_agent_state
+  - task_handoff
+  - approval_workflows
+  - failure_recovery
+  anti_problems:
+  - simple one-shot tasks
+  - small local scripts where durable orchestration would add ceremony
+  failure_modes_addressed:
+  - lost runtime progress
+  - unobservable failure state
+  - unsafe implicit side effects
+  - resume ambiguity
+  failure_modes_introduced:
+  - extra schema/metadata maintenance
+  - risk of overfitting ProjectForge to a heavyweight runtime
+  architectural_principle: Typed state schema, reducers, context schema, nodes, edges, branches, and compile boundary produce executable invoke/stream graph.
+  required_assumptions:
+  - Durable records are worth the overhead for long-running agent work.
+  - ProjectForge should adapt the smallest useful pattern rather than embedding the source framework.
+  useful_patterns:
+  - typed_state_graph
+fit:
+  projectforge_relevance:
+    score: 9
+    rationale: Matches requested focus areas for ArchitectureHarvest first cycle.
+  macroforge_relevance:
+    score: 4
+    rationale: Placeholder only; no MacroForge change.
+  local_fit: strong
+  mismatch_with_local_constraints:
+  - Avoid importing a runtime when file-backed governance is enough.
+reuse:
+  minimum_useful_extraction: Capture typed_state_graph as a small ArchitectureHarvest recommendation and ProjectForge governance pattern.
+  use_when:
+  - Long-running agent work needs pause/resume/audit/recovery.
+  - Human approval or tool side effects need explicit lifecycle state.
+  do_not_use_when:
+  - The work is a trivial local command or ordinary code edit.
+  - A plain task file and final verification output are sufficient.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: low
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - langgraph
+  maintenance_cost: low
+  recommendation_strength: strong
+  explanation: Backed by one approved external source in this cycle; cross-source confirmation exists for some state/lifecycle patterns.
+links:
+  problem_catalog_entries:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/typed_state_graph.yaml
+  contradiction_records: []
+  adoption_outcomes: []

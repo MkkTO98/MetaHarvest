@@ -1,0 +1,38 @@
+schema_version: 2
+kind: recommendation
+recommendation_id: REQUIRED
+recommendation_type: architecture_improvement|project_creation|doctrine_change|schema_change|interface_change|tooling_change
+origin_project: REQUIRED
+target_project_or_scope: REQUIRED
+generated_at: YYYY-MM-DDTHH:MM:SSZ
+generated_by: Hermes|ArchitectureHarvest|human|other
+rationale: REQUIRED
+expected_benefit: REQUIRED
+implementation_cost_estimate: low|medium|high|decimal_or_text_with_rationale
+architectural_impact_estimate: low|medium|high|decimal_or_text_with_rationale
+confidence: 0.00
+priority: 0.00
+status: proposed|under_review|accepted|rejected|deferred|adopted|implemented|failed|superseded|retired
+lineage:
+  source_recommendation_ids: []
+  supersedes: []
+  superseded_by: []
+  related_decisions: []
+  related_reviews: []
+review:
+  reviewed_at: null
+  reviewed_by_project: null
+  review_outcome: null
+  review_rationale: null
+implementation_outcome:
+  implemented_at: null
+  implementation_result: null
+  adoption_rationale: null
+  rejection_rationale: null
+  lessons: []
+boundaries:
+  creates_project: false
+  creates_task_in_target_project: false
+  modifies_target_project_directly: false
+  requires_human_approval: true
+notes: []

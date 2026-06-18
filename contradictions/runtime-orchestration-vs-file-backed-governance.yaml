@@ -1,0 +1,54 @@
+schema_version: 1
+kind: contradiction_record
+contradiction:
+  id: runtime-orchestration-vs-file-backed-governance
+  name: Graph/product runtime orchestration vs ProjectForge file-backed governance
+  status: active
+  problem_ids:
+  - long_running_agent_state
+  - architecture_decision_reuse
+competing_approaches:
+- approach_id: typed_state_graph
+  summary: Runtime/framework/product-oriented orchestration evidence from approved sources.
+  assumptions:
+  - A long-running runtime is embedded in the application.
+  - State transitions benefit from explicit runtime mechanics.
+  wins_when:
+  - Complex branching/resume semantics dominate.
+  - Many concurrent or delayed tasks need standardized task events.
+  loses_when:
+  - A file-backed task/handoff/decision artifact is sufficient.
+  failure_modes_addressed:
+  - resume ambiguity
+  - hidden runtime failure
+  failure_modes_introduced:
+  - framework lock-in
+  - extra maintenance
+- approach_id: sandboxed_conversation_runtime
+  summary: ProjectForge file-backed governance and compact context.
+  assumptions:
+  - Hermes remains primary operator.
+  - Markdown/YAML/JSON artifacts are enough for audit and continuity.
+  wins_when:
+  - Solo/local execution needs traceability without a service runtime.
+  - Context budget and auditability are more important than live orchestration.
+  loses_when:
+  - A future service needs live scheduling, streaming, or human-in-loop runtime state.
+  failure_modes_addressed:
+  - context bloat
+  - overengineering
+  failure_modes_introduced:
+  - manual lifecycle updates can drift if not verified
+recommendation:
+  action: do_not_force_winner
+  guidance: Do not force a winner. Use file-backed ProjectForge governance by default; consider graph/runtime patterns only when lifecycle branching, resume, or tool-risk complexity exceeds simple task/state/handoff artifacts.
+  confidence: high
+  evidence_quality: high
+  analysis_limitations:
+  - Only OpenHands and LangGraph were analyzed in this cycle.
+links:
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/typed_state_graph.yaml
+  - ArchitectureHarvest/synthesis/sandboxed_conversation_runtime.yaml
+  outcome_records: []

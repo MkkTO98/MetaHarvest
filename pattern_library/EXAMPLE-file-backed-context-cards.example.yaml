@@ -1,0 +1,55 @@
+schema_version: 1
+kind: pattern_card
+example_only: true
+pattern:
+  id: EXAMPLE-file-backed-context-cards
+  name: File-backed compact context cards
+  category: context_management
+analysis:
+  created: 2026-06-06
+  updated: 2026-06-06
+  evidence_quality: low
+  confidence: low
+  analysis_limitations:
+    - Example-only placeholder; not derived from inspected external repositories.
+summary:
+  problem_solved: Keeps architecture lessons retrievable without loading large reports or cloned repositories.
+  projects_where_observed:
+    - EXAMPLE only; replace with real projects after approved analysis.
+  competing_implementations:
+    - YAML cards plus Markdown indexes
+    - Full reports only
+    - Vector database retrieval
+  failure_modes_addressed:
+    - Context pollution from large research notes
+    - Lost architectural lessons after a session ends
+    - Repeated rediscovery of the same external ideas
+  failure_modes_introduced:
+    - Card drift if not audited against source commits
+    - False confidence if evidence quality is omitted
+    - Template bureaucracy if cards are overfilled
+reuse:
+  minimum_useful_extraction: One short YAML card with source, problem, constraints, recommendation, evidence, confidence, and staleness.
+  use_when:
+    - A pattern may be reused across multiple ProjectForge-managed projects.
+    - Hermes needs compact context before a design decision.
+  do_not_use_when:
+    - A one-off note is enough.
+    - No source evidence has been inspected.
+    - The card would duplicate an existing pattern file.
+fit:
+  projectforge_relevance:
+    score: 9
+    rationale: ProjectForge already relies on summary-first context and file-backed governance.
+  macroforge_relevance:
+    score: 5
+    rationale: Could later help MacroForge evaluate research/data-platform patterns without loading full external repos.
+  implementation_burden: low
+  complexity_risk: low
+recommendation:
+  action: adapt
+  rationale: Use as a lightweight pattern placeholder only; replace with evidence-backed cards after source analysis.
+links:
+  component_cards: []
+  relevance_maps: []
+  adoption_candidates: []

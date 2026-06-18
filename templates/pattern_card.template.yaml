@@ -1,0 +1,75 @@
+schema_version: 1
+kind: pattern_card
+pattern:
+  id: REQUIRED
+  name: REQUIRED
+  category: REQUIRED
+  status: active|dormant|stale|superseded|retired
+problem_indexing:
+  problems_solved: []
+  related_problems: []
+  anti_problems: []
+analysis:
+  created: YYYY-MM-DD
+  updated: YYYY-MM-DD
+  evidence_quality: low|medium|high
+  evidence_strength: low|medium|high
+  confidence: low|medium|high
+  analysis_limitations: []
+summary:
+  problem_solved: REQUIRED
+  projects_where_observed: []
+  competing_implementations: []
+  failure_modes_addressed: []
+  failure_modes_introduced: []
+reuse:
+  minimum_useful_extraction: REQUIRED
+  use_when: []
+  do_not_use_when: []
+fit:
+  projectforge_relevance:
+    score: 0
+    rationale: REQUIRED
+  macroforge_relevance:
+    score: 0
+    rationale: optional_lightweight
+  local_fit: poor|moderate|strong
+  implementation_burden: low|medium|high
+  maintenance_cost: low|medium|high
+  complexity_risk: low|medium|high
+  wrong_fit_risks:
+    solo_developer: low|medium|high
+    local_first: low|medium|high
+    low_or_no_cost: low|medium|high
+    ubuntu_linux: low|medium|high
+    hermes_compatibility: low|medium|high
+    token_budget: low|medium|high
+maturity:
+  evidence_strength: low|medium|high
+  adoption_count: 0
+  projects_observed: []
+  confidence: low|medium|high
+  maintenance_cost: low|medium|high
+  local_fit: poor|moderate|strong
+  recommendation_strength: weak|moderate|strong
+  explanation: REQUIRED
+lifecycle:
+  first_seen: YYYY-MM-DD
+  last_reviewed: YYYY-MM-DD
+  last_referenced: YYYY-MM-DD
+  last_adoption: null
+  adoption_frequency: none|rare|occasional|frequent
+recommendation:
+  action: adopt|adapt|reject|defer|retire
+  generic_recommendation: REQUIRED
+  ecosystem_weighted_recommendation: REQUIRED
+  strength: weak|moderate|strong
+  rationale: REQUIRED
+links:
+  problem_catalog_entries: []
+  component_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  relevance_maps: []
+  adoption_candidates: []
+  adoption_outcomes: []

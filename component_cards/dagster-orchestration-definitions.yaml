@@ -1,0 +1,90 @@
+schema_version: 1
+kind: component_card
+component:
+  id: dagster-orchestration-definitions
+  source_project_id: dagster
+  name: Definitions loadability and orchestration boundary
+  category: orchestration_boundary
+analysis:
+  analyzed_commit: ec901682ae78d128173fc50ed132e1ecfd0707e9
+  analysis_date: '2026-06-08'
+  evidence_files_inspected:
+  - python_modules/dagster/dagster/_core/definitions/definitions_class.py
+  - python_modules/dagster/dagster/_core/definitions/repository_definition/repository_definition.py
+  - python_modules/dagster/dagster/_core/definitions/assets/definition/asset_dep.py
+  - python_modules/dagster/dagster/_core/definitions/partitions/mapping/partition_mapping.py
+  evidence_quality: high
+  evidence_strength: high
+  confidence: high
+  analysis_limitations:
+  - Static source inspection only; no external code execution.
+architecture:
+  problem_solved: Definitions.validate_loadable checks conflicts, unresolved jobs/resources,
+    partition mappings, and loadability before execution; definitions separate assets/jobs/schedules/sensors/resources.
+  problems_solved:
+  - lineage
+  - metadata handling
+  - validation
+  - governance boundary
+  related_problems:
+  - canonicalization workflows
+  - dependency management
+  - schema evolution
+  anti_problems:
+  - premature runtime adoption
+  - opaque automatic canonicalization
+  failure_modes_addressed:
+  - hidden dependency drift
+  - untraceable transformation semantics
+  - schema/contract changes without review
+  failure_modes_introduced:
+  - framework complexity if adopted wholesale
+  - ceremony if every tiny source slice uses full abstraction
+  architectural_principle: Make semantic definitions, lineage, metadata, and validation
+    statically inspectable before runtime orchestration.
+  required_assumptions:
+  - definitions are file-backed
+  - validation artifacts are reviewed before adoption
+  useful_patterns:
+  - Definitions loadability and orchestration boundary
+fit:
+  projectforge_relevance:
+    score: 5
+    rationale: Useful evidence; not a ProjectForge runtime need.
+  macroforge_relevance:
+    score: 9
+    rationale: MacroForge should add static definition/loadability validation only
+      after enough assets exist; runtime orchestration remains deferred.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - MacroForge currently defers generalized frameworks/orchestration.
+  - MacroForge must not hide source-specific semantics behind generic loaders.
+reuse:
+  minimum_useful_extraction: MacroForge should add static definition/loadability validation
+    only after enough assets exist; runtime orchestration remains deferred.
+  use_when:
+  - MacroForge has multiple canonical assets or mappings needing static validation.
+  - A future decision approves broader metadata/lineage hardening.
+  do_not_use_when:
+  - A source-specific bounded loader or fixture task is enough.
+  - Adoption would create a framework before evidence requires it.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - dagster
+  maintenance_cost: medium
+  recommendation_strength: strong
+  explanation: Direct mature-source evidence, but local adoption must remain bounded
+    and ProjectForge/MacroForge-native.
+links:
+  problem_catalog_entries:
+  - canonicalization_state
+  - data_lineage
+  - governed_validation
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

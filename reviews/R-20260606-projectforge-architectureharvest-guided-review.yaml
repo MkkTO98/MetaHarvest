@@ -1,0 +1,252 @@
+schema_version: 1
+kind: architectureharvest_guided_review
+review:
+  id: R-20260606-projectforge-architectureharvest-guided-review
+  title: First ArchitectureHarvest-guided ProjectForge review
+  created_utc: '2026-06-06T10:14:50Z'
+  target_project: projectforge
+  goal: Determine whether ArchitectureHarvest has identified improvements sufficiently valuable to justify its continued existence.
+  boundary:
+    no_implementation: true
+    no_external_repository_inspection: true
+    no_new_harvesting: true
+    recommendation_artifacts_only: true
+  allowed_inputs:
+  - ArchitectureHarvest/synthesis/typed_state_graph.yaml
+  - ArchitectureHarvest/synthesis/thread_checkpoint_contract.yaml
+  - ArchitectureHarvest/synthesis/interrupt_as_approval_gate.yaml
+  - ArchitectureHarvest/synthesis/observable_task_stream.yaml
+  - ArchitectureHarvest/synthesis/sandboxed_conversation_runtime.yaml
+  - ArchitectureHarvest/synthesis/pending_input_queue.yaml
+  - ArchitectureHarvest/synthesis/credential_scoped_tool_proxy.yaml
+  - ArchitectureHarvest/contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+  - ArchitectureHarvest/contradictions/event-log-vs-state-snapshot.yaml
+  - ArchitectureHarvest/contradictions/sandbox-tool-proxy-vs-hermes-tool-approval.yaml
+  - ArchitectureHarvest/relevance_maps/projectforge/langgraph-relevance-map.yaml
+  - ArchitectureHarvest/relevance_maps/projectforge/openhands-relevance-map.yaml
+  - ArchitectureHarvest/adoption_candidates/langgraph-adoption-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/langgraph-simplification-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/langgraph-replacement-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/langgraph-deletion-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/openhands-adoption-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/openhands-simplification-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/openhands-replacement-candidate.yaml
+  - ArchitectureHarvest/adoption_candidates/openhands-deletion-candidate.yaml
+classification_legend:
+  A: Immediate candidate
+  B: Future candidate
+  C: Insufficient evidence
+  D: Reject
+recommendations:
+- id: PF-AH-REC-001
+  category: simplification_candidate
+  title: Keep file-backed governance as the default and reject runtime/framework adoption by default.
+  classification: A
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  - typed_state_graph
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - langgraph
+  - openhands
+  originating_contradictions:
+  - runtime-orchestration-vs-file-backed-governance
+  problem_solved: Prevents ArchitectureHarvest from turning ProjectForge into a runtime orchestration framework when current task/state/handoff/decision artifacts are sufficient.
+  implementation_effort: low
+  maintenance_reduction: high
+  complexity_reduction: high
+  risk: low
+  likely_without_architectureharvest: partly
+  likely_without_architectureharvest_explanation: ProjectForge already values file-backed governance, but ArchitectureHarvest made the external pressure explicit by comparing runtime-oriented evidence against ProjectForge defaults and producing a contradiction record. Without ArchitectureHarvest, the default might exist as preference rather than as reusable decision evidence.
+- id: PF-AH-REC-002
+  category: replacement_candidate
+  title: Replace ad-hoc long-running status notes with a minimal lifecycle/checkpoint vocabulary only for workflows that need pause, resume, recovery, or approval gates.
+  classification: B
+  originating_patterns:
+  - thread_checkpoint_contract
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - typed_state_graph
+  originating_projects:
+  - langgraph
+  problem_solved: Reduces ambiguity when long-running ProjectForge work is interrupted, resumed, compacted, or handed off.
+  implementation_effort: medium
+  maintenance_reduction: medium
+  complexity_reduction: medium
+  risk: medium
+  likely_without_architectureharvest: maybe_but_less_precise
+  likely_without_architectureharvest_explanation: ProjectForge already has task/state/handoff artifacts, but the specific combination of stable thread identity, parent checkpoint, interrupt/resume, and observable task events is unlikely to emerge as a coherent vocabulary without the LangGraph-derived patterns.
+- id: PF-AH-REC-003
+  category: missing_capability_candidate
+  title: Add a file-backed approval-interrupt record for high-risk actions that pause for human decision and resume with explicit evidence.
+  classification: B
+  originating_patterns:
+  - interrupt_as_approval_gate
+  - credential_scoped_tool_proxy
+  originating_projects:
+  - langgraph
+  - openhands
+  originating_contradictions:
+  - sandbox-tool-proxy-vs-hermes-tool-approval
+  problem_solved: Makes human approval workflows durable across context compaction, session interruption, and multi-step risky actions without bypassing Hermes approval boundaries.
+  implementation_effort: medium
+  maintenance_reduction: medium
+  complexity_reduction: low
+  risk: medium
+  likely_without_architectureharvest: maybe
+  likely_without_architectureharvest_explanation: ProjectForge already requires human approval for dangerous actions, so an approval artifact might be discovered internally. ArchitectureHarvest adds value by framing approval as an interruptible lifecycle transition rather than a chat-only confirmation, which directly targets recovery and audit problems.
+- id: PF-AH-REC-004
+  category: missing_capability_candidate
+  title: Add an optional checkpoint pointer schema for resumable architecture/governance work, not ordinary tasks.
+  classification: C
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  originating_projects:
+  - langgraph
+  originating_contradictions:
+  - event-log-vs-state-snapshot
+  problem_solved: Could make long reviews and architecture audits easier to resume from a known checkpoint while preserving compact current-state startup context.
+  implementation_effort: medium
+  maintenance_reduction: unknown
+  complexity_reduction: unknown
+  risk: medium
+  likely_without_architectureharvest: unlikely_in_this_shape
+  likely_without_architectureharvest_explanation: The exact checkpoint fields and current-state/event-log tradeoff came from ArchitectureHarvest. However, evidence is still static and there is no ProjectForge adoption outcome, so the recommendation should remain evidence-gated.
+- id: PF-AH-REC-005
+  category: simplification_candidate
+  title: Treat observable task streams as derived summaries/events, not raw logs loaded into normal context.
+  classification: A
+  originating_patterns:
+  - observable_task_stream
+  - thread_checkpoint_contract
+  originating_projects:
+  - langgraph
+  originating_contradictions:
+  - event-log-vs-state-snapshot
+  problem_solved: Preserves ProjectForge context discipline while allowing better audit and recovery records for long-running work.
+  implementation_effort: low
+  maintenance_reduction: medium
+  complexity_reduction: medium
+  risk: low
+  likely_without_architectureharvest: likely
+  likely_without_architectureharvest_explanation: ProjectForge already excludes raw logs and uses compact summaries. ArchitectureHarvest mainly validates this existing design with external contrast rather than discovering a new improvement.
+- id: PF-AH-REC-006
+  category: replacement_candidate
+  title: Replace implicit runtime readiness assumptions with explicit readiness gates only where ProjectForge spawns persistent sandboxes, workers, or services.
+  classification: B
+  originating_patterns:
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - observable_task_stream
+  originating_projects:
+  - openhands
+  problem_solved: Prevents agents from proceeding while an execution environment is not ready and provides a recovery path for inputs arriving during lifecycle transitions.
+  implementation_effort: medium
+  maintenance_reduction: medium
+  complexity_reduction: low
+  risk: medium
+  likely_without_architectureharvest: maybe
+  likely_without_architectureharvest_explanation: Readiness checks are common operational practice, but the combination with pending input and conversation/runtime separation is more specific to the OpenHands-derived evidence. It becomes valuable only if ProjectForge grows persistent worker/service workflows.
+- id: PF-AH-REC-007
+  category: deletion_candidate
+  title: Delete or retire ArchitectureHarvest source-derived candidates that remain unused after scheduled reviews or never gain local adoption outcomes.
+  classification: A
+  originating_patterns:
+  - typed_state_graph
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - credential_scoped_tool_proxy
+  originating_projects:
+  - langgraph
+  - openhands
+  problem_solved: Prevents ArchitectureHarvest from becoming a permanent graveyard of interesting but unused architecture notes.
+  implementation_effort: low
+  maintenance_reduction: high
+  complexity_reduction: high
+  risk: low
+  likely_without_architectureharvest: no
+  likely_without_architectureharvest_explanation: This recommendation exists because ArchitectureHarvest creates a new maintenance surface. The need for deletion/retirement discipline would not exist without ArchitectureHarvest.
+- id: PF-AH-REC-008
+  category: deletion_candidate
+  title: Reject product-level sandbox/tool-proxy adoption for current ProjectForge unless a future integration decision proves Hermes-native approval is insufficient.
+  classification: D
+  originating_patterns:
+  - credential_scoped_tool_proxy
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - openhands
+  originating_contradictions:
+  - sandbox-tool-proxy-vs-hermes-tool-approval
+  problem_solved: Avoids duplicating Hermes tool approval and credential boundaries with a heavier product-runtime integration layer.
+  implementation_effort: high
+  maintenance_reduction: high
+  complexity_reduction: high
+  risk: high
+  likely_without_architectureharvest: likely
+  likely_without_architectureharvest_explanation: ProjectForge already has Hermes-native tool approval boundaries, so rejecting a product-level proxy is likely. ArchitectureHarvest contributes by documenting what part to keep, scoped identity and metadata, versus what to reject.
+- id: PF-AH-REC-009
+  category: additional_evidence_required
+  title: Gather local outcome evidence before expanding ArchitectureHarvest to more sources or mandatory consultations beyond architecture-level work.
+  classification: C
+  originating_patterns:
+  - thread_checkpoint_contract
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - langgraph
+  - openhands
+  problem_solved: Prevents over-investment in a source-harvesting subsystem before it demonstrates local adoption value.
+  implementation_effort: low
+  maintenance_reduction: unknown
+  complexity_reduction: unknown
+  risk: low
+  likely_without_architectureharvest: no
+  likely_without_architectureharvest_explanation: This is a meta-governance finding about ArchitectureHarvest's own burden. It arises directly from evaluating harvested evidence against ProjectForge fit.
+- id: PF-AH-REC-010
+  category: additional_evidence_required
+  title: Test whether the lifecycle/checkpoint vocabulary actually reduces handoff ambiguity in one real long-running ProjectForge task before standardizing it.
+  classification: C
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  - interrupt_as_approval_gate
+  originating_projects:
+  - langgraph
+  problem_solved: Converts promising static evidence into local ProjectForge outcome evidence.
+  implementation_effort: medium
+  maintenance_reduction: unknown
+  complexity_reduction: unknown
+  risk: low
+  likely_without_architectureharvest: unlikely
+  likely_without_architectureharvest_explanation: 'The proposed experiment follows directly from the ArchitectureHarvest maturity gap: high generic evidence but insufficient ProjectForge outcome history.'
+summary_judgment:
+  genuinely_valuable_findings:
+  - File-backed governance should remain the default while borrowing only minimal lifecycle/checkpoint vocabulary.
+  - Interrupt/resume approval as a durable record is worth future ProjectForge consideration.
+  - Source-derived candidates need retirement criteria to avoid ArchitectureHarvest becoming noisy.
+  merely_interesting_findings:
+  - Full typed state graph orchestration.
+  - Pending input queues.
+  - Product sandbox lifecycle separation.
+  likely_noise:
+  - Product-level tool proxy adoption for ProjectForge now.
+  - Any implication that ProjectForge should embed OpenHands or LangGraph runtimes.
+  justified_maintenance_burden: conditionally_yes
+  maintenance_burden_rationale: ArchitectureHarvest produced at least two useful decision constraints and several evidence-gated candidates, but only justifies continued existence if future work records local outcomes and retires unused/noisy records.
+  future_harvesting_should_continue: yes_but_constrained
+  future_harvesting_guidance:
+  - Continue only for scheduled architecture reviews, new subsystems, orchestration/context/permission/workflow redesign, or user-requested scans.
+  - Do not harvest more sources until at least one local adoption/rejection outcome is recorded from this first cycle.
+  - Prefer contradiction/relevance/pattern records over deep report expansion.
+validation:
+  dry_run_report: simulation/dry_runs/20260606_121442-dry-run.md
+  expected_checks:
+  - validate dry-run
+  - parse this YAML
+  - run tests
+  - run context health
+  - run coherence
+  - run architecture-to-reality audit

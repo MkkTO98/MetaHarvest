@@ -1,0 +1,28 @@
+schema_version: 1
+kind: audit_record
+audit:
+  id: REQUIRED
+  date: YYYY-MM-DD
+  type: source_audit|target_consultation|retrieval_audit|lifecycle_audit
+  target: REQUIRED
+questions:
+  source_changed: null
+  license_changed: null
+  architecture_changed: null
+  context_cards_stale: null
+  previous_recommendations_valid: null
+  target_patterns_now_relevant: null
+  rejected_retired_patterns_prevent_repeated_mistake: null
+  adoption_candidates_now_relevant: null
+retrieval_checked:
+  problem_catalog: false
+  retrieval_index: false
+  synthesized_patterns: false
+  contradiction_records: false
+  adoption_outcomes: false
+  relevance_maps: false
+findings: []
+recommendations: []
+staleness_updates: []
+confidence: low|medium|high
+limitations: []

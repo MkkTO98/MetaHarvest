@@ -1,0 +1,56 @@
+schema_version: 1
+kind: synthesized_pattern_record
+pattern:
+  id: typed_state_graph
+  name: Typed state graph orchestration
+  status: active
+  problems_solved:
+  - agent orchestration
+  - agent state management
+  related_problems:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  anti_problems:
+  - ordinary bug fixes
+  - minor documentation edits
+  - short one-shot commands
+observed_in:
+  analyzed_projects: &id001
+  - langgraph
+  candidate_sources_pending_analysis: []
+common_elements:
+- Explicit durable state boundary
+- Observable status transitions
+- Separate orchestration decision from side-effecting execution
+differing_assumptions:
+- OpenHands assumes a product/runtime with sandboxes and integrations.
+- LangGraph assumes an application may embed a graph runtime/checkpointer.
+- ProjectForge assumes file-based governance and Hermes-led execution by default.
+minimum_useful_extraction: Use typed state plus explicit node/edge/branch definitions when a workflow has branching resume semantics.
+implementation_complexity: medium
+maturity:
+  evidence_strength: high
+  adoption_count: 1
+  projects_observed: *id001
+  confidence: high
+  maintenance_cost: medium
+  local_fit: moderate
+  recommendation_strength: moderate
+  explanation: Derived from static inspection of approved source commits in the first ArchitectureHarvest analysis cycle.
+tradeoffs:
+  benefits:
+  - Improves resume/audit/recovery for long-running agent work.
+  - Makes tool side effects and approvals explicit.
+  costs:
+  - Adds schema and governance maintenance.
+  - Can overcomplicate simple file-backed workflows if adopted wholesale.
+contradictions:
+- ArchitectureHarvest/contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+recommendation:
+  generic: Strong for design-time clarity; too heavy for normal ProjectForge tasks.
+  ecosystem_weighted: Adapt only as file-backed governance patterns until ProjectForge has local adoption outcomes.
+  do_not_use_when:
+  - Narrow implementation task with no architecture change.
+  - Task can be safely verified with a single command and final artifact.
+analysis_limitations:
+- Static source inspection only.

@@ -1,0 +1,165 @@
+schema_version: 1
+kind: retrieval_index
+updated: '2026-06-06'
+purpose: Compact routing index from problem to patterns, components, projects, outcomes,
+  contradictions, and recommendation records. Keep concise so Hermes need not load
+  every report.
+retrieval_flow:
+- problem_catalog
+- synthesized_pattern_library
+- contradiction_records
+- adoption_outcomes
+- project_specific_relevance_maps
+- project_component_reports_only_if_needed
+entries:
+- problem_id: long_running_agent_state
+  pattern_ids:
+  - checkpointing
+  - event_history
+  - file_backed_context_cards
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - pending_input_queue
+  - resumable_execution
+  - sandboxed_conversation_runtime
+  - thread_checkpoint_contract
+  - typed_state_graph
+  - git_anchored_coding_workflow
+  - bounded_context_selection
+  - plan_execute_split
+  - trajectory_artifact_recovery
+  - patch_submission_boundary
+  - reviewer_retry_loop
+  - environment_reset_boundary
+  synthesized_patterns:
+  - synthesis/checkpointing.example.yaml
+  - synthesis/interrupt_as_approval_gate.yaml
+  - synthesis/observable_task_stream.yaml
+  - synthesis/pending_input_queue.yaml
+  - synthesis/sandboxed_conversation_runtime.yaml
+  - synthesis/thread_checkpoint_contract.yaml
+  - synthesis/typed_state_graph.yaml
+  - synthesis/git_anchored_coding_workflow.yaml
+  - synthesis/bounded_context_selection.yaml
+  - synthesis/plan_execute_split.yaml
+  - synthesis/trajectory_artifact_recovery.yaml
+  - synthesis/patch_submission_boundary.yaml
+  - synthesis/reviewer_retry_loop.yaml
+  - synthesis/environment_reset_boundary.yaml
+  pattern_cards:
+  - pattern_library/EXAMPLE-file-backed-context-cards.example.yaml
+  component_cards:
+  - component_cards/langgraph-checkpoint-saver.yaml
+  - component_cards/langgraph-interrupt-command.yaml
+  - component_cards/langgraph-pregel-loop.yaml
+  - component_cards/langgraph-stategraph.yaml
+  - component_cards/langgraph-streaming-task-events.yaml
+  - component_cards/openhands-conversation-lifecycle.yaml
+  - component_cards/openhands-event-service.yaml
+  - component_cards/openhands-mcp-source-control-tools.yaml
+  - component_cards/openhands-pending-message-queue.yaml
+  - component_cards/openhands-sandbox-boundary.yaml
+  - component_cards/aider-git-repo-boundary.yaml
+  - component_cards/aider-repo-map-context.yaml
+  - component_cards/aider-architect-editor-separation.yaml
+  - component_cards/aider-autocommit-undo-lint-test.yaml
+  - component_cards/aider-chat-history-summarization.yaml
+  - component_cards/swe-agent-run-single-lifecycle.yaml
+  - component_cards/swe-agent-trajectory-persistence.yaml
+  - component_cards/swe-agent-environment-reset.yaml
+  - component_cards/swe-agent-retry-review-loop.yaml
+  - component_cards/swe-agent-patch-submission-pr-hooks.yaml
+  - component_cards/swe-agent-history-processors.yaml
+  project_cards:
+  - project_cards/langgraph.yaml
+  - project_cards/openhands.yaml
+  - project_cards/aider.yaml
+  - project_cards/swe-agent.yaml
+  candidate_source_hints:
+  - autogen
+  contradiction_records:
+  - contradictions/event-log-vs-state-snapshot.yaml
+  - contradictions/event-sourcing-vs-snapshot-persistence.example.yaml
+  - contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+  - contradictions/sandbox-tool-proxy-vs-hermes-tool-approval.yaml
+  - contradictions/autocommit-vs-dry-run-approval.yaml
+  - contradictions/trajectory-replay-vs-compact-state.yaml
+  - contradictions/benchmark-agent-loop-vs-human-governance.yaml
+  - contradictions/repo-map-vs-explicit-context-bundles.yaml
+  adoption_outcomes:
+  - adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+  relevance_maps:
+  - relevance_maps/macroforge/macroforge-relevance-map.yaml
+  - relevance_maps/projectforge/
+  - relevance_maps/projectforge/langgraph-relevance-map.yaml
+  - relevance_maps/projectforge/openhands-relevance-map.yaml
+  - relevance_maps/projectforge/aider-relevance-map.yaml
+  - relevance_maps/projectforge/swe-agent-relevance-map.yaml
+  recommendation_records:
+  - adoption_candidates/langgraph-adoption-candidate.yaml
+  - adoption_candidates/langgraph-deletion-candidate.yaml
+  - adoption_candidates/langgraph-replacement-candidate.yaml
+  - adoption_candidates/langgraph-simplification-candidate.yaml
+  - adoption_candidates/openhands-adoption-candidate.yaml
+  - adoption_candidates/openhands-deletion-candidate.yaml
+  - adoption_candidates/openhands-replacement-candidate.yaml
+  - adoption_candidates/openhands-simplification-candidate.yaml
+  - adoption_candidates/aider-adoption-candidate.yaml
+  - adoption_candidates/aider-simplification-candidate.yaml
+  - adoption_candidates/aider-replacement-candidate.yaml
+  - adoption_candidates/aider-deletion-candidate.yaml
+  - adoption_candidates/swe-agent-adoption-candidate.yaml
+  - adoption_candidates/swe-agent-simplification-candidate.yaml
+  - adoption_candidates/swe-agent-replacement-candidate.yaml
+  - adoption_candidates/swe-agent-deletion-candidate.yaml
+  recommendation_summary:
+    generic_recommendation: Use git/patch/checkpoint/context-boundary patterns from
+      Aider, SWE-agent, OpenHands, and LangGraph as advisory evidence; adapt the smallest
+      file-backed version first.
+    ecosystem_weighted_recommendation: Confidence increased for file-backed checkpoint/recovery
+      and patch/diff review boundaries due to multiple independent sources plus one
+      narrow ProjectForge checkpoint outcome; confidence decreased for default runtime/dependency/autonomous-publish
+      adoption.
+    recommendation_strength: strong
+    explanation: Four approved sources now provide independent evidence for state,
+      context, lifecycle, repository, and recovery patterns.
+- problem_id: architecture_decision_reuse
+  pattern_ids:
+  - problem_first_retrieval
+  - synthesized_pattern_cards
+  - outcome_weighted_recommendations
+  - contradiction_records
+  synthesized_patterns:
+  - synthesis/problem-first-decision-support.example.yaml
+  pattern_cards: []
+  component_cards: []
+  project_cards:
+  - project_cards/aider.yaml
+  - project_cards/swe-agent.yaml
+  candidate_source_hints:
+  - openhands
+  - langgraph
+  - autogen
+  contradiction_records: []
+  adoption_outcomes: []
+  relevance_maps:
+  - relevance_maps/projectforge/
+  recommendation_records:
+  - adoption_candidates/aider-adoption-candidate.yaml
+  - adoption_candidates/aider-simplification-candidate.yaml
+  - adoption_candidates/aider-replacement-candidate.yaml
+  - adoption_candidates/aider-deletion-candidate.yaml
+  - adoption_candidates/swe-agent-adoption-candidate.yaml
+  - adoption_candidates/swe-agent-simplification-candidate.yaml
+  - adoption_candidates/swe-agent-replacement-candidate.yaml
+  - adoption_candidates/swe-agent-deletion-candidate.yaml
+  recommendation_summary:
+    generic_recommendation: Start ArchitectureHarvest consultations from problem-first
+      retrieval and only expand to source reports when compact indexes cannot answer
+      the question.
+    ecosystem_weighted_recommendation: ProjectForge has already adopted file-based
+      governance and context-budget controls, so retrieval should remain concise YAML/Markdown
+      rather than adding a database or vector store.
+    recommendation_strength: strong
+    explanation: Directly reduces context pollution and matches accepted ProjectForge
+      constraints.

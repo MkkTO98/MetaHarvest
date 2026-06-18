@@ -1,0 +1,63 @@
+schema_version: 1
+kind: synthesized_pattern_record
+pattern:
+  id: git_anchored_coding_workflow
+  name: Git-anchored coding workflow
+  status: active
+  problems_solved:
+  - repository workflow
+  - code modification workflow
+  - task completion lifecycle
+  - recovery after interruption
+  related_problems:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  anti_problems:
+  - ordinary bug fixes with no interruption or governance risk
+  - minor documentation edits
+observed_in:
+  analyzed_projects:
+  - aider
+  - swe-agent
+  candidate_sources_pending_analysis:
+  - autogen
+common_elements:
+- Explicit durable boundary between reasoning, context, and side effects.
+- Inspectable file-backed evidence before publication or durable adoption.
+- Recovery path that does not require replaying hidden chat memory.
+differing_assumptions:
+- Aider assumes interactive git-aware pair-programming.
+- SWE-agent assumes issue-like tasks, isolated environments, and trajectory outputs.
+- ProjectForge assumes Hermes-native file governance and human approval gates.
+minimum_useful_extraction: Use git diff/status/commit/patch artifacts as the durable boundary for code modification and rollback.
+implementation_complexity: medium
+maturity:
+  evidence_strength: high
+  adoption_count: 2
+  projects_observed:
+  - aider
+  - swe-agent
+  confidence: high
+  maintenance_cost: medium
+  local_fit: strong
+  recommendation_strength: strong
+  explanation: Synthesized from Aider and SWE-agent static source analysis, cross-checked against OpenHands/LangGraph findings and ProjectForge's existing outcome-weighted recommendation records.
+tradeoffs:
+  benefits:
+  - Improves reviewability, rollback, and resume clarity.
+  - Keeps ProjectForge file-first governance compatible with external evidence.
+  costs:
+  - Can become ceremony if applied to simple tasks.
+  - External projects include runtime/product assumptions ProjectForge should not inherit wholesale.
+contradictions:
+- ArchitectureHarvest/contradictions/autocommit-vs-dry-run-approval.yaml
+- ArchitectureHarvest/contradictions/trajectory-replay-vs-compact-state.yaml
+recommendation:
+  generic: Adapt the minimum file-backed pattern; do not embed external workflow machinery by default.
+  ecosystem_weighted: Confidence increases where Aider/SWE-agent reinforce OpenHands/LangGraph and the PF-AH-REC-010 checkpoint outcome; implementation still requires separate approval.
+  do_not_use_when:
+  - Existing ProjectForge task/state/handoff plus tests are sufficient.
+  - The workflow does not modify repositories or need recovery after interruption.
+analysis_limitations:
+- Static source inspection only.
+- No external code execution or benchmark validation was performed.

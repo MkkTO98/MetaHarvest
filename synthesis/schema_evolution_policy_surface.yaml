@@ -1,0 +1,66 @@
+schema_version: 1
+kind: synthesized_pattern_record
+pattern:
+  id: schema_evolution_policy_surface
+  name: Explicit schema evolution policy surface
+  status: active
+  problems_solved:
+  - canonicalization workflows
+  - lineage
+  - validation
+  - governance boundaries
+  related_problems:
+  - metadata handling
+  - schema evolution
+  - dependency management
+  anti_problems:
+  - premature orchestration platform adoption
+  - opaque canonicalization
+observed_in:
+  analyzed_projects: &id001
+  - dbt
+  - dagster
+  - macroforge
+  candidate_sources_pending_analysis: []
+common_elements:
+- dbt OnSchemaChange and model version/deprecation fields
+- Dagster code_version/data_version/provenance/staleness causes
+- MacroForge DEC-010/011 require explicit canonical-domain schema evolution
+differing_assumptions:
+- dbt centers SQL transformation projects; Dagster centers assets and orchestration;
+  MacroForge currently centers source-specific raw SQL/PostgreSQL and file-backed
+  governance.
+minimum_useful_extraction: Express append/fail/sync/deprecate/supersede policies explicitly
+  for canonical schemas and mappings.
+implementation_complexity: medium
+maturity:
+  evidence_strength: high
+  adoption_count: 3
+  projects_observed: *id001
+  confidence: high
+  maintenance_cost: medium
+  local_fit: strong
+  recommendation_strength: strong
+  explanation: Multiple mature data projects plus MacroForge decisions reinforce this
+    as a bounded native pattern, not a framework adoption mandate.
+tradeoffs:
+  benefits:
+  - strong traceability
+  - better validation gates
+  - clearer semantic boundaries
+  costs:
+  - additional definition artifacts
+  - risk of framework creep
+contradictions:
+- definition_execution_boundary_vs_runtime_platform
+- asset_manifest_vs_source_specific_simplicity
+recommendation:
+  generic: Adopt the pattern in the smallest file-backed form before adopting external
+    runtimes.
+  ecosystem_weighted: Strong for MacroForge as recommendation evidence; implementation
+    needs separate governance task.
+  do_not_use_when:
+  - single source-specific fixture task is enough
+  - would hide source semantics behind generic interface
+analysis_limitations:
+- No MacroForge changes implemented.

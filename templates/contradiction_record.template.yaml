@@ -1,0 +1,25 @@
+schema_version: 1
+kind: contradiction_record
+contradiction:
+  id: REQUIRED
+  name: REQUIRED
+  status: active|dormant|stale|superseded|retired
+  problem_ids: []
+competing_approaches:
+  - approach_id: REQUIRED
+    summary: REQUIRED
+    assumptions: []
+    wins_when: []
+    loses_when: []
+    failure_modes_addressed: []
+    failure_modes_introduced: []
+recommendation:
+  action: do_not_force_winner|prefer_approach|defer_until_context_known
+  guidance: REQUIRED
+  confidence: low|medium|high
+  evidence_quality: low|medium|high
+  analysis_limitations: []
+links:
+  pattern_cards: []
+  synthesized_patterns: []
+  outcome_records: []

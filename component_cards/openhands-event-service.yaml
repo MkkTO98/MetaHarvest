@@ -1,0 +1,83 @@
+schema_version: 1
+kind: component_card
+component:
+  id: openhands-event-service
+  source_project_id: openhands
+  name: Event service abstraction
+  category: event_persistence
+analysis:
+  analyzed_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  analysis_date: '2026-06-06'
+  evidence_files_inspected:
+  - openhands/app_server/event/event_service.py
+  evidence_quality: high
+  evidence_strength: medium
+  confidence: medium
+  analysis_limitations:
+  - Static inspection only; behavior not executed.
+architecture:
+  problem_solved: Search/get/save/count event abstraction separates durable event retrieval from runtime execution.
+  problems_solved:
+  - agent orchestration
+  - agent state management
+  - task lifecycle management
+  - failure recovery
+  related_problems:
+  - long_running_agent_state
+  - task_handoff
+  - approval_workflows
+  - failure_recovery
+  anti_problems:
+  - simple one-shot tasks
+  - small local scripts where durable orchestration would add ceremony
+  failure_modes_addressed:
+  - lost runtime progress
+  - unobservable failure state
+  - unsafe implicit side effects
+  - resume ambiguity
+  failure_modes_introduced:
+  - extra schema/metadata maintenance
+  - risk of overfitting ProjectForge to a heavyweight runtime
+  architectural_principle: Search/get/save/count event abstraction separates durable event retrieval from runtime execution.
+  required_assumptions:
+  - Durable records are worth the overhead for long-running agent work.
+  - ProjectForge should adapt the smallest useful pattern rather than embedding the source framework.
+  useful_patterns:
+  - event_log_for_audit
+fit:
+  projectforge_relevance:
+    score: 8
+    rationale: Matches requested focus areas for ArchitectureHarvest first cycle.
+  macroforge_relevance:
+    score: 4
+    rationale: Placeholder only; no MacroForge change.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - Avoid cloud/product coupling.
+reuse:
+  minimum_useful_extraction: Capture event_log_for_audit as a small ArchitectureHarvest recommendation and ProjectForge governance pattern.
+  use_when:
+  - Long-running agent work needs pause/resume/audit/recovery.
+  - Human approval or tool side effects need explicit lifecycle state.
+  do_not_use_when:
+  - The work is a trivial local command or ordinary code edit.
+  - A plain task file and final verification output are sufficient.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - openhands
+  maintenance_cost: medium
+  recommendation_strength: moderate
+  explanation: Backed by one approved external source in this cycle; cross-source confirmation exists for some state/lifecycle patterns.
+links:
+  problem_catalog_entries:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/event_log_for_audit.yaml
+  contradiction_records: []
+  adoption_outcomes: []

@@ -1,0 +1,53 @@
+schema_version: 1
+kind: component_card
+component:
+  id: REQUIRED
+  source_project_id: REQUIRED
+  name: REQUIRED
+  category: REQUIRED
+analysis:
+  analyzed_commit: REQUIRED
+  analysis_date: YYYY-MM-DD
+  evidence_files_inspected: []
+  evidence_quality: low|medium|high
+  evidence_strength: low|medium|high
+  confidence: low|medium|high
+  analysis_limitations: []
+architecture:
+  problem_solved: REQUIRED
+  problems_solved: []
+  related_problems: []
+  anti_problems: []
+  failure_modes_addressed: []
+  failure_modes_introduced: []
+  architectural_principle: REQUIRED
+  required_assumptions: []
+  useful_patterns: []
+fit:
+  projectforge_relevance:
+    score: 0
+    rationale: REQUIRED
+  macroforge_relevance:
+    score: 0
+    rationale: optional_lightweight
+  local_fit: poor|moderate|strong
+  mismatch_with_local_constraints: []
+reuse:
+  minimum_useful_extraction: REQUIRED
+  use_when: []
+  do_not_use_when: []
+  recommendation: adopt|adapt|reject|defer|retire
+  implementation_effort: low|medium|high
+  adoption_risk: low|medium|high
+maturity:
+  adoption_count: 0
+  projects_observed: []
+  maintenance_cost: low|medium|high
+  recommendation_strength: weak|moderate|strong
+  explanation: REQUIRED
+links:
+  problem_catalog_entries: []
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

@@ -1,0 +1,97 @@
+schema_version: 1
+kind: relevance_map
+target:
+  project_id: projectforge
+  project_type: hermes_native_project_factory
+  updated: '2026-06-06'
+consultation:
+  consult_required_during:
+  - workflow_redesign
+  - memory_context_system_design
+  - orchestration_design
+  - permission_system_design
+  - scheduled_architecture_reviews
+  consult_not_required_during:
+  - bug_fixes
+  - minor_documentation_changes
+  - ordinary implementation tasks
+problem_relevance:
+- problem_id: long_running_agent_state
+  relevance: high
+  rationale: swe-agent provides direct source evidence for repository-changing agent workflows, context, lifecycle, oversight, and recovery.
+  related_patterns:
+  - trajectory_artifact_recovery
+  - environment_reset_boundary
+  - reviewer_retry_loop
+  - patch_submission_boundary
+  - bounded_context_selection
+  anti_problems:
+  - one_shot_scripts
+  - ordinary Hermes edits that already have adequate tests and diff review
+recommendations:
+- pattern_id: trajectory_artifact_recovery
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  rationale: Useful as ArchitectureHarvest advisory evidence; not implementation approval.
+  minimum_useful_extraction: Adapt file-backed evidence and lifecycle vocabulary only after separate approval.
+  do_not_use_when:
+  - Existing ProjectForge state/task/handoff/test flow is enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/swe-agent-adoption-candidate.yaml
+- pattern_id: environment_reset_boundary
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  rationale: Useful as ArchitectureHarvest advisory evidence; not implementation approval.
+  minimum_useful_extraction: Adapt file-backed evidence and lifecycle vocabulary only after separate approval.
+  do_not_use_when:
+  - Existing ProjectForge state/task/handoff/test flow is enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/swe-agent-adoption-candidate.yaml
+- pattern_id: reviewer_retry_loop
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  rationale: Useful as ArchitectureHarvest advisory evidence; not implementation approval.
+  minimum_useful_extraction: Adapt file-backed evidence and lifecycle vocabulary only after separate approval.
+  do_not_use_when:
+  - Existing ProjectForge state/task/handoff/test flow is enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/swe-agent-adoption-candidate.yaml
+- pattern_id: patch_submission_boundary
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  rationale: Useful as ArchitectureHarvest advisory evidence; not implementation approval.
+  minimum_useful_extraction: Adapt file-backed evidence and lifecycle vocabulary only after separate approval.
+  do_not_use_when:
+  - Existing ProjectForge state/task/handoff/test flow is enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/swe-agent-adoption-candidate.yaml
+- pattern_id: bounded_context_selection
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  rationale: Useful as ArchitectureHarvest advisory evidence; not implementation approval.
+  minimum_useful_extraction: Adapt file-backed evidence and lifecycle vocabulary only after separate approval.
+  do_not_use_when:
+  - Existing ProjectForge state/task/handoff/test flow is enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/swe-agent-adoption-candidate.yaml
+lifecycle:
+  first_seen: '2026-06-06'
+  last_reviewed: '2026-06-06'
+  last_referenced: '2026-06-06'
+  last_adoption: null
+  adoption_frequency: none

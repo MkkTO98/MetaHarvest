@@ -1,0 +1,42 @@
+schema_version: 1
+kind: adoption_outcome
+outcome:
+  id: REQUIRED
+  date: YYYY-MM-DD
+  status: active|dormant|stale|superseded|retired
+source:
+  source_project_id: null
+  problem_ids: []
+  pattern_id: REQUIRED
+  synthesized_pattern: null
+  component_card: null
+  pattern_card: null
+target:
+  project_id: REQUIRED
+  target_area: REQUIRED
+implementation:
+  action: adopted|rejected|modified|removed|succeeded|failed
+  implementation_effort: low|medium|high
+  maintenance_cost_observed: low|medium|high|unknown
+  complexity_observed: reduced|unchanged|increased|unknown
+  files_or_decisions_touched: []
+  approval_gate: decision|dry_run|test|coherence|other
+result:
+  outcome_summary: REQUIRED
+  worked_well: []
+  failed_or_hurt: []
+  lessons_learned: []
+  follow_up_recommendations: []
+  should_update_pattern_card: false
+  should_update_relevance_map: false
+  should_update_outcome_model: true
+weighting_effect:
+  ecosystem_outcome_class: proven_successful_in_ecosystem|mixed_in_ecosystem|repeatedly_failed_in_ecosystem|excessive_maintenance|insufficient_outcome_history
+  recommendation_delta: no_change|increase|decrease|retire|supersede
+  rationale: REQUIRED
+confidence: low|medium|high
+links:
+  local_project_record: null
+  architectureharvest_log_entry: null
+  related_decisions: []
+  related_tasks: []

@@ -1,0 +1,61 @@
+schema_version: 1
+kind: project_card
+project:
+  id: langgraph
+  name: LangGraph
+  category: agent_orchestration
+  repository_url: https://github.com/langchain-ai/langgraph
+  license: MIT
+  maturity_estimate: mature
+analysis:
+  analyzed_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  analysis_date: '2026-06-06'
+  evidence_quality: high
+  confidence: high
+  analysis_limitations:
+  - Repository was inspected statically only; external code was not installed, imported, built, or executed.
+  - LangGraph server/deployment SaaS behavior was inferred only from repository docs and client/server-facing SDK files present in this monorepo.
+summary:
+  primary_problem_solved: Low-level framework for stateful graph execution, checkpointing, interrupts, durable execution, stream modes, task snapshots, retry/cache/timeout policies, and SDK/server lifecycle APIs.
+  core_architectural_principles:
+  - Make long-running agent work explicit as lifecycle/state records.
+  - Separate orchestration/control flow from side-effecting tool/runtime boundaries.
+  - Expose observable status and failure states instead of hiding runtime progress in logs.
+  main_assumptions:
+  - Users accept explicit setup, approvals, and durable state for nontrivial agent work.
+  - Reuse for ProjectForge should be pattern-level unless a separate dependency decision is approved.
+fit:
+  relevance_to_projectforge:
+    score: 9
+    rationale: Directly relevant to ProjectForge agent orchestration, context/state, checkpointing, approvals, and task lifecycle questions.
+  relevance_to_macroforge:
+    score: 6
+    rationale: Potential future relevance for research workflow orchestration, but no MacroForge changes were made.
+  local_first_fit: high
+  solo_developer_fit: high
+  cloud_dependency_risk: medium
+  complexity_risk: low
+  maintenance_burden: medium
+reuse:
+  minimum_useful_extraction: 'Extract small YAML/Markdown governance patterns: lifecycle status records, checkpoint/resume semantics, interrupt/approval gates, task stream events, and sandbox/tool boundary descriptions.'
+  recommendation: adapt
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+staleness:
+  latest_seen_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  status: current
+  staleness_policy: Refresh before adopting any recommendation or when upstream commits materially change orchestration/state/runtime files.
+links:
+  human_summary: ArchitectureHarvest/reports/R-20260606-langgraph-deep-analysis.md
+  deep_report: ArchitectureHarvest/reports/R-20260606-langgraph-deep-analysis.md
+  component_cards:
+  - ArchitectureHarvest/component_cards/langgraph-checkpoint-saver.yaml
+  - ArchitectureHarvest/component_cards/langgraph-interrupt-command.yaml
+  - ArchitectureHarvest/component_cards/langgraph-pregel-loop.yaml
+  - ArchitectureHarvest/component_cards/langgraph-stategraph.yaml
+  - ArchitectureHarvest/component_cards/langgraph-streaming-task-events.yaml
+  relevance_maps:
+  - ArchitectureHarvest/relevance_maps/projectforge/langgraph-relevance-map.yaml

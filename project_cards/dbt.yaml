@@ -1,0 +1,70 @@
+schema_version: 1
+kind: project_card
+project:
+  id: dbt
+  name: dbt Core
+  category: analytics_engineering_transformation_framework
+  repository_url: https://github.com/dbt-labs/dbt-core
+  license: Apache-2.0
+  maturity_estimate: institutional
+analysis:
+  analyzed_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  analysis_date: '2026-06-08'
+  evidence_quality: high
+  confidence: high
+  analysis_limitations:
+  - Static source inspection only; external code was not installed, imported, built,
+    tested, or executed.
+  - MacroForge comparison used current file-backed architecture/decision artifacts,
+    not MacroForge code changes.
+summary:
+  primary_problem_solved: file-first transformation compiler that turns SQL/YAML/Jinja
+    project inputs into manifest, dependency, test, metadata, and execution artifacts
+  core_architectural_principles:
+  - file-backed typed metadata artifacts
+  - explicit dependency/lineage graph
+  - validation/test results as first-class evidence
+  - governance scopes and boundaries on transformation or asset definitions
+  main_assumptions:
+  - source and transformation definitions should be statically inspectable
+  - runtime orchestration should be separable from semantic definitions
+fit:
+  relevance_to_projectforge:
+    score: 6
+    rationale: Useful as ArchitectureHarvest evidence, but ProjectForge should not
+      adopt a data transformation/orchestration runtime by default.
+  relevance_to_macroforge:
+    score: 9
+    rationale: Directly relevant to MacroForge canonical-domain mappings, transformation
+      validation, lineage, metadata, and deferred orchestration decisions.
+  local_first_fit: medium
+  solo_developer_fit: medium
+  cloud_dependency_risk: low
+  complexity_risk: high
+  maintenance_burden: high
+reuse:
+  minimum_useful_extraction: Extract compact architectural patterns and candidate
+    artifacts only; do not adopt the framework/runtime without a separate MacroForge
+    decision.
+  recommendation: adapt
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: allowed
+staleness:
+  latest_seen_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  status: current
+  staleness_policy: Recheck upstream before implementation decisions or dependency
+    adoption.
+links:
+  human_summary: ArchitectureHarvest/reports/R-20260608-dbt-deep-analysis.md
+  deep_report: ArchitectureHarvest/reports/R-20260608-dbt-deep-analysis.md
+  component_cards:
+  - ArchitectureHarvest/component_cards/dbt-manifest-lineage.yaml
+  - ArchitectureHarvest/component_cards/dbt-contracts-tests.yaml
+  - ArchitectureHarvest/component_cards/dbt-metadata-schema-evolution.yaml
+  - ArchitectureHarvest/component_cards/dbt-orchestration-boundaries.yaml
+  - ArchitectureHarvest/component_cards/dbt-governance-access.yaml
+  relevance_maps:
+  - ArchitectureHarvest/relevance_maps/macroforge/dbt-relevance-map.yaml

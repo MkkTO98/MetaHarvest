@@ -1,0 +1,67 @@
+schema_version: 1
+kind: adoption_outcome
+outcome:
+  id: O-20260606-lifecycle-checkpoint-vocabulary
+  date: '2026-06-06'
+  status: active
+source:
+  source_project_id: langgraph
+  problem_ids:
+  - task_handoff_ambiguity
+  - interruption_recovery
+  - resume_clarity
+  pattern_id: thread_checkpoint_contract
+  synthesized_pattern: ArchitectureHarvest/synthesis/thread_checkpoint_contract.yaml
+  component_card: null
+  pattern_card: null
+target:
+  project_id: projectforge
+  target_area: task_handoff_interruption_recovery_resume_clarity
+implementation:
+  action: adopted
+  implementation_effort: low
+  maintenance_cost_observed: low
+  complexity_observed: reduced
+  files_or_decisions_touched:
+  - artifacts/tasks/T-20260606-lifecycle-checkpoint-validation.md
+  - artifacts/tasks/T-20260606-lifecycle-checkpoint-validation.checkpoints.yaml
+  - state/active_goal.md
+  - context/latest_handoff.md
+  - artifacts/reports/R-20260606-lifecycle-checkpoint-validation-results.md
+  - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+  approval_gate: dry_run
+result:
+  outcome_summary: >-
+    The experiment met the predefined Adopt threshold. A minimal, experiment-specific checkpoint sidecar improved resume-question coverage from 62.5 percent to 87.5 percent, reduced ambiguity from 3 questions to 1, reduced files needed to resume from 6 to 5, and kept estimated checkpoint overhead at 8 minutes with no observed state contradictions.
+  worked_well:
+  - The sidecar made current lifecycle status, completed work, next action, verification state, decisions, blockers, and context budget explicit.
+  - Resume required only Priority 1 context plus the checkpoint sidecar.
+  - The vocabulary stayed minimal and did not introduce graph/runtime concepts.
+  - The experiment produced direct local ProjectForge evidence rather than generic source evidence.
+  failed_or_hurt:
+  - File scope was still only partially answerable from Priority 1 plus sidecar because exact output paths were split between active goal, handoff, task artifact, and report planning.
+  - The sidecar introduced a small amount of duplicate state that must stay tightly scoped.
+  - YAML language-server diagnostics treated the sidecar path as an Ansible task file even though the YAML parsed correctly.
+  lessons_learned:
+  - A sidecar checkpoint can improve resume clarity for architecture/governance review closeout tasks without changing templates or operating procedures.
+  - The vocabulary should remain optional and limited to long-running tasks with real interruption or handoff risk.
+  - If adopted more broadly, file-scope fields should be made more explicit or the outcome should be classified as Modify rather than blanket Adopt.
+  follow_up_recommendations:
+  - Treat this as a narrow adoption for long-running architecture/governance tasks only, not ordinary tasks.
+  - Do not modify templates or ProjectForge operating procedure until at least one more task confirms low overhead.
+  - Consider a later modified vocabulary that adds a precise in-scope-files value only if repeated experiments show the same ambiguity.
+  should_update_pattern_card: false
+  should_update_relevance_map: false
+  should_update_outcome_model: true
+weighting_effect:
+  ecosystem_outcome_class: proven_successful_in_ecosystem
+  recommendation_delta: increase
+  rationale: >-
+    This is the first direct ProjectForge ecosystem outcome showing that a LangGraph-derived checkpoint pattern can improve task handoff and resume clarity through a minimal file-backed extraction. The central outcome model file was not modified because the approved experiment scope allowed only experiment-specific artifacts; this record carries the appropriate weighting effect for future ArchitectureHarvest reviews.
+confidence: medium
+links:
+  local_project_record: artifacts/reports/R-20260606-lifecycle-checkpoint-validation-results.md
+  architectureharvest_log_entry: ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+  related_decisions: []
+  related_tasks:
+  - artifacts/tasks/T-20260606-lifecycle-checkpoint-validation.md

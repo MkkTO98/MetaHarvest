@@ -1,0 +1,42 @@
+schema_version: 1
+kind: synthesized_pattern_record
+example_only: true
+pattern:
+  id: problem_first_decision_support
+  name: Problem-first architecture retrieval
+  status: active
+  problems_solved: [architecture_decision_reuse]
+  related_problems: [context_pollution, pattern_duplication, false_confidence]
+  anti_problems:
+    - ordinary_bug_fix
+    - minor_documentation_edit
+observed_in:
+  analyzed_projects: [projectforge]
+  candidate_sources_pending_analysis: []
+common_elements:
+  - problem catalog as first lookup
+  - compact routing index
+  - evidence and maturity fields
+  - outcome feedback loop
+  - contradiction records for tradeoffs
+minimum_useful_extraction: >-
+  A YAML problem catalog plus retrieval index and recommendation rules; no database,
+  embeddings, dashboard, or autonomous discovery.
+implementation_complexity: low
+maturity:
+  evidence_strength: medium
+  adoption_count: 1
+  projects_observed: [projectforge]
+  confidence: medium
+  maintenance_cost: low
+  local_fit: strong
+  recommendation_strength: strong
+  explanation: Directly addresses ProjectForge context pollution and advisory-system requirements with file-only structures.
+recommendation:
+  generic: Use problem-first retrieval before source-report deep dives.
+  ecosystem_weighted: Proven useful for ArchitectureHarvest's own decision-support layer; keep outcome tracking current before generalizing.
+  do_not_use_when:
+    - the work is not architectural
+    - the answer requires direct source evidence not yet harvested
+analysis_limitations:
+  - Based on current ProjectForge needs rather than external project convergence.

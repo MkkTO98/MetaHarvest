@@ -1,0 +1,259 @@
+schema_version: 1
+kind: architectureharvest_validation_objective_rerank
+review:
+  id: R-20260606-projectforge-validation-objective-rerank
+  title: Re-rank first ArchitectureHarvest review recommendations by validation strength
+  created_utc: '2026-06-06T10:32:08Z'
+  target_project: projectforge
+  source_review: ArchitectureHarvest/reviews/R-20260606-projectforge-architectureharvest-guided-review.yaml
+  objective: Strongest validation of ArchitectureHarvest's ability to improve ProjectForge.
+  boundary:
+    no_implementation: true
+    no_external_repository_inspection: true
+    no_new_harvesting: true
+    recommendation_artifacts_only: true
+  ranking_criteria_in_order:
+  - ability_to_generate_measurable_local_evidence
+  - ability_to_validate_architectureharvest_recommendations
+  - reversibility
+  - risk
+  - implementation_effort
+scoring:
+  scale: 1_to_5
+  direction: Higher is better for evidence, validation, reversibility, low risk, and low effort.
+  note: Risk and effort are inverted scores; 5 means lowest risk or lowest effort.
+rankings:
+- rank: 1
+  recommendation_id: PF-AH-REC-010
+  title: Test whether the lifecycle/checkpoint vocabulary actually reduces handoff ambiguity in one real long-running ProjectForge task before standardizing it.
+  selected: true
+  originating_recommendation_supported: PF-AH-REC-002
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  - interrupt_as_approval_gate
+  originating_projects:
+  - langgraph
+  scores:
+    measurable_local_evidence: 5
+    validates_architectureharvest_recommendations: 5
+    reversibility: 5
+    low_risk: 4
+    low_effort: 3
+  ranking_rationale: >-
+    This is explicitly an evidence-generating experiment. It tests a harvested LangGraph-derived idea against a real ProjectForge failure mode: handoff ambiguity in interrupted, compacted, or resumed long-running work. It is highly reversible because the experiment can be isolated to one task and one optional vocabulary/reporting layer before standardization.
+- rank: 2
+  recommendation_id: PF-AH-REC-002
+  title: Replace ad-hoc long-running status notes with a minimal lifecycle/checkpoint vocabulary only where needed.
+  selected: false
+  originating_patterns:
+  - thread_checkpoint_contract
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - typed_state_graph
+  originating_projects:
+  - langgraph
+  scores:
+    measurable_local_evidence: 4
+    validates_architectureharvest_recommendations: 5
+    reversibility: 4
+    low_risk: 3
+    low_effort: 3
+  ranking_rationale: >-
+    This is the underlying improvement most likely to help ProjectForge, but as written it is closer to standardization than experiment. PF-AH-REC-010 is a better first validation candidate because it tests this recommendation before making it durable policy.
+- rank: 3
+  recommendation_id: PF-AH-REC-003
+  title: Add a file-backed approval-interrupt record for high-risk actions that pause for human decision and resume with explicit evidence.
+  selected: false
+  originating_patterns:
+  - interrupt_as_approval_gate
+  - credential_scoped_tool_proxy
+  originating_projects:
+  - langgraph
+  - openhands
+  scores:
+    measurable_local_evidence: 4
+    validates_architectureharvest_recommendations: 4
+    reversibility: 4
+    low_risk: 3
+    low_effort: 3
+  ranking_rationale: >-
+    Could generate strong evidence around approval durability, but it touches high-risk action workflows and human approval semantics. It should follow lifecycle/checkpoint experimentation rather than precede it.
+- rank: 4
+  recommendation_id: PF-AH-REC-004
+  title: Add an optional checkpoint pointer schema for resumable architecture/governance work, not ordinary tasks.
+  selected: false
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  originating_projects:
+  - langgraph
+  scores:
+    measurable_local_evidence: 4
+    validates_architectureharvest_recommendations: 4
+    reversibility: 4
+    low_risk: 3
+    low_effort: 3
+  ranking_rationale: >-
+    Strongly related to the selected recommendation, but narrower and more schema-oriented. It risks validating only a pointer format rather than whether harvested lifecycle vocabulary actually improves ProjectForge work.
+- rank: 5
+  recommendation_id: PF-AH-REC-007
+  title: Delete or retire ArchitectureHarvest source-derived candidates that remain unused after scheduled reviews or never gain local adoption outcomes.
+  selected: false
+  originating_patterns:
+  - typed_state_graph
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - credential_scoped_tool_proxy
+  originating_projects:
+  - langgraph
+  - openhands
+  scores:
+    measurable_local_evidence: 3
+    validates_architectureharvest_recommendations: 3
+    reversibility: 5
+    low_risk: 5
+    low_effort: 5
+  ranking_rationale: >-
+    Excellent maintenance hygiene and best benefit-to-effort candidate, but it mainly validates ArchitectureHarvest self-governance. It does not strongly prove that harvested architecture knowledge improves ProjectForge's actual task, handoff, approval, or recovery behavior.
+- rank: 6
+  recommendation_id: PF-AH-REC-001
+  title: Keep file-backed governance as the default and reject runtime/framework adoption by default.
+  selected: false
+  originating_patterns:
+  - thread_checkpoint_contract
+  - observable_task_stream
+  - typed_state_graph
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - langgraph
+  - openhands
+  scores:
+    measurable_local_evidence: 2
+    validates_architectureharvest_recommendations: 3
+    reversibility: 5
+    low_risk: 5
+    low_effort: 5
+  ranking_rationale: >-
+    Important, but mostly confirms an existing ProjectForge design principle. Success would be hard to distinguish from ProjectForge already behaving correctly without ArchitectureHarvest.
+- rank: 7
+  recommendation_id: PF-AH-REC-005
+  title: Treat observable task streams as derived summaries/events, not raw logs loaded into normal context.
+  selected: false
+  originating_patterns:
+  - observable_task_stream
+  - thread_checkpoint_contract
+  originating_projects:
+  - langgraph
+  scores:
+    measurable_local_evidence: 2
+    validates_architectureharvest_recommendations: 3
+    reversibility: 5
+    low_risk: 5
+    low_effort: 5
+  ranking_rationale: >-
+    Low-risk and useful, but ProjectForge already has raw-log exclusion and compact summary rules. It validates existing design more than it demonstrates harvested knowledge causing improvement.
+- rank: 8
+  recommendation_id: PF-AH-REC-009
+  title: Gather local outcome evidence before expanding ArchitectureHarvest to more sources or mandatory consultations beyond architecture-level work.
+  selected: false
+  originating_patterns:
+  - thread_checkpoint_contract
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - langgraph
+  - openhands
+  scores:
+    measurable_local_evidence: 3
+    validates_architectureharvest_recommendations: 2
+    reversibility: 5
+    low_risk: 5
+    low_effort: 5
+  ranking_rationale: >-
+    Good meta-governance, but it is a constraint on future harvesting rather than a ProjectForge improvement experiment.
+- rank: 9
+  recommendation_id: PF-AH-REC-006
+  title: Replace implicit runtime readiness assumptions with explicit readiness gates only where ProjectForge spawns persistent sandboxes, workers, or services.
+  selected: false
+  originating_patterns:
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - observable_task_stream
+  originating_projects:
+  - openhands
+  scores:
+    measurable_local_evidence: 2
+    validates_architectureharvest_recommendations: 3
+    reversibility: 3
+    low_risk: 3
+    low_effort: 3
+  ranking_rationale: >-
+    Could validate harvested knowledge if ProjectForge grows persistent workers, but current ProjectForge does not appear to have enough runtime pressure for this to generate strong near-term evidence.
+- rank: 10
+  recommendation_id: PF-AH-REC-008
+  title: Reject product-level sandbox/tool-proxy adoption for current ProjectForge unless future evidence proves Hermes-native approval is insufficient.
+  selected: false
+  originating_patterns:
+  - credential_scoped_tool_proxy
+  - sandboxed_conversation_runtime
+  originating_projects:
+  - openhands
+  scores:
+    measurable_local_evidence: 1
+    validates_architectureharvest_recommendations: 2
+    reversibility: 4
+    low_risk: 2
+    low_effort: 1
+  ranking_rationale: >-
+    Rejection is probably correct, but it would not generate much positive evidence that harvested knowledge improves ProjectForge; adopting the rejected machinery would be high effort and high risk.
+selected_recommendation:
+  recommendation_id: PF-AH-REC-010
+  title: Test whether the lifecycle/checkpoint vocabulary actually reduces handoff ambiguity in one real long-running ProjectForge task before standardizing it.
+  why_stronger_validation_candidate_than_pf_ah_rec_007: >-
+    PF-AH-REC-007 validates that ArchitectureHarvest can govern and prune itself. PF-AH-REC-010 validates the harder and more important claim: harvested architectural knowledge can improve ProjectForge's own operational quality. It would test whether LangGraph-derived concepts such as checkpoint identity, interrupt/resume, and observable progress records reduce ambiguity during real ProjectForge work. That produces direct evidence about task lifecycle, context management, and failure recovery rather than only meta-maintenance evidence.
+  success_criteria:
+  - A real long-running ProjectForge task can be resumed from a compact checkpoint without re-reading broad unrelated context.
+  - The checkpoint/lifecycle vocabulary reduces ambiguity in handoff, active goal, and task status compared with prior ad-hoc notes.
+  - The vocabulary remains minimal and optional, with no runtime dependency, graph framework, database, dashboard, or scheduler.
+  - Tests, coherence, context health, and architecture audit pass after the experiment.
+  - A reviewer can decide whether to adopt, modify, or reject the vocabulary from local evidence rather than generic source evidence.
+  failure_criteria:
+  - The vocabulary adds ceremony without reducing resume/handoff ambiguity.
+  - Agents still need broad manual reconstruction or session search to resume the task.
+  - The experiment expands into a runtime framework, graph engine, or persistent service.
+  - The vocabulary duplicates existing state/task/handoff artifacts without a clear improvement.
+  - Verification checks fail or new context-health/coherence warnings appear because of the experiment.
+  measurable_outcomes:
+  - number_of_resume_decisions_answered_from_checkpoint_without_broader_context
+  - number_of_files_needed_to_resume_before_and_after_experiment
+  - time_or_steps_to_identify_current_task_phase_after_interruption
+  - count_of_ambiguous_or_conflicting_status_fields_before_and_after_experiment
+  - context_health_handoff_size_before_and_after_experiment
+  - reviewer_rating_of_handoff_clarity_before_and_after_experiment
+  - whether_final_adoption_outcome_is_adopt_modified_reject_or_retire
+  ecosystem_weighted_model_evidence_estimate:
+    amount: high
+    rationale: >-
+      A successful experiment would create direct ProjectForge outcome evidence for a harvested pattern family, including fit, maintenance cost, measurable operational impact, and boundaries. This is stronger than a meta-governance outcome because it can adjust recommendation strength for lifecycle/checkpoint patterns in future ProjectForge and generated-project reviews.
+  new_confidence_if_successful_not_gained_from_pf_ah_rec_007: >-
+    We would gain confidence that external harvested architecture patterns can improve ProjectForge's core operating model, especially long-running task recovery, handoff clarity, and context management. PF-AH-REC-007 would only show that ArchitectureHarvest can reduce its own maintenance burden and manage stale recommendations. It would not show that source-derived patterns make ProjectForge work better.
+implementation_boundary_for_future_experiment:
+  do_not_implement_now: true
+  smallest_future_experiment: >-
+    In a future approved task, apply a tiny optional lifecycle/checkpoint vocabulary to one real long-running ProjectForge architecture/governance task, record before/after resume evidence, then create an adoption outcome deciding whether to adopt, modify, or reject the vocabulary.
+  non_scope:
+  - No graph runtime.
+  - No dependency on LangGraph or OpenHands.
+  - No automatic task scheduler.
+  - No broad template rollout before local evidence.
+validation:
+  dry_run_report: simulation/dry_runs/20260606_123202-dry-run.md
+  expected_checks:
+  - validate dry-run
+  - parse this YAML
+  - run full ProjectForge tests
+  - run context health
+  - run coherence
+  - run architecture-to-reality audit

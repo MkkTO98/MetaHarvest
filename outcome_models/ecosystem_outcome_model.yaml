@@ -1,0 +1,41 @@
+schema_version: 1
+kind: ecosystem_outcome_model
+updated: 2026-06-06
+purpose: Explainable weighting of ProjectForge ecosystem adoption outcomes.
+status_values: [active, dormant, stale, superseded, retired]
+outcome_classes:
+  proven_successful_in_ecosystem:
+    meaning: Pattern has succeeded in one or more ProjectForge ecosystem projects with current evidence.
+    recommendation_effect: May increase recommendation strength by one level when local fit remains strong.
+    required_evidence:
+      - adoption_outcome_record
+      - affected_project_or_decision_link
+      - worked_well_summary
+      - maintenance_cost_observation
+  mixed_in_ecosystem:
+    meaning: Pattern helped in some contexts and hurt or failed in others.
+    recommendation_effect: Keep strength moderate or weak and require contradiction/tradeoff discussion.
+  repeatedly_failed_in_ecosystem:
+    meaning: Pattern repeatedly failed, caused complexity, or was removed.
+    recommendation_effect: Lower strength, create rejection/retirement record, and require explicit new condition to revisit.
+  excessive_maintenance:
+    meaning: Pattern works but costs too much for solo/local operation.
+    recommendation_effect: Prefer minimum extraction, simplification, or rejection.
+  insufficient_outcome_history:
+    meaning: No meaningful ProjectForge ecosystem experience yet.
+    recommendation_effect: Do not claim ecosystem proof; keep generic and local-fit recommendations separate.
+weighting_rules:
+  - rule: Local success cannot override changed constraints; stale outcomes must be reviewed before increasing strength.
+  - rule: Repeated local failure outweighs generic popularity unless the target context materially differs.
+  - rule: Maintenance cost and complexity are first-class evidence, not footnotes.
+  - rule: Recommendation changes must explain the outcome records that caused the change.
+rollup_fields:
+  pattern_id: REQUIRED
+  generic_recommendation_strength: weak|moderate|strong
+  ecosystem_recommendation_strength: weak|moderate|strong|insufficient_outcome_history
+  outcome_summary: REQUIRED
+  successful_adoptions: []
+  failed_adoptions: []
+  rejected_adoptions: []
+  maintenance_notes: []
+  recommendation_delta: no_change|increase|decrease|retire|supersede

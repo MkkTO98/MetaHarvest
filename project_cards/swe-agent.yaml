@@ -1,0 +1,64 @@
+schema_version: 1
+kind: project_card
+project:
+  id: swe-agent
+  name: SWE-agent
+  category: coding_agent_evaluation
+  repository_url: https://github.com/SWE-agent/SWE-agent
+  license: MIT
+  maturity_estimate: mature
+analysis:
+  analyzed_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  analysis_date: '2026-06-06'
+  evidence_quality: high
+  confidence: high
+  analysis_limitations:
+  - Static inspection only; external code was not installed, imported, built, tested, or executed.
+  - Analysis focuses on repository workflow, task loops, trajectories, context/history processors, retry/review loops, patch/PR boundaries, and recovery after interruption/failure.
+summary:
+  primary_problem_solved: Repeatable software-issue solving loop over an isolated environment with explicit problem statement, repository setup/reset, action/observation trajectory, patch submission boundary, retry/reviewer selection, and optional patch/PR hooks.
+  core_architectural_principles:
+  - Separate problem statement, environment, agent, tools, model, run hooks, and output trajectory.
+  - Persist trajectories during execution so interrupted runs retain evidence.
+  - Use isolated environment reset and retry/review loops for repeatable attempts.
+  - Make final code modification a patch/submission artifact before applying or publishing it.
+  main_assumptions:
+  - Tasks can be represented as issue-like problem statements.
+  - Shell/environment execution is acceptable in a controlled deployment.
+  - Evaluation/retry machinery is worthwhile for benchmark-style or high-value issue solving.
+fit:
+  relevance_to_projectforge:
+    score: 9
+    rationale: Directly relevant to task lifecycle, execution loops, completion artifacts, recovery, human oversight, and repository workflow.
+  relevance_to_macroforge:
+    score: 4
+    rationale: Potential future utility for research-task benchmark harnesses but no MacroForge change was made.
+  local_first_fit: medium
+  solo_developer_fit: medium
+  cloud_dependency_risk: medium
+  complexity_risk: high
+  maintenance_burden: high
+reuse:
+  minimum_useful_extraction: Adapt patch-as-submission, trajectory-as-evidence, retry/reviewer loops, environment reset boundaries, and optional publication hooks as advisory patterns only.
+  recommendation: adapt
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+staleness:
+  latest_seen_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  status: current
+  staleness_policy: Refresh before using SWE-agent-derived findings for implementation or if upstream changes agent loop, environment, reviewer, history processors, run hooks, or tools.
+links:
+  human_summary: ArchitectureHarvest/reports/R-20260606-swe-agent-deep-analysis.md
+  deep_report: ArchitectureHarvest/reports/R-20260606-swe-agent-deep-analysis.md
+  component_cards:
+  - ArchitectureHarvest/component_cards/swe-agent-run-single-lifecycle.yaml
+  - ArchitectureHarvest/component_cards/swe-agent-trajectory-persistence.yaml
+  - ArchitectureHarvest/component_cards/swe-agent-environment-reset.yaml
+  - ArchitectureHarvest/component_cards/swe-agent-retry-review-loop.yaml
+  - ArchitectureHarvest/component_cards/swe-agent-patch-submission-pr-hooks.yaml
+  - ArchitectureHarvest/component_cards/swe-agent-history-processors.yaml
+  relevance_maps:
+  - ArchitectureHarvest/relevance_maps/projectforge/swe-agent-relevance-map.yaml

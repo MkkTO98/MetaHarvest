@@ -1,0 +1,32 @@
+schema_version: 1
+kind: problem_record
+problem:
+  id: REQUIRED
+  name: REQUIRED
+  status: active|dormant|stale|superseded|retired
+  problem_statement: REQUIRED
+  tags: []
+relationships:
+  related_problems: []
+  anti_problems: []
+  related_patterns: []
+  relevant_components: []
+  relevant_projects:
+    analyzed_sources: []
+    candidate_sources_pending_analysis: []
+evidence:
+  evidence_strength: low|medium|high
+  confidence: low|medium|high
+  evidence_quality: low|medium|high
+  rationale: REQUIRED
+  analysis_limitations: []
+lifecycle:
+  first_seen: YYYY-MM-DD
+  last_reviewed: YYYY-MM-DD
+  last_referenced: YYYY-MM-DD
+  last_adoption: null
+  adoption_frequency: none|rare|occasional|frequent
+retrieval:
+  preferred_entry_points: []
+  prior_outcomes: []
+  contradiction_records: []

@@ -1,0 +1,90 @@
+schema_version: 1
+kind: component_card
+component:
+  id: dbt-governance-access
+  source_project_id: dbt
+  name: Access/group governance boundaries
+  category: governance_boundary
+analysis:
+  analyzed_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  analysis_date: '2026-06-08'
+  evidence_files_inspected:
+  - crates/dbt-schemas/src/schemas/common.rs
+  - crates/dbt-schemas/src/schemas/project/dbt_project.rs
+  - crates/dbt-parser/src/resolver.rs
+  - crates/dbt-scheduler/src/node_selector.rs
+  evidence_quality: high
+  evidence_strength: high
+  confidence: high
+  analysis_limitations:
+  - Static source inspection only; no external code execution.
+architecture:
+  problem_solved: Private/protected/public access, groups, restrict-access, selectors,
+    and access-denied validation govern cross-package/group references.
+  problems_solved:
+  - lineage
+  - metadata handling
+  - validation
+  - governance boundary
+  related_problems:
+  - canonicalization workflows
+  - dependency management
+  - schema evolution
+  anti_problems:
+  - premature runtime adoption
+  - opaque automatic canonicalization
+  failure_modes_addressed:
+  - hidden dependency drift
+  - untraceable transformation semantics
+  - schema/contract changes without review
+  failure_modes_introduced:
+  - framework complexity if adopted wholesale
+  - ceremony if every tiny source slice uses full abstraction
+  architectural_principle: Make semantic definitions, lineage, metadata, and validation
+    statically inspectable before runtime orchestration.
+  required_assumptions:
+  - definitions are file-backed
+  - validation artifacts are reviewed before adoption
+  useful_patterns:
+  - Access/group governance boundaries
+fit:
+  projectforge_relevance:
+    score: 5
+    rationale: Useful evidence; not a ProjectForge runtime need.
+  macroforge_relevance:
+    score: 9
+    rationale: MacroForge canonical concepts and mappings may need owner/scope/status
+      fields before broad automated canonicalization or cross-domain references.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - MacroForge currently defers generalized frameworks/orchestration.
+  - MacroForge must not hide source-specific semantics behind generic loaders.
+reuse:
+  minimum_useful_extraction: MacroForge canonical concepts and mappings may need owner/scope/status
+    fields before broad automated canonicalization or cross-domain references.
+  use_when:
+  - MacroForge has multiple canonical assets or mappings needing static validation.
+  - A future decision approves broader metadata/lineage hardening.
+  do_not_use_when:
+  - A source-specific bounded loader or fixture task is enough.
+  - Adoption would create a framework before evidence requires it.
+  recommendation: adapt
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 1
+  projects_observed:
+  - dbt
+  maintenance_cost: medium
+  recommendation_strength: strong
+  explanation: Direct mature-source evidence, but local adoption must remain bounded
+    and ProjectForge/MacroForge-native.
+links:
+  problem_catalog_entries:
+  - canonicalization_state
+  - data_lineage
+  - governed_validation
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

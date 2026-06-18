@@ -1,0 +1,203 @@
+schema_version: 1
+registry_name: MetaHarvest source registry
+updated: '2026-06-08'
+external_sources_root: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources
+states:
+  candidate: discovered, not approved
+  approved: may be cloned and analyzed
+  rejected: intentionally excluded
+  cloned: local copy exists
+  analyzed: project/context reports exist
+  stale: upstream changed since last analysis
+  retired: no longer actively useful, retained for future reference
+repository_policy:
+  hermes_may_search_candidates: true
+  approval_required_before_approved: true
+  approved_sources_may_be_cloned_or_updated_without_reasking: true
+  external_code_execution_requires_separate_approval: true
+  clone_location_must_be_outside_projectforge_git_tree: true
+  default_clone_root: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources
+sources:
+- id: openhands
+  name: OpenHands
+  category: agent_system
+  repository_url: https://github.com/All-Hands-AI/OpenHands
+  license: MIT_except_enterprise_source_available
+  status: analyzed
+  approval_date: '2026-06-06'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/openhands
+  last_cloned_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  last_analyzed_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  latest_seen_commit: 03aab93625079c24d6f43655c9506931cf43bc17
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: caution
+  license_risk: medium
+  primary_interest: agent runtime architecture, sandboxing boundaries, tool execution
+    model, task state, evaluation loops
+  projectforge_relevance: high_candidate
+  macroforge_relevance: medium_placeholder
+  notes: Approved by user on 2026-06-06; cloned and analyzed without executing external
+    code. MIT outside enterprise/; enterprise/ has separate source-available terms.
+- id: langgraph
+  name: LangGraph
+  category: agent_orchestration
+  repository_url: https://github.com/langchain-ai/langgraph
+  license: MIT
+  status: analyzed
+  approval_date: '2026-06-06'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/langgraph
+  last_cloned_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  last_analyzed_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  latest_seen_commit: 2b1abc807b282245211f5ba8f292aaf3e24f1e07
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: graph/state-machine patterns for controllable agent workflows
+  projectforge_relevance: high_candidate
+  macroforge_relevance: medium_placeholder
+  notes: Approved by user on 2026-06-06; cloned and analyzed without executing external
+    code.
+- id: aider
+  name: Aider
+  category: coding_agent
+  repository_url: https://github.com/Aider-AI/aider
+  license: Apache-2.0
+  status: analyzed
+  approval_date: '2026-06-06'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/aider
+  last_cloned_commit: 5dc9490bb35f9729ef2c95d00a19ccd30c26339c
+  last_analyzed_commit: 5dc9490bb35f9729ef2c95d00a19ccd30c26339c
+  latest_seen_commit: 5dc9490bb35f9729ef2c95d00a19ccd30c26339c
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: git-aware coding workflow, context selection, edit discipline,
+    model/tool ergonomics
+  projectforge_relevance: high_candidate
+  macroforge_relevance: low_placeholder
+  notes: Approved by user on 2026-06-06; cloned and statically analyzed without installing,
+    importing, building, testing, or executing external code.
+- id: swe-agent
+  name: SWE-agent
+  category: coding_agent_evaluation
+  repository_url: https://github.com/SWE-agent/SWE-agent
+  license: MIT
+  status: analyzed
+  approval_date: '2026-06-06'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/swe-agent
+  last_cloned_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  last_analyzed_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  latest_seen_commit: 10e3e76e629ad47331af562f367b9df6501cc55c
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: issue-solving loops, environment abstraction, patch/test feedback,
+    evaluation harnesses
+  projectforge_relevance: high_candidate
+  macroforge_relevance: low_placeholder
+  notes: Approved by user on 2026-06-06; cloned and statically analyzed without installing,
+    importing, building, testing, or executing external code.
+- id: autogen
+  name: AutoGen
+  category: multi_agent_framework
+  repository_url: https://github.com/microsoft/autogen
+  license: unknown_pending_verification
+  status: candidate
+  approval_date: null
+  approved_by: null
+  local_path: null
+  last_cloned_commit: null
+  last_analyzed_commit: null
+  latest_seen_commit: null
+  staleness: unknown_not_cloned
+  license_reuse_classification:
+    pattern_only: unknown_pending_verification
+    dependency_use: unknown_pending_verification
+    code_copy: unknown_pending_verification
+    redistribution: unknown_pending_verification
+  license_risk: unknown
+  primary_interest: multi-agent coordination, conversation patterns, tool routing,
+    human-in-loop controls
+  projectforge_relevance: medium_high_candidate
+  macroforge_relevance: low_medium_placeholder
+  notes: Candidate only; do not clone until approved.
+- id: dbt
+  name: dbt Core
+  category: analytics_engineering_transformation_framework
+  repository_url: https://github.com/dbt-labs/dbt-core
+  license: Apache-2.0
+  status: analyzed
+  approval_date: '2026-06-08'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/dbt-core
+  last_cloned_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  last_analyzed_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  latest_seen_commit: d8f7c4ae65adde3359784f9e22215ab17ed395f0
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: canonicalization workflows, transformations, lineage, dependencies,
+    contracts, metadata, testing/validation, orchestration boundaries, schema evolution,
+    governance boundaries
+  projectforge_relevance: medium_candidate
+  macroforge_relevance: high_candidate
+  notes: 'Approved by user on 2026-06-08; cloned and statically analyzed without installing,
+    importing, building, testing, or executing external code. Analyzed commit date
+    2026-06-08T01:05:43+00:00: Fix Databricks retry on connection (#10827).
+    One upstream broken symlink was replaced with a local placeholder after analysis so
+    ProjectForge copytree-based tests can copy external_sources safely; the placeholder was
+    not used as evidence.'
+- id: dagster
+  name: Dagster
+  category: asset_orchestration_framework
+  repository_url: https://github.com/dagster-io/dagster
+  license: Apache-2.0
+  status: analyzed
+  approval_date: '2026-06-08'
+  approved_by: user
+  local_path: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/dagster
+  last_cloned_commit: ec901682ae78d128173fc50ed132e1ecfd0707e9
+  last_analyzed_commit: ec901682ae78d128173fc50ed132e1ecfd0707e9
+  latest_seen_commit: ec901682ae78d128173fc50ed132e1ecfd0707e9
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: canonicalization workflows, transformations, lineage, dependencies,
+    contracts, metadata, testing/validation, orchestration boundaries, schema evolution,
+    governance boundaries
+  projectforge_relevance: medium_candidate
+  macroforge_relevance: high_candidate
+  notes: 'Approved by user on 2026-06-08; cloned and statically analyzed without installing,
+    importing, building, testing, or executing external code. Analyzed commit date
+    2026-06-05T21:39:55+00:00: Fix get_fixed_minute_interval for time-constrained
+    cron schedules (#25361). One upstream broken symlink was replaced with a local copy
+    of its intended target after analysis so ProjectForge copytree-based tests can copy
+    external_sources safely; the copied path was not used as evidence.'

@@ -1,0 +1,57 @@
+schema_version: 1
+kind: relevance_map
+target:
+  project_id: macroforge
+  project_name: MacroForge
+  target_type: macroforge
+status:
+  state: active
+  last_reviewed: '2026-06-08'
+  stale: false
+scope:
+  purpose: MacroForge ArchitectureHarvest relevance and outcome map for data-platform/canonicalization
+    patterns.
+  do_not_modify_macroforge_directly_without_approval: true
+  current_approved_implementation_scope: MF-AH-REV-001 narrow file-backed canonical
+    asset/manifest registry
+priority_pattern_categories:
+- data_ingestion
+- data_lineage
+- metadata_governance
+- schema_evolution
+- canonicalization
+- orchestration
+- observability
+- testing
+- validation
+- data_quality
+- cataloging
+- source_contracts
+analyzed_sources:
+- id: dbt
+  status: analyzed
+  relevance: transformations, contracts, testing, documentation, lineage conventions
+- id: dagster
+  status: analyzed
+  relevance: asset definitions, checks, metadata, lineage, orchestration boundaries
+current_recommendations:
+- id: MF-AH-REV-001
+  status: adopted_modified_narrowly
+  local_artifact: /home/mkkto/srv/projectforge/workspace/projects/macroforge/artifacts/manifests/canonical_assets.json
+  outcome: ArchitectureHarvest/adoption_log/O-20260608-macroforge-canonical-asset-manifest-registry.yaml
+- id: MF-AH-REV-002
+  status: deferred_until_manifest_pressure
+- id: MF-AH-REV-003
+  status: deferred_until_accepted_state_check_pressure
+rejected_or_retired:
+- id: broad_dbt_runtime_adoption
+  status: not_adopted_near_term
+- id: broad_dagster_runtime_adoption
+  status: not_adopted_near_term
+- id: generalized_ingestion_framework_extraction
+  status: not_adopted_near_term
+notes:
+- MF-AH-REV-001 implementation is file-backed only and does not adopt dbt, Dagster,
+  orchestration runtime behavior, generalized ingestion framework behavior, database
+  migrations, or raw loader changes.
+- Provider identities remain evidence and mapping metadata, not canonical truth.

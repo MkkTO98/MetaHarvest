@@ -1,0 +1,110 @@
+schema_version: 1
+kind: adoption_candidate
+candidate:
+  id: projectforge-doctrine-principles-candidate
+  title: Promote selected ArchitectureHarvest patterns to explicit ProjectForge doctrine
+  type: adoption
+  status: proposed
+problem_context:
+  problem_ids:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  problem_statement: This candidate is a recommendation-only input for a future doctrine
+    update; it does not change doctrine now.
+  anti_problems:
+  - ordinary bug fixes
+  - minor documentation edits
+  - implementation without architecture change
+source_evidence:
+  source_projects:
+  - openhands
+  - langgraph
+  - aider
+  - swe-agent
+  - projectforge
+  component_cards: []
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/bounded_context_selection.yaml
+  - ArchitectureHarvest/synthesis/git_anchored_coding_workflow.yaml
+  - ArchitectureHarvest/synthesis/patch_submission_boundary.yaml
+  - ArchitectureHarvest/synthesis/thread_checkpoint_contract.yaml
+  - ArchitectureHarvest/synthesis/trajectory_artifact_recovery.yaml
+  - ArchitectureHarvest/synthesis/plan_execute_split.yaml
+  - ArchitectureHarvest/synthesis/problem-first-decision-support.example.yaml
+  contradiction_records:
+  - ArchitectureHarvest/contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+  - ArchitectureHarvest/contradictions/event-log-vs-state-snapshot.yaml
+  - ArchitectureHarvest/contradictions/autocommit-vs-dry-run-approval.yaml
+  - ArchitectureHarvest/contradictions/trajectory-replay-vs-compact-state.yaml
+  - ArchitectureHarvest/contradictions/benchmark-agent-loop-vs-human-governance.yaml
+  - ArchitectureHarvest/contradictions/repo-map-vs-explicit-context-bundles.yaml
+  reports:
+  - ArchitectureHarvest/reviews/R-20260608-confidence-consolidation-review.md
+outcome_weighting:
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: strong
+  outcome_records:
+  - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+  weighting_rationale: Confidence is based on four approved external source analyses
+    plus the PF-AH-REC-010 local checkpoint outcome; implementation remains unapproved.
+target:
+  project_id: projectforge
+  affected_area: doctrine_and_architecture_governance
+recommendation:
+  decision_grade_summary: This candidate is a recommendation-only input for a future
+    doctrine update; it does not change doctrine now.
+  problem_addressed: ProjectForge needs to separate durable architectural principles
+    from source-specific recommendations and premature runtime/product patterns.
+  minimum_useful_extraction: Use the classifications in R-20260608-confidence-consolidation-review
+    as decision input only.
+  expected_benefit: Clearer doctrine boundaries, lower over-adoption risk, and better
+    future ArchitectureHarvest recommendation quality.
+  implementation_outline:
+  - Not implemented in this task.
+  - If later approved, create a separate doctrine-change dry-run with exact files
+    and wording.
+  do_not_expand_into:
+  - Do not modify doctrine from this artifact alone.
+  - Do not adopt external runtimes or autonomous workflows by default.
+  - Do not bypass approval, tests, coherence, or Architecture-to-Reality audit.
+  recommendation_strength: strong
+risks:
+  complexity_risk: medium
+  adoption_risk: medium
+  maintenance_burden: medium
+  license_risk: low
+  rollback_plan: Do not implement from this artifact; if a future doctrine proposal
+    is rejected, mark this candidate rejected or superseded.
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []
+pattern_classifications:
+- pattern_id: bounded_context_selection
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly
+- pattern_id: git_anchored_coding_workflow
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly
+- pattern_id: patch_submission_boundary
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly
+- pattern_id: thread_checkpoint_contract
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly_narrowly
+- pattern_id: trajectory_artifact_recovery
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly_narrowly
+- pattern_id: plan_execute_split
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly
+- pattern_id: problem_first_decision_support
+  classification: Architectural Principle
+  doctrine_guidance: add_explicitly_or_preserve

@@ -1,0 +1,63 @@
+schema_version: 1
+kind: contradiction_record
+contradiction:
+  id: definition_execution_boundary_vs_runtime_platform
+  name: Definition artifacts vs runtime platform adoption
+  status: active
+  problem_ids:
+  - macroforge_canonicalization
+  - data_governance
+  - orchestration_boundary
+competing_approaches:
+- approach_id: external_framework_default
+  summary: Adopt dbt/Dagster style runtime/framework concepts broadly.
+  assumptions:
+  - pipeline volume justifies platform complexity
+  - team needs standardized transformation/orchestration runtime
+  wins_when:
+  - many repeated transformations/assets
+  - scheduling/materialization and observability are bottlenecks
+  loses_when:
+  - small source-specific fixtures and raw-SQL governance are sufficient
+  failure_modes_addressed:
+  - manual dependency drift
+  - missing runtime observability
+  failure_modes_introduced:
+  - framework lock-in
+  - semantic hiding
+  - maintenance overhead
+- approach_id: macroforge_bounded_file_first
+  summary: Extract file-backed definitions/checks/metadata patterns while keeping
+    source-specific raw SQL/PostgreSQL and governance gates.
+  assumptions:
+  - semantic uncertainty matters more than runtime efficiency now
+  - human-reviewed decisions gate architecture changes
+  wins_when:
+  - current task is canonicalization design or fixture validation
+  - source semantics differ materially
+  loses_when:
+  - operational refresh/scheduling becomes bottleneck
+  failure_modes_addressed:
+  - premature overengineering
+  - opaque canonical facts
+  failure_modes_introduced:
+  - more manual orchestration until pressure justifies tools
+recommendation:
+  action: prefer_approach
+  guidance: prefer file-backed definitions first; defer dbt/Dagster runtime adoption
+    until operational pressure justifies it
+  confidence: high
+  evidence_quality: high
+  analysis_limitations:
+  - Static source evidence; no framework adoption experiment.
+links:
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/typed_canonical_manifest.yaml
+  - ArchitectureHarvest/synthesis/asset_key_lineage_graph.yaml
+  - ArchitectureHarvest/synthesis/data_contract_check_gate.yaml
+  - ArchitectureHarvest/synthesis/provider_evidence_not_canonical_truth.yaml
+  - ArchitectureHarvest/synthesis/definition_execution_boundary.yaml
+  - ArchitectureHarvest/synthesis/schema_evolution_policy_surface.yaml
+  - ArchitectureHarvest/synthesis/metadata_first_lineage_evidence.yaml
+  outcome_records: []

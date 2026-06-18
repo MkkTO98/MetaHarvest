@@ -1,0 +1,108 @@
+schema_version: 1
+kind: architectureharvest_adoption_proposal
+proposal:
+  id: P-20260606-architectureharvest-first-adoption-outcome
+  title: First ArchitectureHarvest adoption outcome proposal - source-derived candidate retirement discipline
+  created_utc: '2026-06-06T10:24:07Z'
+  status: proposed
+  target_project: projectforge
+  purpose: Generate the first ArchitectureHarvest adoption outcome and begin validating the ecosystem-weighted recommendation model.
+  boundary:
+    proposal_only: true
+    implementation_performed: false
+    external_repository_inspection: false
+    new_harvesting: false
+    recommendation_source: ArchitectureHarvest/reviews/R-20260606-projectforge-architectureharvest-guided-review.yaml
+selection:
+  chosen_recommendation_id: PF-AH-REC-007
+  chosen_recommendation_title: Delete or retire ArchitectureHarvest source-derived candidates that remain unused after scheduled reviews or never gain local adoption outcomes.
+  category: deletion_candidate
+  classification_from_review: A
+  originating_patterns:
+  - typed_state_graph
+  - sandboxed_conversation_runtime
+  - pending_input_queue
+  - credential_scoped_tool_proxy
+  originating_projects:
+  - langgraph
+  - openhands
+  problem_solved: Prevents ArchitectureHarvest from becoming a permanent graveyard of interesting but unused architecture notes.
+  expected_benefit_to_effort_assessment:
+    implementation_effort: low
+    expected_benefit: high
+    maintenance_reduction: high
+    complexity_reduction: high
+    risk: low
+    ratio_rationale: It is a low-effort governance/schema tightening that directly reduces ArchitectureHarvest's own future maintenance burden and noise. It also creates the first local ecosystem outcome with minimal behavioral risk.
+  why_not_minimal_lifecycle_checkpoint_vocabulary: >-
+    Minimal lifecycle/checkpoint vocabulary is valuable, but the first review classified it as a future or evidence-gated candidate with medium implementation effort and medium risk. Its benefits require a real long-running task to measure. Source-derived candidate retirement discipline has a better immediate benefit-to-effort ratio because it is low-effort, low-risk, and directly addresses ArchitectureHarvest's maintenance burden before the system accumulates more evidence records.
+implementation_proposal:
+  implementation_scope: >-
+    Add a small file-backed retirement discipline for ArchitectureHarvest recommendation/candidate records. The implementation should define review triggers, retirement criteria, and required outcome logging, without deleting existing records immediately and without changing ProjectForge runtime behavior.
+  exact_files_affected_if_implemented:
+  - path: ArchitectureHarvest/retrieval/recommendation_rules.yaml
+    change: Add a compact candidate_retirement_rules section describing when stale/unused source-derived candidates must be reviewed, retired, superseded, or kept active.
+  - path: ArchitectureHarvest/templates/adoption_candidate.template.yaml
+    change: Add optional lifecycle/review metadata fields for last_reviewed, next_review_due, retirement_condition, and superseded_by.
+  - path: ArchitectureHarvest/templates/adoption_outcome.template.yaml
+    change: Add optional proposal_id and review_cycle_id links so future outcome records can trace back to this first adoption proposal.
+  - path: ArchitectureHarvest/outcome_models/ecosystem_outcome_model.yaml
+    change: Add a rule that retirement/rejection outcomes are positive ecosystem evidence when they reduce maintenance burden or avoid complexity.
+  - path: tests/test_architectureharvest_integration.py
+    change: Add tests that parse the updated retirement metadata/rules and verify outcome records can link to proposal/review identifiers.
+  explicit_non_scope:
+  - Do not delete OpenHands or LangGraph analysis records in the first implementation.
+  - Do not retire any source, pattern, contradiction, or candidate without a separate review record.
+  - Do not modify ProjectForge task/state/handoff behavior.
+  - Do not add a database, dashboard, scheduler, vector store, or autonomous cleanup job.
+  - Do not inspect external repositories.
+expected_benefits:
+- Converts ArchitectureHarvest from an accumulating analysis folder into a governed feedback system with an exit path for low-value evidence.
+- Produces a first local adoption outcome that can update ecosystem weighting without needing a risky runtime change.
+- Reduces future review noise by requiring old candidates to prove continuing usefulness.
+- Improves trust in ArchitectureHarvest recommendations by making retirement/rejection first-class, not failures hidden outside the model.
+risks:
+- Over-retiring useful but not-yet-needed candidates if criteria are too aggressive.
+- Adding lifecycle fields could increase YAML/template ceremony if not kept optional and compact.
+- The adoption outcome may be too meta to validate implementation-value predictions for user-facing ProjectForge work.
+- Tests could hard-code policy details that should remain advisory.
+rollback_plan:
+- Revert the small sections added to recommendation_rules.yaml, adoption_candidate.template.yaml, adoption_outcome.template.yaml, ecosystem_outcome_model.yaml, and tests/test_architectureharvest_integration.py.
+- Remove the corresponding adoption outcome record if implementation is abandoned before acceptance.
+- Leave existing harvested source records untouched; no source clone, analysis artifact, or ProjectForge behavior should need rollback.
+success_measurement:
+  qualitative:
+  - A future ArchitectureHarvest review can classify at least one candidate as keep, retire, supersede, or needs evidence using explicit rules.
+  - The first adoption outcome record can be parsed and linked back to this proposal and the original review recommendation.
+  - Recommendation-strength updates can cite retirement/rejection outcomes as ecosystem evidence, not just successful adoptions.
+  quantitative:
+  - YAML parse check passes for all ArchitectureHarvest YAML files.
+  - ArchitectureHarvest integration tests pass.
+  - Full ProjectForge tests pass.
+  - ProjectForge context health, coherence, and architecture audit report no blocks or warnings caused by this implementation.
+failure_measurement:
+  qualitative:
+  - The new fields make candidate records harder to read or maintain.
+  - Reviewers cannot decide whether a candidate should be retired without re-reading deep reports or external repositories.
+  - Outcome weighting remains unchanged because retirement/rejection outcomes are not actionable.
+  quantitative:
+  - YAML parse or ArchitectureHarvest tests fail.
+  - Full ProjectForge tests fail.
+  - Coherence/context-health/audit checks add blocks or warnings attributable to the change.
+  - The implementation touches files outside the exact scope above.
+adoption_outcome_plan:
+  expected_outcome_record_path_if_implemented: ArchitectureHarvest/adoption_log/O-20260606-source-candidate-retirement-discipline.yaml
+  expected_outcome_class: proven_successful_in_ecosystem
+  initial_confidence_if_implemented: medium
+  weighting_delta_if_successful: increase
+  weighting_rationale_if_successful: >-
+    A successful implementation would show that ArchitectureHarvest can use its own review output to reduce future maintenance burden and improve recommendation quality without adding runtime complexity.
+validation_for_this_proposal_artifact:
+  dry_run_report: simulation/dry_runs/20260606_122403-dry-run.md
+  required_checks:
+  - validate dry-run
+  - parse this proposal YAML
+  - run full ProjectForge tests
+  - run context health
+  - run ProjectForge coherence
+  - run Architecture-to-Reality audit in JSON mode

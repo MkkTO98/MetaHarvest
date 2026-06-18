@@ -1,0 +1,48 @@
+schema_version: 1
+kind: contradiction_record
+contradiction:
+  id: trajectory-replay-vs-compact-state
+  name: Full trajectory replay vs compact current-state context
+  status: active
+  problem_ids:
+  - long_running_agent_state
+  - architecture_decision_reuse
+competing_approaches:
+- approach_id: external_agent_productivity_pattern
+  summary: SWE-agent preserves rich trajectory/history/replay_config evidence and OpenHands/LangGraph preserve events/checkpoints.
+  assumptions:
+  - Fast coding-agent workflow or benchmark throughput is valuable.
+  wins_when:
+  - Human explicitly enables the workflow and rollback is cheap.
+  loses_when:
+  - Governance, safety, or auditability matters more than speed.
+  failure_modes_addressed:
+  - Low-friction coding and recovery inside the external tool's assumptions.
+  failure_modes_introduced:
+  - Hidden side effects, over-automation, or excessive context/runtime coupling.
+- approach_id: projectforge_file_first_governance
+  summary: ProjectForge normal startup context must stay compact and summary-first, with raw logs/trajectories reserved for audit/debug.
+  assumptions:
+  - Durable files, approval gates, dry-runs, tests, and coherence are the system of record.
+  wins_when:
+  - Work changes architecture, workflow, permissions, publication, or durable project behavior.
+  loses_when:
+  - Very small edits need fast local iteration only.
+  failure_modes_addressed:
+  - Governance bypass, context pollution, hard-to-audit automation.
+  failure_modes_introduced:
+  - More ceremony if applied indiscriminately.
+recommendation:
+  action: do_not_force_winner
+  guidance: Treat external productivity mechanisms as evidence for advisory patterns only; preserve ProjectForge dry-run/approval/coherence as authoritative gates.
+  confidence: high
+  evidence_quality: high
+  analysis_limitations:
+  - Static source analysis only.
+links:
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/git_anchored_coding_workflow.yaml
+  - ArchitectureHarvest/synthesis/trajectory_artifact_recovery.yaml
+  outcome_records:
+  - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml

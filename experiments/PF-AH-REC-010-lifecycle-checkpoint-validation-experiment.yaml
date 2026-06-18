@@ -1,0 +1,265 @@
+schema_version: 1
+kind: architectureharvest_validation_experiment_design
+experiment:
+  id: PF-AH-REC-010-lifecycle-checkpoint-validation-experiment
+  title: Minimal lifecycle/checkpoint vocabulary validation experiment
+  created_utc: '2026-06-06T11:51:40Z'
+  status: proposed
+  recommendation_id: PF-AH-REC-010
+  supported_recommendation_id: PF-AH-REC-002
+  goal: Determine whether a minimal lifecycle/checkpoint vocabulary improves ProjectForge task handoff, interruption recovery, and resume clarity.
+  boundary:
+    proposal_only: true
+    implementation_performed: false
+    optimize_for_trustworthy_evidence: true
+    do_not_optimize_for_proving_correct: true
+    no_external_repository_inspection: true
+    no_new_harvesting: true
+    no_projectforge_behavior_change: true
+  source_artifacts:
+  - ArchitectureHarvest/reviews/R-20260606-projectforge-architectureharvest-guided-review.yaml
+  - ArchitectureHarvest/reviews/R-20260606-projectforge-validation-objective-rerank.yaml
+selected_real_task_type:
+  name: ProjectForge architecture/governance review closeout task
+  examples:
+  - ArchitectureHarvest-guided ProjectForge review
+  - Architecture-to-Reality Audit remediation planning
+  - architecture/governance design task that writes recommendation, decision, state, handoff, and verification artifacts
+  why_suitable: >-
+    This task type is long enough to be interrupted, has multiple durable artifacts, requires summary-first context loading, commonly crosses handoff/compaction boundaries, and can be executed without production data, secrets, billing risk, or external source inspection. It directly exercises ProjectForge task handoff, interruption recovery, and resume clarity.
+  why_not_ordinary_bugfix: Ordinary bug fixes are often too short and too implementation-specific to measure lifecycle/checkpoint value.
+  why_not_persistent_worker_task: Persistent services would confound the experiment with runtime/readiness concerns and increase risk.
+exact_vocabulary_to_test:
+  lifecycle_status:
+    allowed_values:
+    - not_started
+    - active
+    - interrupted
+    - awaiting_approval
+    - verifying
+    - complete
+    - failed
+    definition: Current phase of the experiment task, not a global ProjectForge task status replacement.
+  checkpoint_id:
+    format: CKPT-YYYYMMDD-short-slug-NN
+    definition: Stable identifier for one resumable point in the task.
+  parent_checkpoint_id:
+    format: CKPT-YYYYMMDD-short-slug-NN|null
+    definition: Previous checkpoint this one advances from; null for the first checkpoint.
+  resume_pointer:
+    definition: The exact smallest file/section a future agent should read first to resume.
+  next_action:
+    definition: One concrete next action that can be performed without re-planning the whole task.
+  completed_since_parent:
+    definition: Compact bullet list of completed work since the parent checkpoint.
+  decisions_since_parent:
+    definition: Durable choices made since parent checkpoint, with artifact links when available.
+  blockers_or_interrupts:
+    definition: Active pause reason, approval need, failure, or interruption cause; empty when none.
+  verification_state:
+    allowed_values:
+    - not_started
+    - partial
+    - passed
+    - failed
+    definition: Whether verification has been run for the current checkpoint.
+  context_budget_hint:
+    definition: Smallest intended context set for resume; must not include raw logs or broad repo dumps.
+  measurement_notes:
+    definition: Before/after observations for resume clarity, files read, ambiguity, and overhead.
+  prohibited_terms:
+  - graph_node
+  - edge
+  - runtime_state_machine
+  - durable_executor
+  - scheduler
+  - queue
+  rationale: Prevent vocabulary drift into a LangGraph-like runtime abstraction.
+exact_files_affected:
+  proposal_artifacts_created_now:
+  - ArchitectureHarvest/experiments/PF-AH-REC-010-lifecycle-checkpoint-validation-experiment.md
+  - ArchitectureHarvest/experiments/PF-AH-REC-010-lifecycle-checkpoint-validation-experiment.yaml
+  future_experiment_files_if_approved:
+  - path: artifacts/tasks/T-YYYYMMDD-lifecycle-checkpoint-validation.md
+    role: Defines the real test task, baseline assumptions, experiment rules, and final outcome.
+  - path: artifacts/tasks/T-YYYYMMDD-lifecycle-checkpoint-validation.checkpoints.yaml
+    role: Stores checkpoint records using the exact vocabulary above for this one experiment only.
+  - path: context/latest_handoff.md
+    role: During the experiment only, may include one compact checkpoint pointer and next action.
+  - path: state/active_goal.md
+    role: During the experiment only, may point to the active task and current checkpoint id.
+  - path: ArchitectureHarvest/adoption_log/O-YYYYMMDD-lifecycle-checkpoint-vocabulary.yaml
+    role: Records adopt/modify/reject/retire outcome after experiment completion.
+  - path: artifacts/reports/R-YYYYMMDD-lifecycle-checkpoint-validation-results.md
+    role: Stores measurement results and evidence interpretation.
+  explicitly_not_affected:
+  - AGENTS.md
+  - CONSTITUTION.md
+  - context/context_policy.yaml
+  - templates
+  - tools
+  - generated project scaffolds
+  - external_sources
+before_state_workflow:
+  description: Existing ProjectForge task closeout workflow without lifecycle/checkpoint vocabulary.
+  steps:
+  - Read startup context and relevant task/review files.
+  - Work through task using normal notes, state files, handoff, and summaries.
+  - If interrupted, rely on context/latest_handoff.md, state/active_goal.md, task artifacts, and possibly session_search to reconstruct progress.
+  - Resume by manually identifying current phase, next action, verification state, and changed artifacts.
+  baseline_measurements_to_capture:
+  - files_read_to_resume
+  - minutes_or_steps_to_identify_current_phase
+  - ambiguous_status_questions_count
+  - whether_session_search_or_broad_context_was_needed
+  - handoff_chars
+  - resume_confidence_rating_1_to_5
+after_state_workflow:
+  description: Same task type with one optional sidecar checkpoint file and compact checkpoint pointer.
+  steps:
+  - Create the task artifact as usual.
+  - Capture baseline resume measurements before using the new vocabulary.
+  - Add the sidecar checkpoint YAML for the experiment task only.
+  - At each natural interruption boundary, add or update a checkpoint record.
+  - Put only the current checkpoint id and resume pointer in active_goal or latest_handoff when needed.
+  - Simulate or use a real interruption by resuming from the checkpoint sidecar plus normal Priority 1 context only.
+  - Record after-state measurements.
+  - Decide adopt, modify, reject, or retire using the evidence thresholds.
+success_criteria:
+- Resume requires fewer or equal files than baseline and no broad unrelated context.
+- Current phase and next action are identifiable from Priority 1 context plus checkpoint sidecar within the target threshold.
+- At least 80 percent of predefined resume questions are answerable from checkpoint evidence.
+- Handoff ambiguity decreases by at least two questions or reaches zero/one ambiguity questions.
+- Added checkpoint overhead remains below 10 minutes total or below 15 percent of task closeout time, whichever is smaller.
+- Vocabulary remains optional and isolated to the experiment task.
+- Full tests, context health, coherence, and architecture audit pass after the experiment.
+failure_criteria:
+- Resume clarity is unchanged or worse than baseline.
+- The experiment requires reading more files than baseline without a corresponding ambiguity reduction.
+- Agents still need session_search, raw logs, broad repository exploration, or external source reports to resume.
+- Checkpoint maintenance exceeds 15 percent of task closeout time or feels like duplicate ceremony.
+- Vocabulary expands beyond the exact approved terms.
+- The sidecar creates contradictory state relative to active_goal, latest_handoff, or task artifact.
+- Verification produces new blocks or warnings attributable to the experiment.
+measurement_methodology:
+  design: within-task before_after_measurement
+  baseline_window: First resume attempt for the selected task using normal ProjectForge artifacts before checkpoint sidecar is introduced.
+  treatment_window: Second resume attempt or simulated resume using Priority 1 context plus checkpoint sidecar after checkpoint vocabulary is used.
+  measurement_questions:
+  - What is the current lifecycle status?
+  - What work has completed since the previous checkpoint?
+  - What is the exact next action?
+  - What verification remains?
+  - What decisions or approvals changed the plan?
+  - What files are in scope?
+  - What should not be touched?
+  - What would make the task complete?
+  metrics:
+    files_read_to_resume:
+      type: count
+      better: lower_or_same
+    resume_steps_to_current_phase:
+      type: count
+      better: lower
+    ambiguous_questions_count:
+      type: count
+      better: lower
+    answerable_resume_questions_percent:
+      type: percent
+      better: higher
+    checkpoint_update_overhead_minutes:
+      type: estimated_minutes
+      better: lower
+    handoff_chars:
+      type: count
+      better: lower_or_same_unless_clarity_improves
+    contradiction_count:
+      type: count
+      better: zero
+    reviewer_confidence_rating:
+      type: 1_to_5
+      better: higher
+  anti_bias_rules:
+  - Record failure and friction explicitly; do not reinterpret overhead as success.
+  - Do not add extra fields mid-experiment unless outcome is Modify, not Adopt.
+  - Do not use external repositories or deep harvested reports to rescue the experiment.
+  - Treat no measurable improvement as rejection or retirement evidence, not as neutral.
+rollback_procedure:
+- Delete the experiment-only checkpoint sidecar file.
+- Remove checkpoint id/pointer lines from state/active_goal.md and context/latest_handoff.md if they were added.
+- Keep the task artifact and measurement report only if they are useful historical evidence; otherwise move the outcome into ArchitectureHarvest/adoption_log and remove the experiment report.
+- Do not alter tools, templates, AGENTS.md, CONSTITUTION.md, or generated projects.
+- Rerun tests, context health, coherence, and architecture audit after rollback.
+expected_maintenance_burden:
+  during_experiment: low_to_medium
+  steady_state_if_adopted: low_if_optional_and_sidecar_only
+  expected_overhead: 5_to_10_minutes_per_long_running_task_checkpointed
+  burden_warning: If every ordinary task starts requiring checkpoints, the recommendation should be modified or rejected.
+expected_benefits:
+- Better resume clarity after context compaction or session interruption.
+- More explicit next action and verification state.
+- Less reliance on hidden chat continuity or broad session search.
+- Local evidence for ArchitectureHarvest lifecycle/checkpoint pattern fit.
+- Clear basis for adopt/modify/reject/retire outcome.
+potential_negative_side_effects:
+- Duplicate state across active_goal, latest_handoff, task artifact, and checkpoint sidecar.
+- Added ceremony for tasks that do not need pause/resume support.
+- False confidence if checkpoint sidecar is stale.
+- Vocabulary creep into a hidden runtime/state-machine design.
+- Context bloat if checkpoints become verbose history rather than compact current-state pointers.
+conditions_for_rejection:
+- No measurable resume clarity improvement in the selected task.
+- Overhead exceeds benefit or agents resist maintaining the sidecar.
+- Any contradiction is introduced between checkpoint and canonical ProjectForge state artifacts.
+- The vocabulary cannot remain small and optional.
+- The experiment requires broad workflow/template/tool changes to appear useful.
+evidence_thresholds:
+  adopt:
+    required:
+    - answerable_resume_questions_percent >= 80
+    - ambiguous_questions_count_after <= 1
+    - files_read_to_resume_after <= files_read_to_resume_before
+    - checkpoint_update_overhead_minutes <= 10
+    - contradiction_count == 0
+    - verification_passed == true
+    interpretation: Minimal vocabulary clearly improves resume clarity with low overhead and no state contradiction.
+  modify:
+    required_any:
+    - answerable_resume_questions_percent >= 60 and < 80
+    - ambiguous_questions_count_after improves but remains > 1
+    - overhead is useful but above 10 minutes and below 20 minutes
+    - one or more vocabulary fields are unused or confusing while the general sidecar concept helps
+    interpretation: Pattern family is promising, but exact vocabulary or scope should be narrowed before adoption.
+  reject:
+    required_any:
+    - answerable_resume_questions_percent < 60
+    - ambiguous_questions_count_after >= ambiguous_questions_count_before
+    - files_read_to_resume_after > files_read_to_resume_before and clarity does not materially improve
+    - contradiction_count > 0
+    - checkpoint_update_overhead_minutes >= 20
+    - verification_passed == false due to experiment artifacts
+    interpretation: The proposed vocabulary does not improve ProjectForge enough to justify adoption.
+  retire:
+    required_any:
+    - selected task type proves unsuitable and no near-term ProjectForge task type needs lifecycle/checkpoint support
+    - the recommendation only solves hypothetical failure modes under current ProjectForge workflows
+    - maintaining the recommendation creates ongoing review noise after rejection
+    interpretation: Keep the harvested pattern as historical evidence but stop carrying it as an active ProjectForge candidate.
+future_outcome_record:
+  path: ArchitectureHarvest/adoption_log/O-YYYYMMDD-lifecycle-checkpoint-vocabulary.yaml
+  possible_actions:
+  - adopted
+  - rejected
+  - modified
+  - failed
+  ecosystem_evidence_generated: medium_to_high
+  confidence_if_completed: medium
+validation:
+  dry_run_report: simulation/dry_runs/20260606_135136-dry-run.md
+  expected_checks:
+  - validate dry-run
+  - parse this YAML
+  - run full ProjectForge tests
+  - run context health
+  - run coherence
+  - run architecture-to-reality audit

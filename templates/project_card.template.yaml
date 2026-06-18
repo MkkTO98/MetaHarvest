@@ -1,0 +1,48 @@
+schema_version: 1
+kind: project_card
+project:
+  id: REQUIRED
+  name: REQUIRED
+  category: REQUIRED
+  repository_url: REQUIRED
+  license: REQUIRED
+  maturity_estimate: unknown|experimental|emerging|mature|institutional
+analysis:
+  analyzed_commit: REQUIRED
+  analysis_date: YYYY-MM-DD
+  evidence_quality: low|medium|high
+  confidence: low|medium|high
+  analysis_limitations: []
+summary:
+  primary_problem_solved: REQUIRED
+  core_architectural_principles: []
+  main_assumptions: []
+fit:
+  relevance_to_projectforge:
+    score: 0
+    rationale: REQUIRED
+  relevance_to_macroforge:
+    score: 0
+    rationale: optional_lightweight
+  local_first_fit: low|medium|high
+  solo_developer_fit: low|medium|high
+  cloud_dependency_risk: low|medium|high
+  complexity_risk: low|medium|high
+  maintenance_burden: low|medium|high
+reuse:
+  minimum_useful_extraction: REQUIRED
+  recommendation: adopt|adapt|reject|defer|retire
+  reuse_classification:
+    pattern_only: allowed|caution|blocked|unknown
+    dependency_use: allowed|caution|blocked|unknown
+    code_copy: allowed|caution|blocked|unknown
+    redistribution: allowed|caution|blocked|unknown
+staleness:
+  latest_seen_commit: REQUIRED
+  status: current|stale|unknown
+  staleness_policy: REQUIRED
+links:
+  human_summary: REQUIRED
+  deep_report: REQUIRED
+  component_cards: []
+  relevance_maps: []

@@ -1,0 +1,150 @@
+schema_version: 1
+kind: problem_catalog
+updated: '2026-06-06'
+purpose: Problem-first entry point for ArchitectureHarvest consultation. Hermes should
+  start here when the user asks which architectural patterns fit a problem.
+status_values:
+- active
+- dormant
+- stale
+- superseded
+- retired
+problem_record_fields:
+  required:
+  - id
+  - name
+  - problem_statement
+  - tags
+  - related_patterns
+  - anti_patterns
+  - lifecycle
+  - evidence_summary
+problems:
+- id: long_running_agent_state
+  name: Long-running agent state
+  status: active
+  problem_statement: Preserve enough state for agent workflows to pause, resume, audit,
+    and recover without keeping the full conversation or raw logs in active context.
+  tags:
+  - agent_systems
+  - state
+  - resumability
+  - auditability
+  - token_budget
+  related_problems:
+  - task_handoff
+  - replayable_workflows
+  - context_pollution
+  anti_problems:
+  - one_shot_scripts
+  - trivial_tasks
+  - state_that_can_be_recomputed_cheaper_than_persisted
+  related_patterns:
+  - checkpointing
+  - event_history
+  - file_backed_context_cards
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  - pending_input_queue
+  - resumable_execution
+  - sandboxed_conversation_runtime
+  - thread_checkpoint_contract
+  - typed_state_graph
+  - git_anchored_coding_workflow
+  - bounded_context_selection
+  - plan_execute_split
+  - trajectory_artifact_recovery
+  - patch_submission_boundary
+  - reviewer_retry_loop
+  - environment_reset_boundary
+  relevant_components:
+  - openhands-conversation-lifecycle
+  - openhands-event-service
+  - openhands-pending-message-queue
+  - openhands-sandbox-boundary
+  - openhands-mcp-source-control-tools
+  - langgraph-stategraph
+  - langgraph-pregel-loop
+  - langgraph-checkpoint-saver
+  - langgraph-interrupt-command
+  - langgraph-streaming-task-events
+  - aider-git-repo-boundary
+  - aider-repo-map-context
+  - aider-architect-editor-separation
+  - aider-autocommit-undo-lint-test
+  - aider-chat-history-summarization
+  - swe-agent-run-single-lifecycle
+  - swe-agent-trajectory-persistence
+  - swe-agent-environment-reset
+  - swe-agent-retry-review-loop
+  - swe-agent-patch-submission-pr-hooks
+  - swe-agent-history-processors
+  relevant_projects:
+    candidate_sources_pending_analysis:
+    - autogen
+    analyzed_sources:
+    - langgraph
+    - openhands
+    - aider
+    - swe-agent
+  prior_outcomes: []
+  retrieval_notes: Prefer synthesized pattern records and adoption outcomes before
+    reading project reports. Candidate-source links are hints only until approved
+    and analyzed.
+  lifecycle:
+    first_seen: 2026-06-06
+    last_reviewed: 2026-06-06
+    last_referenced: 2026-06-06
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: high
+    confidence: high
+    rationale: OpenHands, LangGraph, Aider, and SWE-agent have been approved, cloned,
+      and statically analyzed; PF-AH-REC-010 provides one narrow local ProjectForge
+      checkpoint outcome.
+  updated: '2026-06-06'
+- id: architecture_decision_reuse
+  name: Reusing architectural decisions across ProjectForge projects
+  status: active
+  problem_statement: Help Hermes answer which known patterns, rejections, and ecosystem
+    outcomes should influence a new project, architecture review, or subsystem design.
+  tags:
+  - projectforge
+  - architecture_review
+  - decision_support
+  - governance
+  related_problems:
+  - pattern_duplication
+  - false_confidence
+  - wrong_fit_architecture
+  anti_problems:
+  - ordinary_bug_fix
+  - minor_documentation_edit
+  - implementation_without_architecture_change
+  related_patterns:
+  - problem_first_retrieval
+  - synthesized_pattern_cards
+  - outcome_weighted_recommendations
+  - contradiction_records
+  relevant_components: []
+  relevant_projects:
+    candidate_sources_pending_analysis:
+    - autogen
+    analyzed_sources:
+    - langgraph
+    - openhands
+    - aider
+    - swe-agent
+  prior_outcomes: []
+  lifecycle:
+    first_seen: 2026-06-06
+    last_reviewed: 2026-06-06
+    last_referenced: 2026-06-06
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: medium
+    confidence: medium
+    rationale: Based on ProjectForge's own ArchitectureHarvest integration and governance
+      needs.

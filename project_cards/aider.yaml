@@ -1,0 +1,63 @@
+schema_version: 1
+kind: project_card
+project:
+  id: aider
+  name: Aider
+  category: coding_agent
+  repository_url: https://github.com/Aider-AI/aider
+  license: Apache-2.0
+  maturity_estimate: mature
+analysis:
+  analyzed_commit: 5dc9490bb35f9729ef2c95d00a19ccd30c26339c
+  analysis_date: '2026-06-06'
+  evidence_quality: high
+  confidence: high
+  analysis_limitations:
+  - Static inspection only; external code was not installed, imported, built, tested, or executed.
+  - Analysis focuses on repository workflow, edit workflow, context management, oversight, and recovery-relevant files.
+summary:
+  primary_problem_solved: Interactive git-aware coding workflow that keeps editable files explicit, augments context with a ranked repository map, separates architect/editor modes, and anchors modifications in diffs, lint/test feedback, commits, and undoable git history.
+  core_architectural_principles:
+  - Treat the repository as the workflow boundary and source of truth.
+  - Keep editable context explicit while using a compact repo map for broader awareness.
+  - Separate planning/discussion modes from code-editing modes.
+  - Use git commits, diffs, linting, testing, and undo as the completion/recovery substrate.
+  main_assumptions:
+  - User is present or intentionally allows autonomous coding flags.
+  - Git is available and meaningful for recovery.
+  - Interactive context control is preferable to hidden whole-repo loading.
+fit:
+  relevance_to_projectforge:
+    score: 9
+    rationale: Directly relevant to ProjectForge repository workflow, code modification workflow, planning/execution separation, human oversight, context management, and interruption recovery.
+  relevance_to_macroforge:
+    score: 5
+    rationale: Useful for future coding workflows but this analysis does not modify MacroForge.
+  local_first_fit: high
+  solo_developer_fit: high
+  cloud_dependency_risk: medium
+  complexity_risk: medium
+  maintenance_burden: medium
+reuse:
+  minimum_useful_extraction: Extract pattern-level guidance for explicit editable-file sets, repo-map-as-summary, architect/editor separation, git-backed checkpoints, and lint/test/undo completion loops.
+  recommendation: adapt
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: allowed
+    code_copy: caution
+    redistribution: allowed
+staleness:
+  latest_seen_commit: 5dc9490bb35f9729ef2c95d00a19ccd30c26339c
+  status: current
+  staleness_policy: Refresh before using Aider-derived findings for implementation or if upstream changes coders, repo, commands, repomap, or history modules.
+links:
+  human_summary: ArchitectureHarvest/reports/R-20260606-aider-deep-analysis.md
+  deep_report: ArchitectureHarvest/reports/R-20260606-aider-deep-analysis.md
+  component_cards:
+  - ArchitectureHarvest/component_cards/aider-git-repo-boundary.yaml
+  - ArchitectureHarvest/component_cards/aider-repo-map-context.yaml
+  - ArchitectureHarvest/component_cards/aider-architect-editor-separation.yaml
+  - ArchitectureHarvest/component_cards/aider-autocommit-undo-lint-test.yaml
+  - ArchitectureHarvest/component_cards/aider-chat-history-summarization.yaml
+  relevance_maps:
+  - ArchitectureHarvest/relevance_maps/projectforge/aider-relevance-map.yaml

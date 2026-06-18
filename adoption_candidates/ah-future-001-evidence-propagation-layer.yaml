@@ -1,0 +1,121 @@
+schema_version: 1
+kind: adoption_candidate
+candidate:
+  id: AH-FUTURE-001
+  title: Evidence Propagation Layer
+  type: adoption
+  status: proposed
+  lifecycle_status: deferred
+  deferred_until: MacroForge canonicalization lifecycle is proven
+problem_context:
+  problem_ids:
+    - architecture_decision_reuse
+    - recommendation_staleness
+    - target_project_impact_tracking
+  problem_statement: >-
+    ArchitectureHarvest currently records harvested evidence, patterns, recommendations,
+    target relevance, and adoption outcomes as file-backed artifacts, but new evidence
+    does not automatically propagate into pattern confidence, recommendation strength,
+    affected project tracking, or suggested review generation.
+  anti_problems:
+    - ordinary bug fixes
+    - minor documentation edits
+    - automatic task creation
+    - automatic implementation
+    - automatic architecture changes
+source_evidence:
+  source_projects:
+    - projectforge
+    - macroforge
+  component_cards: []
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  reports:
+    - ArchitectureHarvest/reviews/R-20260606-projectforge-architectureharvest-guided-review.md
+    - ArchitectureHarvest/reviews/R-20260608-confidence-consolidation-review.md
+    - ArchitectureHarvest/reviews/R-20260608-macroforge-first-architectureharvest-review.md
+    - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+    - ArchitectureHarvest/adoption_log/O-20260608-macroforge-canonical-asset-manifest-registry.yaml
+outcome_weighting:
+  generic_recommendation_strength: moderate
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  outcome_records:
+    - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+    - ArchitectureHarvest/adoption_log/O-20260608-macroforge-canonical-asset-manifest-registry.yaml
+  weighting_rationale: >-
+    ProjectForge and MacroForge now have enough ArchitectureHarvest usage to expose the
+    need for evidence propagation, but the capability should remain deferred until
+    MacroForge proves the canonicalization proposal-to-accepted-state lifecycle. That
+    lifecycle is the current local test of whether evidence, checks, manifest deltas,
+    and replayable review artifacts can support safe downstream impact analysis.
+target:
+  project_id: architectureharvest
+  affected_area: evidence_propagation_and_target_impact_tracking
+  potentially_affected_projects:
+    - projectforge
+    - macroforge
+    - future_projectforge_managed_projects
+recommendation:
+  decision_grade_summary: >-
+    Deferred future capability: automatically propagate new harvested evidence into
+    pattern confidence, recommendation strength, affected project tracking, and suggested
+    review generation, while producing only the message "New evidence exists and these
+    projects may be affected."
+  problem_addressed: >-
+    Prevents ArchitectureHarvest recommendations and target relevance maps from becoming
+    stale when new harvested evidence or adoption outcomes appear, without turning the
+    subsystem into an autonomous implementation or task-creation engine.
+  minimum_useful_extraction: >-
+    A file-backed propagation pass that reads changed evidence/outcome/recommendation
+    records, computes affected patterns/recommendations/projects, writes a suggested
+    review report, and stops at notification. It must not create tasks, modify target
+    architectures, or implement recommendations.
+  expected_benefit: >-
+    Higher confidence that new evidence reaches the right project review queue, lower
+    chance of stale recommendation strength, and clearer traceability from harvested
+    evidence to target-project impact.
+  implementation_outline:
+    - Not implemented now.
+    - Wait until MacroForge canonicalization lifecycle validation has proven review decisions, check gates, manifest deltas, evidence links, and replay semantics.
+    - If later approved, create a separate dry-run and design task for a file-backed propagation report.
+    - Initial output should be limited to: "New evidence exists and these projects may be affected."
+  do_not_expand_into:
+    - Do not automatically create tasks.
+    - Do not automatically implement recommendations.
+    - Do not automatically change architecture, templates, permissions, routing, or project scope.
+    - Do not run continuously as an autonomous scanner during ordinary development.
+    - Do not add a database, vector store, dashboard, UI, or external service dependency for v1.
+  recommendation_strength: weak
+risks:
+  complexity_risk: medium
+  adoption_risk: medium
+  maintenance_burden: medium
+  license_risk: low
+  rollback_plan: >-
+    Keep this as a deferred candidate. If MacroForge lifecycle validation rejects or
+    substantially changes the evidence/review/check model, revise or retire this future
+    candidate before any implementation design.
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []
+notification_contract:
+  output: New evidence exists and these projects may be affected.
+  may_include:
+    - evidence_record_ids
+    - affected_pattern_ids
+    - affected_recommendation_ids
+    - affected_project_ids
+    - suggested_review_artifact_path
+  must_not_include:
+    - created_task_ids
+    - implementation_changes
+    - architecture_changes
+    - automatic approval decisions

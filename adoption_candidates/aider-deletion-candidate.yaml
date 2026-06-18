@@ -1,0 +1,72 @@
+schema_version: 1
+kind: adoption_candidate
+candidate:
+  id: aider-deletion-candidate
+  title: Delete or retire over-broad automation candidates before implementation
+  type: deletion
+  status: proposed
+problem_context:
+  problem_ids:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  problem_statement: Avoid candidates that imply autonomous refactoring, automatic PR publication, or full runtime adoption without separate approval.
+  anti_problems:
+  - Do not implement now; this is a decision input only.
+source_evidence:
+  source_projects:
+  - aider
+  component_cards:
+  - ArchitectureHarvest/component_cards/aider-git-repo-boundary.yaml
+  - ArchitectureHarvest/component_cards/aider-repo-map-context.yaml
+  - ArchitectureHarvest/component_cards/aider-architect-editor-separation.yaml
+  - ArchitectureHarvest/component_cards/aider-autocommit-undo-lint-test.yaml
+  - ArchitectureHarvest/component_cards/aider-chat-history-summarization.yaml
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/git_anchored_coding_workflow.yaml
+  - ArchitectureHarvest/synthesis/bounded_context_selection.yaml
+  - ArchitectureHarvest/synthesis/patch_submission_boundary.yaml
+  - ArchitectureHarvest/synthesis/trajectory_artifact_recovery.yaml
+  contradiction_records:
+  - ArchitectureHarvest/contradictions/autocommit-vs-dry-run-approval.yaml
+  - ArchitectureHarvest/contradictions/trajectory-replay-vs-compact-state.yaml
+  reports:
+  - ArchitectureHarvest/reports/R-20260606-aider-deep-analysis.md
+outcome_weighting:
+  generic_recommendation_strength: moderate
+  ecosystem_recommendation_strength: increased_by_multi_source_evidence
+  outcome_records:
+  - ArchitectureHarvest/adoption_log/O-20260606-lifecycle-checkpoint-vocabulary.yaml
+  weighting_rationale: Aider/SWE-agent findings reinforce OpenHands/LangGraph and one narrow ProjectForge checkpoint adoption outcome where applicable.
+target:
+  project_id: projectforge
+  affected_area: architecture_governance
+recommendation:
+  decision_grade_summary: Avoid candidates that imply autonomous refactoring, automatic PR publication, or full runtime adoption without separate approval.
+  problem_addressed: Repository-changing agent workflows need explicit context, lifecycle, review, and recovery boundaries.
+  minimum_useful_extraction: Keep as ArchitectureHarvest evidence until a separate ProjectForge implementation decision is approved.
+  expected_benefit: Better traceability, rollback, and recovery without adopting external runtime assumptions wholesale.
+  implementation_outline:
+  - Not approved for implementation in this task.
+  - If later approved, start with a new dry-run, narrow tests, and coherence checks.
+  do_not_expand_into:
+  - Do not implement recommendations from this analysis cycle.
+  - Do not bypass Hermes approval, dry-run, tests, or coherence.
+  - Do not modify MacroForge from this candidate.
+  recommendation_strength: moderate
+risks:
+  complexity_risk: medium
+  adoption_risk: medium
+  maintenance_burden: medium
+  license_risk: low
+  rollback_plan: Retire this candidate before implementation if it remains unapproved or contradictory.
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []

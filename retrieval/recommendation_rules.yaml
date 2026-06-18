@@ -1,0 +1,66 @@
+schema_version: 1
+kind: recommendation_rules
+updated: 2026-06-06
+purpose: Explainable rules for ArchitectureHarvest recommendations. No opaque scoring.
+scales:
+  evidence_strength: [low, medium, high]
+  local_fit: [poor, moderate, strong]
+  recommendation_strength: [weak, moderate, strong]
+  confidence: [low, medium, high]
+required_explanations:
+  - evidence_strength_rationale
+  - local_fit_rationale
+  - tradeoffs
+  - minimum_useful_extraction
+  - do_not_use_when
+  - outcome_weighting_rationale
+  - analysis_limitations
+recommendation_strength_rules:
+  strong:
+    all_required:
+      - evidence_strength is high or ecosystem_outcome_strength is proven_successful
+      - local_fit is strong
+      - maintenance_cost is low or medium
+      - complexity_risk is low or explicitly justified
+      - do_not_use_when is clear
+      - rollback_or_rejection_path exists
+  moderate:
+    any_allowed:
+      - evidence_strength is medium and local_fit is strong
+      - evidence_strength is high but local_fit is moderate
+      - ecosystem outcomes are mixed but tradeoffs are well understood
+      - source evidence is promising but local outcome history is absent
+  weak:
+    any_trigger:
+      - evidence_strength is low
+      - confidence is low
+      - local_fit is poor
+      - maintenance_cost is high for a solo developer
+      - pattern solves a hypothetical failure mode only
+      - license or cloud dependency risk is unresolved
+negative_rules:
+  - id: no_vector_memory_until_file_retrieval_fails
+    rule: Do not build custom vector memory until grep/YAML/index retrieval demonstrably fails.
+  - id: no_multi_agent_complexity_without_task_pressure
+    rule: Do not add multi-agent complexity unless a real task or repeated failure requires it.
+  - id: no_enterprise_cloud_first_without_local_extraction
+    rule: Do not adopt enterprise/cloud-first patterns without a local minimal extraction.
+  - id: no_hypothetical_safeguard_frameworks
+    rule: Do not build safeguards against purely hypothetical failure modes.
+  - id: no_architectureharvest_as_runtime_dependency
+    rule: ArchitectureHarvest may inform implementation, but must not become a mandatory runtime dependency.
+local_fit_constraints:
+  - solo_developer
+  - local_first
+  - low_or_no_cost
+  - ubuntu_linux_friendly
+  - hermes_compatible
+  - token_budget_aware
+  - maintainable_by_one_person
+  - no_mandatory_cloud_dependency
+outcome_weighting:
+  proven_successful_in_ecosystem: increases recommendation strength when evidence is current and local fit remains true
+  repeatedly_failed_in_ecosystem: decreases recommendation strength and requires contradiction/rejection review
+  excessive_maintenance: decreases recommendation strength even if generic evidence is high
+  repeated_complexity: prefer simplification, replacement, or deletion candidates
+  insufficient_outcome_history: keep generic and ecosystem-weighted recommendations separate

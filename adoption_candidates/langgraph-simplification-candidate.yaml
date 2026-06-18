@@ -1,0 +1,69 @@
+schema_version: 1
+kind: adoption_candidate
+candidate:
+  id: langgraph-simplification-candidate
+  title: Simplify future orchestration to smallest file-backed checkpoint
+  type: simplification
+  status: proposed
+problem_context:
+  problem_ids:
+  - long_running_agent_state
+  - architecture_decision_reuse
+  problem_statement: Avoid embedding OpenHands/LangGraph-style runtimes unless file-backed task/state artifacts fail.
+  anti_problems:
+  - Do not implement now; this is a decision input only.
+source_evidence:
+  source_projects:
+  - langgraph
+  component_cards:
+  - ArchitectureHarvest/component_cards/langgraph-stategraph.yaml
+  - ArchitectureHarvest/component_cards/langgraph-pregel-loop.yaml
+  - ArchitectureHarvest/component_cards/langgraph-checkpoint-saver.yaml
+  - ArchitectureHarvest/component_cards/langgraph-interrupt-command.yaml
+  - ArchitectureHarvest/component_cards/langgraph-streaming-task-events.yaml
+  pattern_cards: []
+  synthesized_patterns:
+  - ArchitectureHarvest/synthesis/typed_state_graph.yaml
+  - ArchitectureHarvest/synthesis/thread_checkpoint_contract.yaml
+  - ArchitectureHarvest/synthesis/interrupt_as_approval_gate.yaml
+  - ArchitectureHarvest/synthesis/observable_task_stream.yaml
+  contradiction_records:
+  - ArchitectureHarvest/contradictions/runtime-orchestration-vs-file-backed-governance.yaml
+  reports:
+  - ArchitectureHarvest/reports/R-20260606-langgraph-deep-analysis.md
+outcome_weighting:
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  outcome_records: []
+  weighting_rationale: First external-source cycle; no ProjectForge adoption outcome exists yet.
+target:
+  project_id: projectforge
+  affected_area: architecture_governance
+recommendation:
+  decision_grade_summary: Avoid embedding OpenHands/LangGraph-style runtimes unless file-backed task/state artifacts fail.
+  problem_addressed: Long-running agent orchestration/state/approval/recovery clarity.
+  minimum_useful_extraction: Write a tiny file-backed schema or policy note only after a separate implementation decision.
+  expected_benefit: Better traceability and lower recovery ambiguity.
+  implementation_outline:
+  - Not approved for implementation in this task.
+  - If later approved, start with a dry-run and tests.
+  do_not_expand_into:
+  - Do not embed external runtime by default.
+  - Do not modify MacroForge from this candidate.
+  recommendation_strength: moderate
+risks:
+  complexity_risk: medium
+  adoption_risk: medium
+  maintenance_burden: medium
+  license_risk: low
+  rollback_plan: Retire this candidate and remove any follow-on task before implementation.
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []

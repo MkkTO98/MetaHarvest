@@ -1,0 +1,84 @@
+schema_version: 1
+kind: relevance_map
+target:
+  project_id: projectforge
+  project_type: hermes_native_project_factory
+  updated: '2026-06-06'
+consultation:
+  consult_required_during:
+  - orchestration_design
+  - permission_system_design
+  - workflow_redesign
+  - memory_context_system_design
+  - scheduled_architecture_reviews
+  consult_not_required_during:
+  - bug_fixes
+  - minor_documentation_changes
+  - small_utilities
+problem_relevance:
+- problem_id: long_running_agent_state
+  relevance: high
+  rationale: langgraph directly addresses long-running agent state/lifecycle concerns.
+  related_patterns:
+  - typed_state_graph
+  - thread_checkpoint_contract
+  - interrupt_as_approval_gate
+  - observable_task_stream
+  anti_problems:
+  - one_shot_scripts
+  - ordinary implementation tasks
+recommendations:
+- pattern_id: typed_state_graph
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  rationale: Useful as ProjectForge pattern evidence; not an implementation approval.
+  minimum_useful_extraction: Represent as YAML/Markdown governance or task-lifecycle records.
+  do_not_use_when:
+  - ProjectForge existing task/state/handoff artifacts are enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/langgraph-adoption-candidate.yaml
+- pattern_id: thread_checkpoint_contract
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  rationale: Useful as ProjectForge pattern evidence; not an implementation approval.
+  minimum_useful_extraction: Represent as YAML/Markdown governance or task-lifecycle records.
+  do_not_use_when:
+  - ProjectForge existing task/state/handoff artifacts are enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/langgraph-adoption-candidate.yaml
+- pattern_id: interrupt_as_approval_gate
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  rationale: Useful as ProjectForge pattern evidence; not an implementation approval.
+  minimum_useful_extraction: Represent as YAML/Markdown governance or task-lifecycle records.
+  do_not_use_when:
+  - ProjectForge existing task/state/handoff artifacts are enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/langgraph-adoption-candidate.yaml
+- pattern_id: observable_task_stream
+  status: active
+  relevance_score: 9
+  local_fit: strong
+  evidence_strength: high
+  generic_recommendation_strength: strong
+  ecosystem_recommendation_strength: insufficient_outcome_history
+  rationale: Useful as ProjectForge pattern evidence; not an implementation approval.
+  minimum_useful_extraction: Represent as YAML/Markdown governance or task-lifecycle records.
+  do_not_use_when:
+  - ProjectForge existing task/state/handoff artifacts are enough.
+  linked_candidate: ArchitectureHarvest/adoption_candidates/langgraph-adoption-candidate.yaml
+lifecycle:
+  first_seen: '2026-06-06'
+  last_reviewed: '2026-06-06'
+  last_referenced: '2026-06-06'
+  last_adoption: null
+  adoption_frequency: none

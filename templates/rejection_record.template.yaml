@@ -1,0 +1,20 @@
+schema_version: 1
+kind: rejection_record
+rejection:
+  id: REQUIRED
+  item_type: source|component|pattern|adoption_candidate
+  item_id: REQUIRED
+  item_name: REQUIRED
+  date: YYYY-MM-DD
+  rejected_by: Hermes|user|decision_artifact
+reasoning:
+  why_rejected: REQUIRED
+  local_constraint_mismatches: []
+  what_was_still_useful: []
+  future_revisit_condition: REQUIRED
+  confidence: low|medium|high
+links:
+  source_registry_id: null
+  evidence_files: []
+  related_reports: []
+  related_decisions: []

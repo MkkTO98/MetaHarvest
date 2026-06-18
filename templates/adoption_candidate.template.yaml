@@ -1,0 +1,66 @@
+schema_version: 1
+kind: adoption_candidate
+# Backward-compatible legacy adoption-candidate template. New recommendation artifacts should prefer recommendation.template.yaml schema_version: 2.
+candidate:
+  id: REQUIRED
+  title: REQUIRED
+  type: adoption|simplification|replacement|deletion|rejection|project_creation|doctrine_change|schema_change|interface_change|tooling_change
+  status: active|stale|superseded|retired|proposed|accepted|rejected|implemented|failed
+problem_context:
+  problem_ids: []
+  problem_statement: REQUIRED
+  anti_problems: []
+source_evidence:
+  source_projects: []
+  component_cards: []
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  reports: []
+outcome_weighting:
+  generic_recommendation_strength: weak|moderate|strong
+  ecosystem_recommendation_strength: weak|moderate|strong|insufficient_outcome_history
+  outcome_records: []
+  weighting_rationale: REQUIRED
+target:
+  project_id: REQUIRED
+  affected_area: REQUIRED
+recommendation_metadata:
+  recommendation_id: REQUIRED
+  recommendation_type: architecture_improvement|project_creation|doctrine_change|schema_change|interface_change|tooling_change
+  origin_project: REQUIRED
+  target_project_or_scope: REQUIRED
+  generated_at: YYYY-MM-DDTHH:MM:SSZ
+  generated_by: Hermes|ArchitectureHarvest|human|other
+  confidence: 0.00
+  priority: 0.00
+  lineage:
+    source_recommendation_ids: []
+    supersedes: []
+    superseded_by: []
+recommendation:
+  decision_grade_summary: REQUIRED
+  problem_addressed: REQUIRED
+  minimum_useful_extraction: REQUIRED
+  expected_benefit: REQUIRED
+  implementation_cost_estimate: low|medium|high|decimal_or_text_with_rationale
+  architectural_impact_estimate: low|medium|high|decimal_or_text_with_rationale
+  implementation_outline: []
+  do_not_expand_into: []
+  recommendation_strength: weak|moderate|strong
+risks:
+  complexity_risk: low|medium|high
+  adoption_risk: low|medium|high
+  maintenance_burden: low|medium|high
+  license_risk: low|medium|high|unknown
+  rollback_plan: REQUIRED
+gates:
+  requires_human_approval: true
+  requires_dry_run: true
+  requires_tests: true
+  requires_projectforge_coherence: true
+outcome:
+  accepted_or_rejected_date: null
+  implementation_date: null
+  result: null
+  lessons: []

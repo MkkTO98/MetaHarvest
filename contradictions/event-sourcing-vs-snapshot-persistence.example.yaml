@@ -1,0 +1,52 @@
+schema_version: 1
+kind: contradiction_record
+example_only: true
+contradiction:
+  id: event_sourcing_vs_snapshot_persistence
+  name: Event sourcing vs snapshot persistence
+  status: active
+  problem_ids: [long_running_agent_state]
+competing_approaches:
+  - approach_id: event_sourcing
+    summary: Record every meaningful state transition as an append-only event history.
+    assumptions:
+      - replay is valuable
+      - storage growth is acceptable
+      - event schema evolution is manageable
+    wins_when:
+      - auditability and replay matter more than implementation simplicity
+      - multiple derived views must be reconstructed from the same history
+    loses_when:
+      - workflows are small and final state is enough
+      - event schema/versioning would become maintenance burden
+    failure_modes_introduced:
+      - schema evolution complexity
+      - replay bugs
+      - context pollution if raw events are loaded directly
+  - approach_id: snapshot_persistence
+    summary: Persist compact current state/checkpoints at meaningful boundaries.
+    assumptions:
+      - current state plus short history is enough
+      - exact replay is not required
+      - snapshots can be regenerated or validated
+    wins_when:
+      - solo-developer simplicity and low maintenance matter most
+      - token-budget-aware handoffs need compact state
+    loses_when:
+      - forensic replay is required
+      - derived state must be rebuilt from every transition
+    failure_modes_introduced:
+      - lost intermediate rationale
+      - stale snapshots
+      - insufficient debugging evidence
+projectforge_fit:
+  likely_default: snapshot_persistence
+  rationale: ProjectForge already prefers concise current-state pointers and separate audit/debug logs.
+  caveat: Use append-only event logs only for audit/debugging or where replay has proven value.
+recommendation:
+  action: do_not_force_winner
+  guidance: Prefer compact snapshots/current-state files for active context; retain append-only logs as audit/debug artifacts when needed.
+  confidence: medium
+  evidence_quality: medium
+  analysis_limitations:
+    - Example record created before analyzing external source repositories.
