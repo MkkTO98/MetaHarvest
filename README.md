@@ -53,7 +53,7 @@ MetaHarvest files live in this repository at the project root:
 /home/mkkto/srv/EIP/projects/MetaHarvest/
 ```
 
-Raw cloned third-party repositories must live outside the git-tracked source tree, normally at:
+Raw cloned third-party repositories, when materialized for source-level analysis, must live outside the git-tracked source tree, normally at:
 
 ```text
 /home/mkkto/srv/EIP/projects/ProjectForge/external_sources/
@@ -77,7 +77,7 @@ Do not use MetaHarvest for small bug fixes, minor documentation edits, simple te
 
 1. Check `source_registry.yaml` for approved, analyzed, stale, rejected, and retired sources.
 2. If a repository is only a candidate, ask the user before approving or cloning it.
-3. Clone approved repositories only under `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/`.
+3. For source-level reanalysis, materialize approved repositories only under the configured cache root `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/`; normal consultation should rely on compact MetaHarvest artifacts first.
 4. Inspect source/docs/issues without executing third-party code.
 5. Produce the four analysis layers:
    - human summary in `projects/`

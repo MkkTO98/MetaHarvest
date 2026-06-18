@@ -9,7 +9,7 @@ MetaHarvest is an advisory project/subsystem for reusable non-domain knowledge, 
 - Historical name: ArchitectureHarvest
 - Historical references: preserved as historical or compatibility references
 - Generated-project compatibility path: `architecture/architectureharvest/`
-- Source-cache policy: local cloned repositories are replaceable cache hints, currently under `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources`
+- Source-cache policy: local cloned repositories are optional, replaceable cache hints configured at `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources`; the directory may be absent until source-level reanalysis rematerializes approved sources
 
 ## Authority boundary
 
@@ -112,7 +112,7 @@ MetaHarvest must not preserve consumer-domain conclusions as its own knowledge b
 
 `source_registry.yaml` is MetaHarvest-owned source-lifecycle metadata.
 
-Local cloned repositories are replaceable caches. During EIP finalization, source-cache paths were migrated to `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources` as cache hints, not canonical source identities.
+Local cloned repositories are optional, replaceable caches. During EIP finalization, source-cache paths were migrated to `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources` as cache hints, not canonical source identities. The cache directory may be absent during normal consultation; absence does not invalidate analyzed-source records when repository URL, commits, and MetaHarvest artifacts are present.
 
 Canonical source identity should be represented by:
 

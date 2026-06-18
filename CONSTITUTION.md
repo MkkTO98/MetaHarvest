@@ -37,7 +37,7 @@ Forbidden v1 systems:
 
 ## Repository safety policy
 
-- Raw cloned third-party repositories live outside the ProjectForge git-tracked source tree, under `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/` by default.
+- Raw cloned third-party repositories, when materialized for source-level analysis, live outside the ProjectForge git-tracked source tree under the configured replaceable cache root `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/` by default. Normal MetaHarvest consultation must not require this cache to exist.
 - Hermes may search for candidate open-source repositories.
 - Hermes may propose repositories for approval.
 - Hermes must ask before moving a repository from `candidate` to `approved`.

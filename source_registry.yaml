@@ -2,6 +2,12 @@ schema_version: 1
 registry_name: MetaHarvest source registry
 updated: '2026-06-08'
 external_sources_root: /home/mkkto/srv/EIP/projects/ProjectForge/external_sources
+cache_policy:
+  local_clones_intended: optional_for_reanalysis
+  cache_required_for_normal_consultation: false
+  external_sources_concept: replaceable_local_source_cache
+  local_paths_are: cache_hints_not_canonical_source_identity
+  missing_cache_behavior: use_registry_commits_and_metaharvest_artifacts; rematerialize approved sources only when source-level reanalysis is needed
 states:
   candidate: discovered, not approved
   approved: may be cloned and analyzed
