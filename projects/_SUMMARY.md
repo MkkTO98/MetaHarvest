@@ -6,10 +6,13 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->
 - `.gitkeep`
+- `airflow.md`
+- `n8n.md`
+- `openmetadata.md`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
-- No folder-specific active work recorded.
+- n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest completed on 2026-06-19; summaries are descriptive source-analysis evidence only and do not create recommendations or implementation tasks.
 
 ## Needs Attention
-- No folder-specific issues recorded.
+- Refresh source-derived records before using them for implementation decisions; upstream repositories may change.

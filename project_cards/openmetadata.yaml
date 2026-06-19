@@ -1,0 +1,60 @@
+schema_version: 1
+kind: project_card
+project:
+  id: openmetadata
+  name: OpenMetadata
+  category: metadata_catalog_lineage_governance_platform
+  repository_url: https://github.com/open-metadata/OpenMetadata
+  license: Apache-2.0
+  maturity_estimate: institutional
+analysis:
+  analyzed_commit: b953555301bcb85094ce8c06f570a7f32c5699f8
+  analysis_date: '2026-06-19'
+  evidence_quality: medium
+  confidence: medium
+  analysis_limitations:
+  - Static source inspection only; external code was not installed, imported, built, tested, or executed.
+  - Harvest focused on taxonomy diversity and reusable non-domain concepts, not functionality review or adoption decisions.
+summary:
+  primary_problem_solved: schema-first metadata catalog and context graph connecting technical metadata, lineage, ownership, quality, governance, glossaries, policies, data contracts, APIs, SDKs, search, and MCP access
+  core_architectural_principles:
+  - schema-first entity model
+  - lineage as typed graph edges with details
+  - governance semantics attached to assets through owners, domains, classifications, glossaries, policies, and contracts
+  - activation through APIs, events, search, SDKs, and MCP
+  main_assumptions:
+  - metadata is valuable when normalized across asset types
+  - lineage and governance need explicit entity references and operations
+  - AI/tool access should inherit governed user context
+fit:
+  relevance_to_projectforge:
+    assessed_for_adoption: false
+    rationale: Useful as MetaHarvest taxonomy evidence; no ProjectForge implementation change is implied.
+  relevance_to_macroforge:
+    assessed_for_adoption: false
+    rationale: Directly relevant to MacroForge metadata/lineage/governance vocabulary, but only as evidence for compact file-backed artifacts today.
+  local_first_fit: medium
+  solo_developer_fit: low
+  cloud_dependency_risk: medium
+  complexity_risk: high
+  maintenance_burden: high
+reuse:
+  minimum_useful_extraction: 'Preserve metadata-catalog concepts: schema-first entity definitions, lineage details, governance taxonomy, semantic context graph, and governed MCP/API activation; do not introduce catalog infrastructure.'
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: caution
+staleness:
+  latest_seen_commit: b953555301bcb85094ce8c06f570a7f32c5699f8
+  status: current
+  staleness_policy: Recheck upstream before implementation decisions, dependency adoption, or source-level reanalysis.
+links:
+  human_summary: MetaHarvest/projects/openmetadata.md
+  deep_report: MetaHarvest/reports/R-20260619-openmetadata-taxonomy-harvest.md
+  component_cards:
+  - MetaHarvest/component_cards/openmetadata-schema-first-entity-model.yaml
+  - MetaHarvest/component_cards/openmetadata-lineage-resource.yaml
+  - MetaHarvest/component_cards/openmetadata-governance-taxonomy.yaml
+  - MetaHarvest/component_cards/openmetadata-mcp-context-interface.yaml
+  relevance_maps: []

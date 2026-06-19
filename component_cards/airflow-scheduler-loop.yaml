@@ -1,0 +1,78 @@
+schema_version: 1
+kind: component_card
+component:
+  id: airflow-scheduler-loop
+  source_project_id: airflow
+  name: Scheduler loop and run-state coordination
+  category: scheduler_state_machine
+analysis:
+  analyzed_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  analysis_date: '2026-06-19'
+  evidence_files_inspected:
+  - airflow-core/src/airflow/jobs/scheduler_job_runner.py
+  - airflow-core/src/airflow/models/dagrun.py
+  - airflow-core/src/airflow/models/taskinstance.py
+  evidence_quality: medium
+  evidence_strength: medium
+  confidence: medium
+  analysis_limitations:
+  - Static source inspection only; external code was not executed.
+  - Harvested for taxonomy coverage, not for implementation recommendation.
+architecture:
+  problem_solved: The scheduler coordinates DagRun and TaskInstance state, database transactions, executor workloads, callbacks, and bounded per-loop work.
+  problems_solved:
+  - scheduler loop
+  - run state machine
+  - executor boundary
+  related_problems:
+  - taxonomy coverage
+  - reusable non-domain infrastructure vocabulary
+  anti_problems:
+  - platform adoption by default
+  - collection growth without validation value
+  failure_modes_addressed:
+  - manual refresh drift
+  - unbounded scheduling transactions
+  - state not recoverable after interruption
+  failure_modes_introduced:
+  - database/operator burden
+  - distributed execution complexity
+  architectural_principle: If scheduling pressure emerges, first model bounded run state and scheduler decisions before adopting an orchestration runtime.
+  required_assumptions:
+  - compact artifacts are preferred over runtime adoption
+  - source evidence remains descriptive and non-binding
+  useful_patterns:
+  - bounded scheduler loop and state-transition vocabulary
+fit:
+  projectforge_relevance:
+    assessed_for_adoption: false
+    rationale: Useful as MetaHarvest taxonomy evidence; no ProjectForge change is implied.
+  macroforge_relevance:
+    assessed_for_adoption: false
+    rationale: Adds vocabulary for future workflow, scheduling, metadata, lineage, or governance pressure without changing MacroForge.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - Runtime/platform adoption would exceed current local-first, file-backed constraints.
+  - Evidence must remain descriptive and must not become recommendation or ranking logic.
+reuse:
+  minimum_useful_extraction: bounded scheduler loop and state-transition vocabulary
+  use_when:
+  - A future project needs vocabulary or validation data for this category.
+  - Compact file-backed artifacts can preserve the useful concept without platform adoption.
+  do_not_use_when:
+  - The goal is merely to increase source count.
+  - The category is not relevant to a real validation or discovery need.
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 0
+  projects_observed:
+  - airflow
+  maintenance_cost: medium
+  explanation: Mature external source evidence; preserved for taxonomy coverage only, with no local adoption assessment.
+links:
+  problem_catalog_entries: []
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

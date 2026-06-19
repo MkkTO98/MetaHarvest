@@ -207,3 +207,84 @@ sources:
     cron schedules (#25361). One upstream broken symlink was replaced with a local copy
     of its intended target after analysis so ProjectForge copytree-based tests can copy
     external_sources safely; the copied path was not used as evidence.'
+- id: n8n
+  name: n8n
+  category: workflow_automation_integration_platform
+  repository_url: https://github.com/n8n-io/n8n
+  license: Sustainable Use License with Enterprise files excluded
+  status: analyzed
+  approval_date: '2026-06-19'
+  approved_by: user
+  local_path: /tmp/metaharvest_external_sources/n8n
+  last_cloned_commit: 31f718f8f8ad6575fd049a2bb10aa597049604b1
+  last_analyzed_commit: 31f718f8f8ad6575fd049a2bb10aa597049604b1
+  latest_seen_commit: 31f718f8f8ad6575fd049a2bb10aa597049604b1
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: caution
+  license_risk: medium
+  primary_interest: workflow automation, integration-node interfaces, trigger/webhook
+    lifecycle, credential boundaries, execution persistence
+  projectforge_relevance: medium_candidate
+  macroforge_relevance: medium_high_candidate
+  notes: Approved by user on 2026-06-19 for category-diversity harvest; cloned to
+    temporary cache outside EIP project repositories because modifying other EIP projects
+    was disallowed. Statically analyzed without installing, importing, building, testing,
+    or executing external code.
+- id: airflow
+  name: Apache Airflow
+  category: workflow_orchestration_scheduling_system
+  repository_url: https://github.com/apache/airflow
+  license: Apache-2.0
+  status: analyzed
+  approval_date: '2026-06-19'
+  approved_by: user
+  local_path: /tmp/metaharvest_external_sources/airflow
+  last_cloned_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  last_analyzed_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  latest_seen_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: DAG authoring, scheduling, timetable contracts, executor boundary,
+    asset-aware scheduling, run-state coordination
+  projectforge_relevance: medium_candidate
+  macroforge_relevance: high_candidate
+  notes: Approved by user on 2026-06-19 for category-diversity harvest; cloned to
+    temporary cache outside EIP project repositories because modifying other EIP projects
+    was disallowed. Statically analyzed without installing, importing, building, testing,
+    or executing external code.
+- id: openmetadata
+  name: OpenMetadata
+  category: metadata_catalog_lineage_governance_platform
+  repository_url: https://github.com/open-metadata/OpenMetadata
+  license: Apache-2.0
+  status: analyzed
+  approval_date: '2026-06-19'
+  approved_by: user
+  local_path: /tmp/metaharvest_external_sources/openmetadata
+  last_cloned_commit: b953555301bcb85094ce8c06f570a7f32c5699f8
+  last_analyzed_commit: b953555301bcb85094ce8c06f570a7f32c5699f8
+  latest_seen_commit: b953555301bcb85094ce8c06f570a7f32c5699f8
+  staleness: current
+  license_reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: allowed
+  license_risk: low
+  primary_interest: metadata catalog, schema-first entity model, lineage graph, governance
+    taxonomy, data contracts, governed MCP/API context interfaces
+  projectforge_relevance: medium_candidate
+  macroforge_relevance: high_candidate
+  notes: Approved by user on 2026-06-19 for category-diversity harvest; cloned to
+    temporary cache outside EIP project repositories because modifying other EIP projects
+    was disallowed. Statically analyzed without installing, importing, building, testing,
+    or executing external code.

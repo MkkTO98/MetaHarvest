@@ -1,0 +1,78 @@
+schema_version: 1
+kind: component_card
+component:
+  id: n8n-trigger-webhook-registration
+  source_project_id: n8n
+  name: Trigger and webhook registration lifecycle
+  category: trigger_webhook_lifecycle
+analysis:
+  analyzed_commit: 31f718f8f8ad6575fd049a2bb10aa597049604b1
+  analysis_date: '2026-06-19'
+  evidence_files_inspected:
+  - packages/cli/src/workflows/triggers/workflow-trigger-activator.ts
+  - packages/cli/src/webhooks/webhook.service.ts
+  - packages/cli/src/webhooks/live-webhooks.ts
+  evidence_quality: medium
+  evidence_strength: medium
+  confidence: medium
+  analysis_limitations:
+  - Static source inspection only; external code was not executed.
+  - Harvested for taxonomy coverage, not for implementation recommendation.
+architecture:
+  problem_solved: Active workflows reconcile trigger-like nodes and webhook registrations separately from saved workflow definitions.
+  problems_solved:
+  - webhook activation
+  - trigger reconciliation
+  - workflow publication
+  related_problems:
+  - taxonomy coverage
+  - reusable non-domain infrastructure vocabulary
+  anti_problems:
+  - platform adoption by default
+  - collection growth without validation value
+  failure_modes_addressed:
+  - stale trigger registrations
+  - partial activation failure
+  - hidden external entrypoints
+  failure_modes_introduced:
+  - leader/local-state complexity
+  - operational state outside the definition
+  architectural_principle: Separate desired workflow publication state from actual trigger/webhook registrations and record partial activation failures explicitly.
+  required_assumptions:
+  - compact artifacts are preferred over runtime adoption
+  - source evidence remains descriptive and non-binding
+  useful_patterns:
+  - desired-vs-actual trigger reconciliation vocabulary
+fit:
+  projectforge_relevance:
+    assessed_for_adoption: false
+    rationale: Useful as MetaHarvest taxonomy evidence; no ProjectForge change is implied.
+  macroforge_relevance:
+    assessed_for_adoption: false
+    rationale: Adds vocabulary for future workflow, scheduling, metadata, lineage, or governance pressure without changing MacroForge.
+  local_fit: moderate
+  mismatch_with_local_constraints:
+  - Runtime/platform adoption would exceed current local-first, file-backed constraints.
+  - Evidence must remain descriptive and must not become recommendation or ranking logic.
+reuse:
+  minimum_useful_extraction: desired-vs-actual trigger reconciliation vocabulary
+  use_when:
+  - A future project needs vocabulary or validation data for this category.
+  - Compact file-backed artifacts can preserve the useful concept without platform adoption.
+  do_not_use_when:
+  - The goal is merely to increase source count.
+  - The category is not relevant to a real validation or discovery need.
+  implementation_effort: medium
+  adoption_risk: medium
+maturity:
+  adoption_count: 0
+  projects_observed:
+  - n8n
+  maintenance_cost: medium
+  explanation: Mature external source evidence; preserved for taxonomy coverage only, with no local adoption assessment.
+links:
+  problem_catalog_entries: []
+  pattern_cards: []
+  synthesized_patterns: []
+  contradiction_records: []
+  adoption_outcomes: []

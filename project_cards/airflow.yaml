@@ -1,0 +1,60 @@
+schema_version: 1
+kind: project_card
+project:
+  id: airflow
+  name: Apache Airflow
+  category: workflow_orchestration_scheduling_system
+  repository_url: https://github.com/apache/airflow
+  license: Apache-2.0
+  maturity_estimate: institutional
+analysis:
+  analyzed_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  analysis_date: '2026-06-19'
+  evidence_quality: medium
+  confidence: medium
+  analysis_limitations:
+  - Static source inspection only; external code was not installed, imported, built, tested, or executed.
+  - Harvest focused on taxonomy diversity and reusable non-domain concepts, not functionality review or adoption decisions.
+summary:
+  primary_problem_solved: code-defined workflow orchestration system for authoring, scheduling, and monitoring mostly static DAGs with task dependencies, timetables, executors, assets, and run state
+  core_architectural_principles:
+  - workflows as versionable/testable code
+  - scheduler loop separates definition parsing from task execution
+  - timetable/schedule contracts make time semantics explicit
+  - assets and dataset events can participate in scheduling
+  main_assumptions:
+  - workflow structure is mostly static across runs
+  - tasks should be idempotent and should avoid passing large payloads through orchestration metadata
+  - execution can be delegated to workers/executors
+fit:
+  relevance_to_projectforge:
+    assessed_for_adoption: false
+    rationale: Useful as MetaHarvest taxonomy evidence; no ProjectForge implementation change is implied.
+  relevance_to_macroforge:
+    assessed_for_adoption: false
+    rationale: Strong evidence for future scheduling/orchestration pressure; current MacroForge should still defer runtime adoption until operational thresholds are met.
+  local_first_fit: medium
+  solo_developer_fit: low
+  cloud_dependency_risk: medium
+  complexity_risk: high
+  maintenance_burden: high
+reuse:
+  minimum_useful_extraction: 'Preserve scheduling/orchestration concepts: DAG definitions, timetable contracts, scheduler state transitions, asset-triggered scheduling, and executor boundaries; do not adopt runtime or recommend migration.'
+  reuse_classification:
+    pattern_only: allowed
+    dependency_use: caution
+    code_copy: caution
+    redistribution: caution
+staleness:
+  latest_seen_commit: 9c4908019a3f8d386eaed56c0552adfde241e952
+  status: current
+  staleness_policy: Recheck upstream before implementation decisions, dependency adoption, or source-level reanalysis.
+links:
+  human_summary: MetaHarvest/projects/airflow.md
+  deep_report: MetaHarvest/reports/R-20260619-airflow-taxonomy-harvest.md
+  component_cards:
+  - MetaHarvest/component_cards/airflow-dag-definition.yaml
+  - MetaHarvest/component_cards/airflow-scheduler-loop.yaml
+  - MetaHarvest/component_cards/airflow-timetable-contract.yaml
+  - MetaHarvest/component_cards/airflow-asset-aware-scheduling.yaml
+  relevance_maps: []
