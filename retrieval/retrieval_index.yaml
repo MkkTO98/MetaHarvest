@@ -1,15 +1,15 @@
 schema_version: 1
 kind: retrieval_index
 updated: '2026-06-19'
-purpose: Compact routing index from problem to patterns, components, projects, outcomes,
-  contradictions, and recommendation records. Keep concise so Hermes need not load
-  every report.
+purpose: Compact descriptive routing index from problem to patterns, components, projects,
+  outcomes, contradictions, and historical advisory records where present. Keep concise
+  so Hermes need not load every report.
 retrieval_flow:
 - problem_catalog
-- synthesized_pattern_library
+- pattern_records
 - contradiction_records
-- adoption_outcomes
-- project_specific_relevance_maps
+- adoption_outcome_records
+- historical_relevance_maps
 - project_component_reports_only_if_needed
 entries:
 - problem_id: long_running_agent_state
@@ -123,6 +123,11 @@ entries:
     recommendation_strength: strong
     explanation: Four approved sources now provide independent evidence for state,
       context, lifecycle, repository, and recovery patterns.
+  reports:
+  - reports/R-20260606-openhands-deep-analysis.md
+  - reports/R-20260606-langgraph-deep-analysis.md
+  - reports/R-20260606-aider-deep-analysis.md
+  - reports/R-20260606-swe-agent-deep-analysis.md
 - problem_id: architecture_decision_reuse
   pattern_ids:
   - problem_first_retrieval
@@ -275,4 +280,56 @@ entries:
   contradiction_records: []
   adoption_outcomes: []
   relevance_maps: []
+  recommendation_records: []
+- problem_id: transformation_lineage_asset_orchestration
+  pattern_ids:
+  - manifest_lineage
+  - asset_graph
+  - contract_validation
+  - metadata_schema_evolution
+  - source_external_asset_boundary
+  - governance_access_boundary
+  synthesized_patterns: []
+  pattern_cards: []
+  component_cards:
+  - component_cards/dbt-manifest-lineage.yaml
+  - component_cards/dbt-contracts-tests.yaml
+  - component_cards/dbt-metadata-schema-evolution.yaml
+  - component_cards/dbt-orchestration-boundaries.yaml
+  - component_cards/dbt-governance-access.yaml
+  - component_cards/dagster-asset-spec-graph.yaml
+  - component_cards/dagster-asset-checks-validation.yaml
+  - component_cards/dagster-metadata-schema-versioning.yaml
+  - component_cards/dagster-source-external-assets.yaml
+  - component_cards/dagster-orchestration-definitions.yaml
+  project_cards:
+  - project_cards/dbt.yaml
+  - project_cards/dagster.yaml
+  reports:
+  - reports/R-20260608-dbt-deep-analysis.md
+  - reports/R-20260608-dagster-deep-analysis.md
+  - reports/R-20260608-dbt-dagster-macroforge-comparative-final-report.md
+  concept_terms:
+  - manifest
+  - asset graph
+  - lineage
+  - asset check
+  - contract test
+  - metadata schema
+  - external asset
+  - governance boundary
+  methodology_terms:
+  - static source analysis
+  - component-level decomposition
+  - file-backed metadata comparison
+  interface_terms:
+  - manifest artifact
+  - asset specification
+  - source/external asset boundary
+  - contract/test result
+  contradiction_records: []
+  adoption_outcomes: []
+  relevance_maps:
+  - relevance_maps/macroforge/dbt-relevance-map.yaml
+  - relevance_maps/macroforge/dagster-relevance-map.yaml
   recommendation_records: []

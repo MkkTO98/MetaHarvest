@@ -2,7 +2,7 @@ schema_version: 1
 kind: problem_catalog
 updated: '2026-06-19'
 purpose: Problem-first entry point for MetaHarvest consultation. Hermes should
-  start here when the user asks which architectural or reusable non-domain patterns fit a problem.
+  start here when the user asks which reusable non-domain records are indexed for a problem.
 status_values:
 - active
 - dormant
@@ -151,7 +151,9 @@ problems:
 - id: workflow_automation_integration
   name: Workflow automation and integration-node systems
   status: active
-  problem_statement: Preserve reusable vocabulary for workflow automation systems that model service integrations as node graphs with triggers, webhooks, credentials, and execution records.
+  problem_statement: Preserve reusable vocabulary for workflow automation systems
+    that model service integrations as node graphs with triggers, webhooks, credentials,
+    and execution records.
   tags:
   - workflow_automation
   - integration_platform
@@ -182,7 +184,8 @@ problems:
     analyzed_sources:
     - n8n
   prior_outcomes: []
-  retrieval_notes: Descriptive category route for n8n taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  retrieval_notes: Descriptive category route for n8n taxonomy-diversity harvest artifacts;
+    no adoption or project-specific fit is implied.
   lifecycle:
     first_seen: 2026-06-19
     last_reviewed: 2026-06-19
@@ -192,12 +195,15 @@ problems:
   evidence_summary:
     evidence_strength: medium
     confidence: medium
-    rationale: n8n was approved and statically analyzed for taxonomy diversity without executing external code.
+    rationale: n8n was approved and statically analyzed for taxonomy diversity without
+      executing external code.
   updated: '2026-06-19'
 - id: workflow_orchestration_scheduling
   name: Workflow orchestration and scheduling systems
   status: active
-  problem_statement: Preserve reusable vocabulary for code-defined orchestration systems with DAG definitions, scheduler loops, timetables, executor boundaries, and asset-aware scheduling.
+  problem_statement: Preserve reusable vocabulary for code-defined orchestration systems
+    with DAG definitions, scheduler loops, timetables, executor boundaries, and asset-aware
+    scheduling.
   tags:
   - workflow_orchestration
   - scheduling_system
@@ -228,7 +234,8 @@ problems:
     analyzed_sources:
     - airflow
   prior_outcomes: []
-  retrieval_notes: Descriptive category route for Apache Airflow taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  retrieval_notes: Descriptive category route for Apache Airflow taxonomy-diversity
+    harvest artifacts; no adoption or project-specific fit is implied.
   lifecycle:
     first_seen: 2026-06-19
     last_reviewed: 2026-06-19
@@ -238,12 +245,15 @@ problems:
   evidence_summary:
     evidence_strength: medium
     confidence: medium
-    rationale: Apache Airflow was approved and statically analyzed for taxonomy diversity without executing external code.
+    rationale: Apache Airflow was approved and statically analyzed for taxonomy diversity
+      without executing external code.
   updated: '2026-06-19'
 - id: metadata_catalog_lineage_governance
   name: Metadata catalog, lineage, and governance infrastructure
   status: active
-  problem_statement: Preserve reusable vocabulary for metadata catalog systems that model schema-first entities, lineage graphs, governance taxonomies, data contracts, and governed context interfaces.
+  problem_statement: Preserve reusable vocabulary for metadata catalog systems that
+    model schema-first entities, lineage graphs, governance taxonomies, data contracts,
+    and governed context interfaces.
   tags:
   - metadata_catalog
   - lineage_system
@@ -274,7 +284,8 @@ problems:
     analyzed_sources:
     - openmetadata
   prior_outcomes: []
-  retrieval_notes: Descriptive category route for OpenMetadata taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  retrieval_notes: Descriptive category route for OpenMetadata taxonomy-diversity
+    harvest artifacts; no adoption or project-specific fit is implied.
   lifecycle:
     first_seen: 2026-06-19
     last_reviewed: 2026-06-19
@@ -284,5 +295,63 @@ problems:
   evidence_summary:
     evidence_strength: medium
     confidence: medium
-    rationale: OpenMetadata was approved and statically analyzed for taxonomy diversity without executing external code.
+    rationale: OpenMetadata was approved and statically analyzed for taxonomy diversity
+      without executing external code.
+  updated: '2026-06-19'
+- id: transformation_lineage_asset_orchestration
+  name: Transformation lineage and asset orchestration metadata
+  status: active
+  problem_statement: Preserve reusable vocabulary for file-backed transformation definitions,
+    manifests, lineage graphs, validation contracts, asset specifications, and orchestration
+    boundaries.
+  tags:
+  - transformation_metadata
+  - asset_orchestration
+  - lineage
+  - manifest
+  - validation_contracts
+  - governance_boundaries
+  related_problems:
+  - metadata_catalog_lineage_governance
+  - workflow_orchestration_scheduling
+  anti_problems:
+  - adopting_full_transformation_runtime
+  - project_specific_runtime_recommendations
+  related_patterns:
+  - manifest_lineage
+  - asset_graph
+  - contract_validation
+  - metadata_schema_evolution
+  - source_external_asset_boundary
+  - governance_access_boundary
+  relevant_components:
+  - dbt-manifest-lineage
+  - dbt-contracts-tests
+  - dbt-metadata-schema-evolution
+  - dbt-orchestration-boundaries
+  - dbt-governance-access
+  - dagster-asset-spec-graph
+  - dagster-asset-checks-validation
+  - dagster-metadata-schema-versioning
+  - dagster-source-external-assets
+  - dagster-orchestration-definitions
+  relevant_projects:
+    candidate_sources_pending_analysis: []
+    analyzed_sources:
+    - dbt
+    - dagster
+  prior_outcomes: []
+  retrieval_notes: Descriptive route for dbt and Dagster corpus metadata; no runtime
+    adoption, project-specific fit, or recommendation is implied.
+  lifecycle:
+    first_seen: '2026-06-08'
+    last_reviewed: '2026-06-19'
+    last_referenced: '2026-06-19'
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: high
+    confidence: high
+    rationale: dbt and Dagster were approved and statically analyzed without installing,
+      importing, building, testing, or executing external code.
   updated: '2026-06-19'

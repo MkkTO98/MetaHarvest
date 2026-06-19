@@ -5,200 +5,283 @@ last_updated: '2026-06-19'
 doctrine:
   metaharvest_owns: discoverability_of_change
   consuming_projects_own: evaluation_of_change
-  boundary_summary: >-
-    MetaHarvest publishes project-neutral records of new, modified, retired,
-    superseded, and stale artifacts. Consumers decide locally whether any change
-    matters.
+  boundary_summary: MetaHarvest publishes project-neutral records of new, modified,
+    retired, superseded, and stale artifacts. Consumers decide locally whether any
+    change matters.
 consumer_contract:
   question_answered: What changed in MetaHarvest since I last looked?
   does_not_answer: Does this matter to my project, and what should I do?
-  consumer_responsibility: >-
-    Evaluate relevance, adoption, rejection, implementation, and local priority
-    inside the consuming project.
-  producer_responsibility: >-
-    Publish deterministic, auditable, project-neutral change records without
-    deciding consumer relevance.
+  consumer_responsibility: Evaluate relevance, adoption, rejection, implementation,
+    and local priority inside the consuming project.
+  producer_responsibility: Publish deterministic, auditable, project-neutral change
+    records without deciding consumer relevance.
 forbidden_outputs:
-  - affected project lists
-  - project-specific advice
-  - adoption suggestions
-  - automatic review generation
-  - automatic task creation
-  - automatic project modification
-  - consumer priority ranking
+- affected project lists
+- project-specific advice
+- adoption suggestions
+- automatic review generation
+- automatic task creation
+- automatic project modification
+- consumer priority ranking
 change_types:
-  - new_artifact
-  - modified_artifact
-  - retired_artifact
-  - superseded_artifact
-  - staleness_update
+- new_artifact
+- modified_artifact
+- retired_artifact
+- superseded_artifact
+- staleness_update
 artifact_statuses:
-  - active
-  - stale
-  - superseded
-  - retired
+- active
+- stale
+- superseded
+- retired
 changes:
-  - sequence: 1
-    date: '2026-06-18'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Established the change-discoverability boundary and index capability.
-    paths:
-      - decisions/D-20260618-change-discoverability-boundary.md
-      - change_discovery/index.yaml
-      - tools/list_changes.py
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record only says that MetaHarvest's change-discovery interface exists;
-      consumers evaluate any local implications themselves.
-  - sequence: 2
-    date: '2026-06-18'
-    change_type: modified_artifact
-    artifact_status: active
-    summary: Hardened MetaHarvest constitutional and interface doctrine for change discoverability versus local evaluation.
-    paths:
-      - CONSTITUTION.md
-      - INTEGRATION.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record only identifies changed doctrine artifacts; consumers evaluate
-      any local implications themselves.
-  - sequence: 3
-    date: '2026-06-18'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Added validation and folder summaries for the change-discovery capability.
-    paths:
-      - tests/test_change_discovery.py
-      - change_discovery/_SUMMARY.md
-      - _SUMMARY.md
-      - decisions/_SUMMARY.md
-      - tools/_SUMMARY.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record only identifies supporting validation and summary artifacts;
-      consumers evaluate any local implications themselves.
-  - sequence: 4
-    date: '2026-06-18'
-    change_type: modified_artifact
-    artifact_status: active
-    summary: Added a project-neutral pointer from MetaHarvest interface doctrine to the EIP capability ownership matrix.
-    paths:
-      - INTEGRATION.md
-      - /home/mkkto/srv/EIP/governance/CAPABILITY_OWNERSHIP.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record identifies ecosystem ownership-boundary doctrine; consumers
-      evaluate any local implications themselves.
-  - sequence: 5
-    date: '2026-06-18'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Added descriptive knowledge retrieval helper for MetaHarvest-owned records.
-    paths:
-      - tools/query_knowledge.py
-      - tests/test_query_knowledge.py
-      - retrieval/retrieval_policy.md
-      - retrieval/_SUMMARY.md
-      - tools/_SUMMARY.md
-      - INTEGRATION.md
-      - _SUMMARY.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record only identifies a MetaHarvest knowledge-retrieval surface;
-      consumers evaluate any local implications themselves.
-  - sequence: 6
-    date: '2026-06-19'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Added bounded infrastructure status audit and explicit future task for library discoverability backfill.
-    paths:
-      - reports/R-20260619-infrastructure-status-audit.md
-      - tasks/T-20260619-library-discoverability-backfill.md
-      - latest_handoff.md
-      - tasks/_SUMMARY.md
-      - reports/_SUMMARY.md
-      - _SUMMARY.md
-      - retrieval/_SUMMARY.md
-      - change_discovery/_SUMMARY.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record identifies audit and future-task context only; consumers evaluate
-      any local implications themselves.
-  - sequence: 7
-    date: '2026-06-19'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Backfilled taxonomy-diversity harvest discoverability for n8n, Apache Airflow, and OpenMetadata.
-    paths:
-      - source_registry.yaml
-      - project_cards/n8n.yaml
-      - project_cards/airflow.yaml
-      - project_cards/openmetadata.yaml
-      - component_cards/n8n-workflow-graph.yaml
-      - component_cards/n8n-trigger-webhook-registration.yaml
-      - component_cards/n8n-execution-persistence.yaml
-      - component_cards/n8n-credential-node-interface.yaml
-      - component_cards/airflow-dag-definition.yaml
-      - component_cards/airflow-scheduler-loop.yaml
-      - component_cards/airflow-timetable-contract.yaml
-      - component_cards/airflow-asset-aware-scheduling.yaml
-      - component_cards/openmetadata-schema-first-entity-model.yaml
-      - component_cards/openmetadata-lineage-resource.yaml
-      - component_cards/openmetadata-governance-taxonomy.yaml
-      - component_cards/openmetadata-mcp-context-interface.yaml
-      - projects/n8n.md
-      - projects/airflow.md
-      - projects/openmetadata.md
-      - reports/R-20260619-n8n-taxonomy-harvest.md
-      - reports/R-20260619-airflow-taxonomy-harvest.md
-      - reports/R-20260619-openmetadata-taxonomy-harvest.md
-      - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
-      - retrieval/problem_catalog.yaml
-      - retrieval/retrieval_index.yaml
-      - tools/check_coverage_health.py
-      - tests/test_taxonomy_discoverability_backfill.py
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record identifies project-neutral library discoverability coverage for
-      the taxonomy-diversity harvest; consumers evaluate any local implications themselves.
-  - sequence: 8
-    date: '2026-06-19'
-    change_type: new_artifact
-    artifact_status: active
-    summary: Added minimal first-class descriptive relationship index and validation.
-    paths:
-      - relationships/index.yaml
-      - relationships/_SUMMARY.md
-      - tools/check_relationship_health.py
-      - tools/query_knowledge.py
-      - tests/test_relationship_index.py
-      - indexes/relationship_index.md
-      - tasks/T-20260619-minimal-first-class-relationship-index.md
-      - latest_handoff.md
-      - _SUMMARY.md
-      - tools/_SUMMARY.md
-      - tests/_SUMMARY.md
-      - tasks/_SUMMARY.md
-      - indexes/_SUMMARY.md
-      - retrieval/_SUMMARY.md
-    staleness: current
-    supersedes: []
-    superseded_by: null
-    consumer_note: >-
-      This record identifies explicit descriptive relationship metadata and
-      validation only; consumers evaluate any local implications themselves.
+- sequence: 1
+  date: '2026-06-18'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Established the change-discoverability boundary and index capability.
+  paths:
+  - decisions/D-20260618-change-discoverability-boundary.md
+  - change_discovery/index.yaml
+  - tools/list_changes.py
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record only says that MetaHarvest's change-discovery interface
+    exists; consumers evaluate any local implications themselves.
+- sequence: 2
+  date: '2026-06-18'
+  change_type: modified_artifact
+  artifact_status: active
+  summary: Hardened MetaHarvest constitutional and interface doctrine for change discoverability
+    versus local evaluation.
+  paths:
+  - CONSTITUTION.md
+  - INTEGRATION.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record only identifies changed doctrine artifacts; consumers
+    evaluate any local implications themselves.
+- sequence: 3
+  date: '2026-06-18'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Added validation and folder summaries for the change-discovery capability.
+  paths:
+  - tests/test_change_discovery.py
+  - change_discovery/_SUMMARY.md
+  - _SUMMARY.md
+  - decisions/_SUMMARY.md
+  - tools/_SUMMARY.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record only identifies supporting validation and summary artifacts;
+    consumers evaluate any local implications themselves.
+- sequence: 4
+  date: '2026-06-18'
+  change_type: modified_artifact
+  artifact_status: active
+  summary: Added a project-neutral pointer from MetaHarvest interface doctrine to
+    the EIP capability ownership matrix.
+  paths:
+  - INTEGRATION.md
+  - /home/mkkto/srv/EIP/governance/CAPABILITY_OWNERSHIP.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record identifies ecosystem ownership-boundary doctrine; consumers
+    evaluate any local implications themselves.
+- sequence: 5
+  date: '2026-06-18'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Added descriptive knowledge retrieval helper for MetaHarvest-owned records.
+  paths:
+  - tools/query_knowledge.py
+  - tests/test_query_knowledge.py
+  - retrieval/retrieval_policy.md
+  - retrieval/_SUMMARY.md
+  - tools/_SUMMARY.md
+  - INTEGRATION.md
+  - _SUMMARY.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record only identifies a MetaHarvest knowledge-retrieval surface;
+    consumers evaluate any local implications themselves.
+- sequence: 6
+  date: '2026-06-19'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Added bounded infrastructure status audit and explicit future task for
+    library discoverability backfill.
+  paths:
+  - reports/R-20260619-infrastructure-status-audit.md
+  - tasks/T-20260619-library-discoverability-backfill.md
+  - latest_handoff.md
+  - tasks/_SUMMARY.md
+  - reports/_SUMMARY.md
+  - _SUMMARY.md
+  - retrieval/_SUMMARY.md
+  - change_discovery/_SUMMARY.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record identifies audit and future-task context only; consumers
+    evaluate any local implications themselves.
+- sequence: 7
+  date: '2026-06-19'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Backfilled taxonomy-diversity harvest discoverability for n8n, Apache Airflow,
+    and OpenMetadata.
+  paths:
+  - source_registry.yaml
+  - project_cards/n8n.yaml
+  - project_cards/airflow.yaml
+  - project_cards/openmetadata.yaml
+  - component_cards/n8n-workflow-graph.yaml
+  - component_cards/n8n-trigger-webhook-registration.yaml
+  - component_cards/n8n-execution-persistence.yaml
+  - component_cards/n8n-credential-node-interface.yaml
+  - component_cards/airflow-dag-definition.yaml
+  - component_cards/airflow-scheduler-loop.yaml
+  - component_cards/airflow-timetable-contract.yaml
+  - component_cards/airflow-asset-aware-scheduling.yaml
+  - component_cards/openmetadata-schema-first-entity-model.yaml
+  - component_cards/openmetadata-lineage-resource.yaml
+  - component_cards/openmetadata-governance-taxonomy.yaml
+  - component_cards/openmetadata-mcp-context-interface.yaml
+  - projects/n8n.md
+  - projects/airflow.md
+  - projects/openmetadata.md
+  - reports/R-20260619-n8n-taxonomy-harvest.md
+  - reports/R-20260619-airflow-taxonomy-harvest.md
+  - reports/R-20260619-openmetadata-taxonomy-harvest.md
+  - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
+  - retrieval/problem_catalog.yaml
+  - retrieval/retrieval_index.yaml
+  - tools/check_coverage_health.py
+  - tests/test_taxonomy_discoverability_backfill.py
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record identifies project-neutral library discoverability coverage
+    for the taxonomy-diversity harvest; consumers evaluate any local implications
+    themselves.
+- sequence: 8
+  date: '2026-06-19'
+  change_type: new_artifact
+  artifact_status: active
+  summary: Added minimal first-class descriptive relationship index and validation.
+  paths:
+  - relationships/index.yaml
+  - relationships/_SUMMARY.md
+  - tools/check_relationship_health.py
+  - tools/query_knowledge.py
+  - tests/test_relationship_index.py
+  - indexes/relationship_index.md
+  - tasks/T-20260619-minimal-first-class-relationship-index.md
+  - latest_handoff.md
+  - _SUMMARY.md
+  - tools/_SUMMARY.md
+  - tests/_SUMMARY.md
+  - tasks/_SUMMARY.md
+  - indexes/_SUMMARY.md
+  - retrieval/_SUMMARY.md
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record identifies explicit descriptive relationship metadata
+    and validation only; consumers evaluate any local implications themselves.
+- sequence: 9
+  date: '2026-06-19'
+  change_type: modified_artifact
+  artifact_status: active
+  summary: Backfilled change-discovery coverage for older agent-system analyzed sources.
+  paths:
+  - project_cards/openhands.yaml
+  - project_cards/langgraph.yaml
+  - project_cards/aider.yaml
+  - project_cards/swe-agent.yaml
+  - component_cards/openhands-conversation-lifecycle.yaml
+  - component_cards/openhands-event-service.yaml
+  - component_cards/openhands-mcp-source-control-tools.yaml
+  - component_cards/openhands-pending-message-queue.yaml
+  - component_cards/openhands-sandbox-boundary.yaml
+  - component_cards/langgraph-checkpoint-saver.yaml
+  - component_cards/langgraph-interrupt-command.yaml
+  - component_cards/langgraph-pregel-loop.yaml
+  - component_cards/langgraph-stategraph.yaml
+  - component_cards/langgraph-streaming-task-events.yaml
+  - component_cards/aider-git-repo-boundary.yaml
+  - component_cards/aider-repo-map-context.yaml
+  - component_cards/aider-architect-editor-separation.yaml
+  - component_cards/aider-autocommit-undo-lint-test.yaml
+  - component_cards/aider-chat-history-summarization.yaml
+  - component_cards/swe-agent-run-single-lifecycle.yaml
+  - component_cards/swe-agent-trajectory-persistence.yaml
+  - component_cards/swe-agent-environment-reset.yaml
+  - component_cards/swe-agent-retry-review-loop.yaml
+  - component_cards/swe-agent-patch-submission-pr-hooks.yaml
+  - component_cards/swe-agent-history-processors.yaml
+  - reports/R-20260606-openhands-deep-analysis.md
+  - reports/R-20260606-langgraph-deep-analysis.md
+  - reports/R-20260606-aider-deep-analysis.md
+  - reports/R-20260606-swe-agent-deep-analysis.md
+  - retrieval/retrieval_index.yaml
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record backfills project-neutral corpus visibility for older
+    analyzed sources; consumers evaluate any local implications themselves.
+- sequence: 10
+  date: '2026-06-19'
+  change_type: modified_artifact
+  artifact_status: active
+  summary: Backfilled retrieval and change-discovery coverage for dbt and Dagster
+    analyzed sources.
+  paths:
+  - project_cards/dbt.yaml
+  - project_cards/dagster.yaml
+  - component_cards/dbt-manifest-lineage.yaml
+  - component_cards/dbt-contracts-tests.yaml
+  - component_cards/dbt-metadata-schema-evolution.yaml
+  - component_cards/dbt-orchestration-boundaries.yaml
+  - component_cards/dbt-governance-access.yaml
+  - component_cards/dagster-asset-spec-graph.yaml
+  - component_cards/dagster-asset-checks-validation.yaml
+  - component_cards/dagster-metadata-schema-versioning.yaml
+  - component_cards/dagster-source-external-assets.yaml
+  - component_cards/dagster-orchestration-definitions.yaml
+  - reports/R-20260608-dbt-deep-analysis.md
+  - reports/R-20260608-dagster-deep-analysis.md
+  - reports/R-20260608-dbt-dagster-macroforge-comparative-final-report.md
+  - retrieval/problem_catalog.yaml
+  - retrieval/retrieval_index.yaml
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record backfills project-neutral corpus visibility for older
+    analyzed sources; consumers evaluate any local implications themselves.
+- sequence: 11
+  date: '2026-06-19'
+  change_type: modified_artifact
+  artifact_status: active
+  summary: Recorded stable-v1 cleanup report and refreshed active library-doctrine wording.
+  paths:
+  - README.md
+  - reports/R-20260619-stable-v1-cleanup.md
+  - reports/_SUMMARY.md
+  - latest_handoff.md
+  - _SUMMARY.md
+  - retrieval/_SUMMARY.md
+  - change_discovery/_SUMMARY.md
+  - change_discovery/index.yaml
+  staleness: current
+  supersedes: []
+  superseded_by: null
+  consumer_note: This record identifies stable-v1 corpus hygiene and doctrine-wording
+    cleanup only; consumers evaluate any local implications themselves.

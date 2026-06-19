@@ -1,18 +1,18 @@
 # MetaHarvest
 
-MetaHarvest is an active sibling EIP project and advisory system: a file-backed system for discovering, preserving, organizing, analyzing, and recommending reusable non-domain knowledge.
+MetaHarvest is an active sibling EIP project and file-backed library for discovering, preserving, organizing, and retrieving reusable non-domain knowledge.
 
 MetaHarvest is historically descended from ArchitectureHarvest. Historical ArchitectureHarvest references remain valid as provenance or generated-project compatibility language, but new active references should use MetaHarvest.
 
-MetaHarvest's purpose is broader than architecture patterns alone. It preserves reusable non-domain knowledge from projects, systems, architectures, implementations, successes, failures, concepts, methodologies, interfaces, governance structures, decision patterns, and heuristics. It helps ProjectForge, MacroForge, and future projects avoid reinventing infrastructure, reduce unnecessary complexity, preserve lessons, and selectively consider proven patterns through project-local governance.
+MetaHarvest's purpose is broader than architecture patterns alone. It preserves reusable non-domain knowledge from projects, systems, architectures, implementations, successes, failures, concepts, methodologies, interfaces, governance structures, decision patterns, and heuristics. It helps ProjectForge, MacroForge, and future projects avoid reinventing infrastructure, reduce unnecessary complexity, preserve lessons, and inspect proven patterns through project-local governance.
 
-MetaHarvest is not a research archive and not a domain-knowledge repository. It is a file-based advisory knowledge system for Hermes.
+MetaHarvest is not a research archive and not a domain-knowledge repository. It is a file-backed reusable non-domain knowledge library for Hermes.
 
 ## Purpose boundaries
 
-MetaHarvest is advisory only. It may provide evidence, patterns, concepts, vocabulary, methodologies, decision lessons, governance lessons, heuristics, recommendations, candidate task proposals, and decision inputs. It must not govern projects, enforce standards, create tasks inside other projects, automatically adopt recommendations, automatically implement changes, or directly modify target projects.
+MetaHarvest is descriptive by default. It may provide evidence, patterns, concepts, vocabulary, methodologies, decision lessons, governance lessons, heuristics, and historical advisory records. It must not govern projects, enforce standards, create tasks inside other projects, automatically adopt recommendations, automatically implement changes, or directly modify target projects.
 
-Projects remain autonomous. MetaHarvest recommendations are inputs to project-local review.
+Projects remain autonomous. Any historical advisory artifacts are inputs to project-local review, not instructions or automatic tasks.
 
 MetaHarvest remains non-domain. It may preserve reusable non-domain methods discovered while working on domain projects, but it must not store domain conclusions such as GDP analysis, inflation analysis, energy-market knowledge, macroeconomic conclusions, investment theses, or company research. Those belong to domain projects.
 
@@ -30,7 +30,7 @@ MetaHarvest may explicitly reason about reusable non-domain knowledge categories
 - heuristics;
 - anti-patterns and failure patterns.
 
-These categories guide retrieval and recommendations. They do not create mandatory standards and do not require new storage systems or artifact types by default.
+These categories guide descriptive retrieval. They do not create mandatory standards and do not require new storage systems or artifact types by default.
 
 ## v1 scope
 
@@ -85,9 +85,9 @@ Do not use MetaHarvest for small bug fixes, minor documentation edits, simple te
    - component cards in `component_cards/`
    - deep report in `reports/`
 6. Extract or update cross-project patterns in `pattern_library/`.
-7. Update target relevance maps under `relevance_maps/<target>/`.
-8. Create adoption, simplification, replacement, deletion, rejection, or task recommendation proposals as appropriate.
-9. Route implementation through normal ProjectForge decision/dry-run/test/coherence gates.
+7. Preserve target relevance maps under `relevance_maps/<target>/` as historical/project-local review artifacts when they already exist.
+8. Preserve historical advisory candidate artifacts without treating them as automatic recommendations or tasks.
+9. Route any future implementation through normal ProjectForge decision/dry-run/test/coherence gates outside MetaHarvest.
 
 ## Key files
 

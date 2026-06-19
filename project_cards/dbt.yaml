@@ -31,7 +31,7 @@ summary:
 fit:
   relevance_to_projectforge:
     score: 6
-    rationale: Useful as ArchitectureHarvest evidence, but ProjectForge should not
+    rationale: Useful as MetaHarvest evidence, but ProjectForge should not
       adopt a data transformation/orchestration runtime by default.
   relevance_to_macroforge:
     score: 9
@@ -58,13 +58,13 @@ staleness:
   staleness_policy: Recheck upstream before implementation decisions or dependency
     adoption.
 links:
-  human_summary: ArchitectureHarvest/reports/R-20260608-dbt-deep-analysis.md
-  deep_report: ArchitectureHarvest/reports/R-20260608-dbt-deep-analysis.md
+  human_summary: MetaHarvest/reports/R-20260608-dbt-deep-analysis.md
+  deep_report: MetaHarvest/reports/R-20260608-dbt-deep-analysis.md
   component_cards:
-  - ArchitectureHarvest/component_cards/dbt-manifest-lineage.yaml
-  - ArchitectureHarvest/component_cards/dbt-contracts-tests.yaml
-  - ArchitectureHarvest/component_cards/dbt-metadata-schema-evolution.yaml
-  - ArchitectureHarvest/component_cards/dbt-orchestration-boundaries.yaml
-  - ArchitectureHarvest/component_cards/dbt-governance-access.yaml
+  - MetaHarvest/component_cards/dbt-manifest-lineage.yaml
+  - MetaHarvest/component_cards/dbt-contracts-tests.yaml
+  - MetaHarvest/component_cards/dbt-metadata-schema-evolution.yaml
+  - MetaHarvest/component_cards/dbt-orchestration-boundaries.yaml
+  - MetaHarvest/component_cards/dbt-governance-access.yaml
   relevance_maps:
-  - ArchitectureHarvest/relevance_maps/macroforge/dbt-relevance-map.yaml
+  - MetaHarvest/relevance_maps/macroforge/dbt-relevance-map.yaml
