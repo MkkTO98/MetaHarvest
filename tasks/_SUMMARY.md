@@ -11,7 +11,7 @@ This folder stores explicit future-task artifacts for MetaHarvest-owned work tha
 
 ## Active Work
 - `T-20260619-library-discoverability-backfill.md` is completed; it backfilled retrieval and change-discovery coverage for n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest artifacts.
-- `T-20260619-minimal-first-class-relationship-index.md` is a future task for descriptive file-backed relationship modeling; it is not implemented.
+- `T-20260619-minimal-first-class-relationship-index.md` is completed; it added a minimal explicit relationship index, validation, and descriptive query exposure.
 
 ## Needs Attention
 - Task artifacts are not implementation records unless their status and completion record explicitly say completed.

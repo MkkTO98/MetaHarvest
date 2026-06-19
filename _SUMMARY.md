@@ -27,6 +27,7 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `rejected/`
 - `relevance_maps/`
 - `reports/`
+- `relationships/`
 - `retired/`
 - `retrieval/`
 - `reviews/`
@@ -49,7 +50,8 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `tasks/T-20260619-library-discoverability-backfill.md` is completed; n8n, Apache Airflow, and OpenMetadata are discoverable through compact retrieval and change-discovery surfaces.
 - `tools/check_coverage_health.py` reports missing analyzed-source coverage across registry, cards, reports, retrieval, and change discovery.
 - `reports/R-20260619-relationship-capability-audit.md` records that MetaHarvest has deterministic relationship-like metadata but not first-class typed artifact relationships.
-- `tasks/T-20260619-minimal-first-class-relationship-index.md` is a future task only; relationship modeling is not implemented.
+- `tasks/T-20260619-minimal-first-class-relationship-index.md` is completed; `relationships/index.yaml`, `tools/check_relationship_health.py`, and query output now expose only explicit descriptive relationship records.
+- `indexes/relationship_index.md` documents the relationship surface and bounded predicate vocabulary.
 
 ## Needs Attention
 - Do not let MetaHarvest govern, directly modify, or create tasks inside consumer projects without separate project-local approval.

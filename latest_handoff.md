@@ -1,7 +1,7 @@
 # MetaHarvest Latest Handoff
 
 Date: 2026-06-19
-Status: relationship capability audit complete; relationship modeling task created but not implemented
+Status: minimal first-class relationship index implemented and validated
 
 ## Current repository context
 
@@ -10,23 +10,40 @@ MetaHarvest is operating as a local-first, file-backed library for reusable non-
 Current bounded infrastructure surfaces:
 
 - `retrieval/`
+- `relationships/`
 - `change_discovery/`
 - `tools/query_knowledge.py`
 - `tools/list_changes.py`
 - `tools/check_coverage_health.py`
+- `tools/check_relationship_health.py`
 - related tests
-- related decision/task records
+- related decision/task/report records
 
 ## Completed recent work
 
 Implemented task:
 
+- `tasks/T-20260619-minimal-first-class-relationship-index.md`
+
+Added relationship capability:
+
+- `relationships/index.yaml` is the canonical first-class relationship index.
+- Predicate vocabulary is bounded to `implements`, `contains`, `references`, `part_of`, `derived_from`, and `analyzes`.
+- Records are explicit only: no inference, no graph generation, no derived edges, and no recommendation logic.
+- `tools/check_relationship_health.py` validates malformed records, invalid predicates, missing source paths, and missing target paths.
+- `tools/query_knowledge.py` exposes matching `explicit_relationships` descriptively for recorded relationships only.
+- `indexes/relationship_index.md` documents the relationship surface.
+- `tests/test_relationship_index.py` validates relationship resolution, internal consistency, malformed fixtures, and retrieval exposure.
+
+Previous implemented task:
+
 - `tasks/T-20260619-library-discoverability-backfill.md`
 
-Updated retrieval coverage:
+Retrieval and coverage context:
 
 - `retrieval/problem_catalog.yaml`
 - `retrieval/retrieval_index.yaml`
+- `tools/check_coverage_health.py`
 
 The taxonomy-diversity harvest is discoverable through compact problem-first routes for:
 
@@ -34,40 +51,9 @@ The taxonomy-diversity harvest is discoverable through compact problem-first rou
 - `workflow_orchestration_scheduling` -> Apache Airflow
 - `metadata_catalog_lineage_governance` -> OpenMetadata
 
-Updated change discovery:
-
-- `change_discovery/index.yaml` sequence 7 records the taxonomy-diversity harvest backfill as a project-neutral library change.
-
-Added coverage-health check:
-
-- `tools/check_coverage_health.py`
-
-It reports missing analyzed-source coverage across source registry, project cards, component cards, reports, retrieval surfaces, and change-discovery surfaces. The check reports missing coverage only and does not emit recommendations, project-specific advice, rankings, synthesis, or automatic tasks.
-
-## Latest bounded audit
-
-Created:
-
-- `reports/R-20260619-relationship-capability-audit.md`
-- `tasks/T-20260619-minimal-first-class-relationship-index.md`
-
-Audit conclusion:
-
-- MetaHarvest has deterministic relationship-like metadata through source IDs, project-card links, component-card source IDs, retrieval-index co-location, synthesis fields, and change-discovery path lists.
-- These are not sufficient as first-class artifact relationships.
-- Explicit predicate keys such as `implements`, `contains`, `references`, `depends_on`, `related_to`, `part_of`, and `derived_from` are absent as canonical relationship fields.
-- Retrieval can surface co-indexed evidence and change references, but cannot traverse arbitrary typed relationships.
-- Current doctrine permits project-neutral file-backed relationship modeling as a legitimate library capability, if descriptive-only boundaries are preserved.
-
-Recommended future task:
-
-- `tasks/T-20260619-minimal-first-class-relationship-index.md`
-
-Do not implement it unless explicitly asked.
-
 ## Boundaries to preserve
 
-Do not allow retrieval, change discovery, coverage health, or future relationship modeling to drift into:
+Do not allow retrieval, change discovery, coverage health, or relationship modeling to drift into:
 
 - affected-project lists
 - project-specific recommendations
@@ -78,13 +64,31 @@ Do not allow retrieval, change discovery, coverage health, or future relationshi
 - automatic project modification
 - ranking or prioritization of consumer work
 - synthesis generation
+- graph traversal over inferred or derived relationships
+
+## Validation state
+
+Latest validation:
+
+- `uv run --with pytest --with pyyaml pytest tests -q` -> 16 passed
+- `uv run --with pyyaml python tools/check_relationship_health.py --project . --json` -> 13 relationship records checked; 0 invalid relationships
+- `uv run --with pyyaml python -m py_compile tools/query_knowledge.py tools/check_relationship_health.py tools/check_coverage_health.py tools/list_changes.py` -> passed
+- YAML parse over repository `*.yaml` files -> passed
+- `uv run --with pyyaml python tools/query_knowledge.py --project . --artifact-id n8n-workflow-graph --json` -> returned recorded `contains` and `part_of` explicit relationships
+- `git diff --check` -> passed
+
+Coverage-health note:
+
+- `tools/check_coverage_health.py --project . --json` executes successfully but reports pre-existing missing coverage for older analyzed sources outside this task's narrow relationship scope.
 
 ## Resume point
 
-If relationship work is explicitly requested later, start from:
+If relationship work resumes, start from:
 
-1. `reports/R-20260619-relationship-capability-audit.md`
-2. `tasks/T-20260619-minimal-first-class-relationship-index.md`
-3. `retrieval/retrieval_index.yaml`
-4. `tools/query_knowledge.py`
-5. `tools/check_coverage_health.py`
+1. `relationships/index.yaml`
+2. `indexes/relationship_index.md`
+3. `tools/check_relationship_health.py`
+4. `tests/test_relationship_index.py`
+5. `tools/query_knowledge.py`
+
+Do not add traversal, inferred relationships, recommendations, rankings, target-project relevance, or automatic task creation unless explicitly approved as a separate capability and doctrine changes first.

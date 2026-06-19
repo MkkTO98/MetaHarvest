@@ -1,7 +1,7 @@
 # Task: Minimal First-Class Relationship Index
 
 Date created: 2026-06-19
-Status: future_task
+Status: completed
 Owner: MetaHarvest
 
 ## Purpose
@@ -92,6 +92,43 @@ Use fewer surfaces if possible.
 - A validation command reports missing/stale relationship coverage only.
 - Existing retrieval/change-discovery doctrine boundaries remain intact.
 - Full tests pass.
+
+## Completion record
+
+Completed: 2026-06-19
+
+Implemented surfaces:
+
+- `relationships/index.yaml` as the canonical file-backed relationship index.
+- `tools/check_relationship_health.py` for deterministic validation of malformed records, invalid predicates, missing sources, and missing targets.
+- `tools/query_knowledge.py` now exposes matching `explicit_relationships` for recorded relationships only.
+- `tests/test_relationship_index.py` proves valid relationship resolution, malformed fixture detection, and retrieval exposure.
+- `indexes/relationship_index.md` documents the bounded relationship surface.
+
+Predicate vocabulary used:
+
+- `implements`
+- `contains`
+- `references`
+- `part_of`
+- `derived_from`
+- `analyzes`
+
+Doctrine boundary preserved:
+
+- no recommendations
+- no rankings
+- no adoption suggestions
+- no target-project relevance
+- no project-specific advice
+- no governance decisions
+- no automatic task creation
+- no graph traversal or derived edges
+
+Validation runs:
+
+- `uv run --with pytest --with pyyaml pytest tests/test_relationship_index.py -q` -> passed
+- `uv run --with pytest --with pyyaml pytest tests -q` -> 16 passed
 
 ## Non-goals
 

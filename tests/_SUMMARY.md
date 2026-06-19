@@ -7,11 +7,13 @@ This folder contains deterministic validation for MetaHarvest's file-backed libr
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->
 - `test_change_discovery.py`
 - `test_query_knowledge.py`
+- `test_relationship_index.py`
 - `test_taxonomy_discoverability_backfill.py`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
 - `test_taxonomy_discoverability_backfill.py` validates retrieval coverage, change-discovery coverage, and coverage-health output for n8n, Apache Airflow, and OpenMetadata.
+- `test_relationship_index.py` validates relationship-index health checks, malformed relationship detection, and descriptive query exposure for recorded relationships.
 - `test_query_knowledge.py` validates descriptive knowledge retrieval boundaries.
 - `test_change_discovery.py` validates project-neutral change discovery boundaries.
 

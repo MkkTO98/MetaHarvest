@@ -12,12 +12,14 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `problem_index.md`
 - `project_index.md`
 - `rejected_index.md`
+- `relationship_index.md`
 - `relevance_index.md`
 - `synthesis_index.md`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
 - OpenHands/LangGraph and Aider/SWE-agent ArchitectureHarvest analysis cycles completed on 2026-06-06; recommendations are advisory only and not implemented.
+- `relationship_index.md` points to the canonical relationship metadata surface and documents the bounded predicate vocabulary.
 
 ## Needs Attention
 - Refresh source-derived records before using them for implementation decisions; upstream repositories may change.

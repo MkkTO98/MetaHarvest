@@ -1,0 +1,88 @@
+schema_version: 1
+kind: relationship_index
+updated: '2026-06-19'
+purpose: Explicit descriptive relationships among MetaHarvest library artifacts. Records are manually recorded metadata only; no inferred or derived edges are implied.
+predicate_vocabulary:
+- implements
+- contains
+- references
+- part_of
+- derived_from
+- analyzes
+doctrine_boundary:
+  mode: descriptive_only
+  inference: not_performed
+  graph_generation: not_performed
+  recommendations: not_emitted
+  rankings: not_emitted
+  adoption_suggestions: not_emitted
+  project_specific_advice: not_emitted
+  target_project_relevance: not_evaluated
+  governance_decisions: not_emitted
+  automatic_task_creation: not_emitted
+relationships:
+- id: source-registry-references-n8n-project-card
+  source: source_registry.yaml
+  predicate: references
+  target: project_cards/n8n.yaml
+  evidence: source_registry entry id n8n and matching project card path
+- id: n8n-project-card-contains-workflow-graph-component
+  source: project_cards/n8n.yaml
+  predicate: contains
+  target: component_cards/n8n-workflow-graph.yaml
+  evidence: project_cards/n8n.yaml links.component_cards
+- id: n8n-workflow-graph-component-part-of-n8n-project-card
+  source: component_cards/n8n-workflow-graph.yaml
+  predicate: part_of
+  target: project_cards/n8n.yaml
+  evidence: component.source_project_id n8n
+- id: n8n-project-card-references-taxonomy-report
+  source: project_cards/n8n.yaml
+  predicate: references
+  target: reports/R-20260619-n8n-taxonomy-harvest.md
+  evidence: project_cards/n8n.yaml links.deep_report
+- id: source-registry-references-airflow-project-card
+  source: source_registry.yaml
+  predicate: references
+  target: project_cards/airflow.yaml
+  evidence: source_registry entry id airflow and matching project card path
+- id: airflow-project-card-contains-timetable-component
+  source: project_cards/airflow.yaml
+  predicate: contains
+  target: component_cards/airflow-timetable-contract.yaml
+  evidence: project_cards/airflow.yaml links.component_cards
+- id: airflow-timetable-component-part-of-airflow-project-card
+  source: component_cards/airflow-timetable-contract.yaml
+  predicate: part_of
+  target: project_cards/airflow.yaml
+  evidence: component.source_project_id airflow
+- id: airflow-project-card-references-taxonomy-report
+  source: project_cards/airflow.yaml
+  predicate: references
+  target: reports/R-20260619-airflow-taxonomy-harvest.md
+  evidence: project_cards/airflow.yaml links.deep_report
+- id: source-registry-references-openmetadata-project-card
+  source: source_registry.yaml
+  predicate: references
+  target: project_cards/openmetadata.yaml
+  evidence: source_registry entry id openmetadata and matching project card path
+- id: openmetadata-project-card-contains-lineage-resource-component
+  source: project_cards/openmetadata.yaml
+  predicate: contains
+  target: component_cards/openmetadata-lineage-resource.yaml
+  evidence: project_cards/openmetadata.yaml links.component_cards
+- id: openmetadata-lineage-resource-component-part-of-openmetadata-project-card
+  source: component_cards/openmetadata-lineage-resource.yaml
+  predicate: part_of
+  target: project_cards/openmetadata.yaml
+  evidence: component.source_project_id openmetadata
+- id: openmetadata-project-card-references-taxonomy-report
+  source: project_cards/openmetadata.yaml
+  predicate: references
+  target: reports/R-20260619-openmetadata-taxonomy-harvest.md
+  evidence: project_cards/openmetadata.yaml links.deep_report
+- id: relationship-audit-analyzes-relationship-index-task
+  source: reports/R-20260619-relationship-capability-audit.md
+  predicate: analyzes
+  target: tasks/T-20260619-minimal-first-class-relationship-index.md
+  evidence: audit conclusion created this future task

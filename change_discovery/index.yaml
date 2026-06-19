@@ -176,3 +176,29 @@ changes:
     consumer_note: >-
       This record identifies project-neutral library discoverability coverage for
       the taxonomy-diversity harvest; consumers evaluate any local implications themselves.
+  - sequence: 8
+    date: '2026-06-19'
+    change_type: new_artifact
+    artifact_status: active
+    summary: Added minimal first-class descriptive relationship index and validation.
+    paths:
+      - relationships/index.yaml
+      - relationships/_SUMMARY.md
+      - tools/check_relationship_health.py
+      - tools/query_knowledge.py
+      - tests/test_relationship_index.py
+      - indexes/relationship_index.md
+      - tasks/T-20260619-minimal-first-class-relationship-index.md
+      - latest_handoff.md
+      - _SUMMARY.md
+      - tools/_SUMMARY.md
+      - tests/_SUMMARY.md
+      - tasks/_SUMMARY.md
+      - indexes/_SUMMARY.md
+      - retrieval/_SUMMARY.md
+    staleness: current
+    supersedes: []
+    superseded_by: null
+    consumer_note: >-
+      This record identifies explicit descriptive relationship metadata and
+      validation only; consumers evaluate any local implications themselves.

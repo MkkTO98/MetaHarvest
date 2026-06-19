@@ -13,7 +13,7 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
-- `tools/query_knowledge.py` provides a descriptive search surface over existing MetaHarvest-owned knowledge by problem id, keyword, pattern id, or artifact id.
+- `tools/query_knowledge.py` provides a descriptive search surface over existing MetaHarvest-owned knowledge by problem id, keyword, pattern id, or artifact id, including matching explicit relationships from `relationships/index.yaml`.
 - OpenHands/LangGraph and Aider/SWE-agent ArchitectureHarvest analysis cycles completed on 2026-06-06; recommendations are advisory only and not implemented.
 - n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest artifacts are discoverable through compact problem-first retrieval routes added on 2026-06-19.
 

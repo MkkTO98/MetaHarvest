@@ -176,6 +176,41 @@ def load_problem_catalog(root: Path, query: Query) -> list[dict[str, Any]]:
     return records
 
 
+def load_relationships(root: Path, query: Query, matched_paths: set[str] | None = None) -> list[dict[str, Any]]:
+    path = root / "relationships" / "index.yaml"
+    if not path.exists():
+        return []
+    data = load_yaml(path)
+    matched_paths = matched_paths or set()
+    relationships: list[dict[str, Any]] = []
+    for relationship in data.get("relationships", []):
+        if not isinstance(relationship, dict):
+            continue
+        source = relationship.get("source")
+        target = relationship.get("target")
+        predicate = relationship.get("predicate")
+        record_id = relationship.get("id")
+        if not isinstance(source, str) or not isinstance(target, str) or not isinstance(predicate, str) or not isinstance(record_id, str):
+            continue
+        summary: dict[str, Any] = {
+            "id": record_id,
+            "source": source,
+            "predicate": predicate,
+            "target": target,
+        }
+        if isinstance(relationship.get("evidence"), str):
+            summary["evidence"] = relationship["evidence"]
+        reasons = query_matches_data(query, summary)
+        if source in matched_paths or target in matched_paths:
+            reasons.append("matched_artifact_path")
+        if query_matches_path(query, source) or query_matches_path(query, target):
+            reasons.append("relationship_endpoint_path")
+        if reasons:
+            summary["match_reasons"] = sorted(set(reasons))
+            relationships.append(summary)
+    return relationships
+
+
 def load_retrieval_index(root: Path, query: Query) -> tuple[list[dict[str, Any]], list[dict[str, Any]], set[str]]:
     path = root / "retrieval" / "retrieval_index.yaml"
     data = load_yaml(path)
@@ -272,6 +307,7 @@ def build_payload(root: Path, query: Query) -> dict[str, Any]:
             append_unique(matching_records, make_record(root, index_path, "indexes", {"kind": "markdown_index", "summary": text.splitlines()[0] if text.splitlines() else relative}, reasons))
 
     matched_paths = {record["path"] for record in matching_records}
+    explicit_relationships = load_relationships(root, query, matched_paths)
     return {
         "kind": "metaharvest_knowledge_retrieval_result",
         "question_answered": "What does MetaHarvest know about the requested reusable non-domain problem or artifact?",
@@ -286,6 +322,7 @@ def build_payload(root: Path, query: Query) -> dict[str, Any]:
         },
         "matching_records": matching_records,
         "evidence_sources": evidence_sources,
+        "explicit_relationships": explicit_relationships,
         "contradictions": sections.get("contradictions", []),
         "synthesis_records": sections.get("synthesis", []),
         "adoption_outcomes": sections.get("adoption_outcomes", []),
@@ -303,14 +340,17 @@ def render_text(payload: dict[str, Any]) -> str:
     ]
     lines.extend(f"- {item}" for item in payload["does_not_answer"])
     lines.append("")
-    for section in ["matching_records", "evidence_sources", "contradictions", "synthesis_records", "adoption_outcomes", "change_discovery_references"]:
+    for section in ["matching_records", "evidence_sources", "explicit_relationships", "contradictions", "synthesis_records", "adoption_outcomes", "change_discovery_references"]:
         lines.append(f"{section}:")
         items = payload.get(section, [])
         if not items:
             lines.append("- None")
         else:
             for item in items:
-                label = item.get("path") or f"sequence {item.get('sequence')}"
+                if section == "explicit_relationships":
+                    label = f"{item.get('source')} {item.get('predicate')} {item.get('target')}"
+                else:
+                    label = item.get("path") or f"sequence {item.get('sequence')}"
                 lines.append(f"- {label}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
