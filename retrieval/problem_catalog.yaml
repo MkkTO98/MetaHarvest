@@ -1,6 +1,6 @@
 schema_version: 1
 kind: problem_catalog
-updated: '2026-06-06'
+updated: '2026-06-19'
 purpose: Problem-first entry point for MetaHarvest consultation. Hermes should
   start here when the user asks which architectural or reusable non-domain patterns fit a problem.
 status_values:
@@ -148,3 +148,141 @@ problems:
     confidence: medium
     rationale: Based on ProjectForge's own ArchitectureHarvest integration and governance
       needs.
+- id: workflow_automation_integration
+  name: Workflow automation and integration-node systems
+  status: active
+  problem_statement: Preserve reusable vocabulary for workflow automation systems that model service integrations as node graphs with triggers, webhooks, credentials, and execution records.
+  tags:
+  - workflow_automation
+  - integration_platform
+  - workflow_graph
+  - trigger_registration
+  - webhook_interface
+  - credential_boundary
+  - execution_persistence
+  related_problems:
+  - workflow_orchestration_scheduling
+  anti_problems:
+  - adopting_full_integration_runtime
+  - project_specific_automation_recommendations
+  related_patterns:
+  - workflow_graph
+  - integration_node_interface
+  - trigger_registration
+  - webhook_interface
+  - credential_boundary
+  - execution_persistence
+  relevant_components:
+  - n8n-workflow-graph
+  - n8n-trigger-webhook-registration
+  - n8n-execution-persistence
+  - n8n-credential-node-interface
+  relevant_projects:
+    candidate_sources_pending_analysis: []
+    analyzed_sources:
+    - n8n
+  prior_outcomes: []
+  retrieval_notes: Descriptive category route for n8n taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  lifecycle:
+    first_seen: 2026-06-19
+    last_reviewed: 2026-06-19
+    last_referenced: 2026-06-19
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: medium
+    confidence: medium
+    rationale: n8n was approved and statically analyzed for taxonomy diversity without executing external code.
+  updated: '2026-06-19'
+- id: workflow_orchestration_scheduling
+  name: Workflow orchestration and scheduling systems
+  status: active
+  problem_statement: Preserve reusable vocabulary for code-defined orchestration systems with DAG definitions, scheduler loops, timetables, executor boundaries, and asset-aware scheduling.
+  tags:
+  - workflow_orchestration
+  - scheduling_system
+  - dag_definition
+  - scheduler_loop
+  - timetable_contract
+  - executor_boundary
+  - asset_aware_scheduling
+  related_problems:
+  - workflow_automation_integration
+  - metadata_catalog_lineage_governance
+  anti_problems:
+  - adopting_full_orchestration_runtime
+  - project_specific_scheduler_recommendations
+  related_patterns:
+  - dag_definition
+  - scheduler_loop
+  - timetable_contract
+  - executor_boundary
+  - asset_aware_scheduling
+  relevant_components:
+  - airflow-dag-definition
+  - airflow-scheduler-loop
+  - airflow-timetable-contract
+  - airflow-asset-aware-scheduling
+  relevant_projects:
+    candidate_sources_pending_analysis: []
+    analyzed_sources:
+    - airflow
+  prior_outcomes: []
+  retrieval_notes: Descriptive category route for Apache Airflow taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  lifecycle:
+    first_seen: 2026-06-19
+    last_reviewed: 2026-06-19
+    last_referenced: 2026-06-19
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: medium
+    confidence: medium
+    rationale: Apache Airflow was approved and statically analyzed for taxonomy diversity without executing external code.
+  updated: '2026-06-19'
+- id: metadata_catalog_lineage_governance
+  name: Metadata catalog, lineage, and governance infrastructure
+  status: active
+  problem_statement: Preserve reusable vocabulary for metadata catalog systems that model schema-first entities, lineage graphs, governance taxonomies, data contracts, and governed context interfaces.
+  tags:
+  - metadata_catalog
+  - lineage_system
+  - governance_infrastructure
+  - schema_first_entity_model
+  - lineage_graph
+  - governance_taxonomy
+  - data_contract
+  - mcp_context_interface
+  related_problems:
+  - workflow_orchestration_scheduling
+  anti_problems:
+  - adopting_full_metadata_catalog_runtime
+  - project_specific_governance_recommendations
+  related_patterns:
+  - schema_first_entity_model
+  - lineage_graph
+  - governance_taxonomy
+  - data_contract
+  - mcp_context_interface
+  relevant_components:
+  - openmetadata-schema-first-entity-model
+  - openmetadata-lineage-resource
+  - openmetadata-governance-taxonomy
+  - openmetadata-mcp-context-interface
+  relevant_projects:
+    candidate_sources_pending_analysis: []
+    analyzed_sources:
+    - openmetadata
+  prior_outcomes: []
+  retrieval_notes: Descriptive category route for OpenMetadata taxonomy-diversity harvest artifacts; no adoption or project-specific fit is implied.
+  lifecycle:
+    first_seen: 2026-06-19
+    last_reviewed: 2026-06-19
+    last_referenced: 2026-06-19
+    last_adoption: null
+    adoption_frequency: none
+  evidence_summary:
+    evidence_strength: medium
+    confidence: medium
+    rationale: OpenMetadata was approved and statically analyzed for taxonomy diversity without executing external code.
+  updated: '2026-06-19'

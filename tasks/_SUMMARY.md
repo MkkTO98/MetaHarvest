@@ -9,7 +9,7 @@ This folder stores explicit future-task artifacts for MetaHarvest-owned work tha
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
-- `T-20260619-library-discoverability-backfill.md` defines the recommended next task: backfill retrieval and change-discovery coverage for the n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest.
+- `T-20260619-library-discoverability-backfill.md` is completed; it backfilled retrieval and change-discovery coverage for n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest artifacts.
 
 ## Needs Attention
-- Task artifacts are not implementation records. Do not treat them as completed work until the task acceptance criteria and validation are satisfied.
+- Task artifacts are not implementation records unless their status and completion record explicitly say completed.

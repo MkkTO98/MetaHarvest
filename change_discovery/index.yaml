@@ -1,7 +1,7 @@
 schema_version: 1
 kind: metaharvest_change_discovery_index
 status: active
-last_updated: '2026-06-18'
+last_updated: '2026-06-19'
 doctrine:
   metaharvest_owns: discoverability_of_change
   consuming_projects_own: evaluation_of_change
@@ -137,3 +137,42 @@ changes:
     consumer_note: >-
       This record identifies audit and future-task context only; consumers evaluate
       any local implications themselves.
+  - sequence: 7
+    date: '2026-06-19'
+    change_type: new_artifact
+    artifact_status: active
+    summary: Backfilled taxonomy-diversity harvest discoverability for n8n, Apache Airflow, and OpenMetadata.
+    paths:
+      - source_registry.yaml
+      - project_cards/n8n.yaml
+      - project_cards/airflow.yaml
+      - project_cards/openmetadata.yaml
+      - component_cards/n8n-workflow-graph.yaml
+      - component_cards/n8n-trigger-webhook-registration.yaml
+      - component_cards/n8n-execution-persistence.yaml
+      - component_cards/n8n-credential-node-interface.yaml
+      - component_cards/airflow-dag-definition.yaml
+      - component_cards/airflow-scheduler-loop.yaml
+      - component_cards/airflow-timetable-contract.yaml
+      - component_cards/airflow-asset-aware-scheduling.yaml
+      - component_cards/openmetadata-schema-first-entity-model.yaml
+      - component_cards/openmetadata-lineage-resource.yaml
+      - component_cards/openmetadata-governance-taxonomy.yaml
+      - component_cards/openmetadata-mcp-context-interface.yaml
+      - projects/n8n.md
+      - projects/airflow.md
+      - projects/openmetadata.md
+      - reports/R-20260619-n8n-taxonomy-harvest.md
+      - reports/R-20260619-airflow-taxonomy-harvest.md
+      - reports/R-20260619-openmetadata-taxonomy-harvest.md
+      - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
+      - retrieval/problem_catalog.yaml
+      - retrieval/retrieval_index.yaml
+      - tools/check_coverage_health.py
+      - tests/test_taxonomy_discoverability_backfill.py
+    staleness: current
+    supersedes: []
+    superseded_by: null
+    consumer_note: >-
+      This record identifies project-neutral library discoverability coverage for
+      the taxonomy-diversity harvest; consumers evaluate any local implications themselves.

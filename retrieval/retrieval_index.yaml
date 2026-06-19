@@ -1,6 +1,6 @@
 schema_version: 1
 kind: retrieval_index
-updated: '2026-06-06'
+updated: '2026-06-19'
 purpose: Compact routing index from problem to patterns, components, projects, outcomes,
   contradictions, and recommendation records. Keep concise so Hermes need not load
   every report.
@@ -163,3 +163,116 @@ entries:
     recommendation_strength: strong
     explanation: Directly reduces context pollution and matches accepted ProjectForge
       constraints.
+- problem_id: workflow_automation_integration
+  pattern_ids:
+  - workflow_graph
+  - integration_node_interface
+  - trigger_registration
+  - webhook_interface
+  - credential_boundary
+  - execution_persistence
+  synthesized_patterns: []
+  pattern_cards: []
+  component_cards:
+  - component_cards/n8n-workflow-graph.yaml
+  - component_cards/n8n-trigger-webhook-registration.yaml
+  - component_cards/n8n-execution-persistence.yaml
+  - component_cards/n8n-credential-node-interface.yaml
+  project_cards:
+  - project_cards/n8n.yaml
+  reports:
+  - reports/R-20260619-n8n-taxonomy-harvest.md
+  - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
+  concept_terms:
+  - workflow graph
+  - integration node
+  - trigger registration
+  - webhook endpoint
+  - credential boundary
+  - execution persistence
+  methodology_terms:
+  - static taxonomy harvest
+  - component-level decomposition
+  interface_terms:
+  - webhook interface
+  - credential-aware node interface
+  contradiction_records: []
+  adoption_outcomes: []
+  relevance_maps: []
+  recommendation_records: []
+- problem_id: workflow_orchestration_scheduling
+  pattern_ids:
+  - dag_definition
+  - scheduler_loop
+  - timetable_contract
+  - executor_boundary
+  - asset_aware_scheduling
+  synthesized_patterns: []
+  pattern_cards: []
+  component_cards:
+  - component_cards/airflow-dag-definition.yaml
+  - component_cards/airflow-scheduler-loop.yaml
+  - component_cards/airflow-timetable-contract.yaml
+  - component_cards/airflow-asset-aware-scheduling.yaml
+  project_cards:
+  - project_cards/airflow.yaml
+  reports:
+  - reports/R-20260619-airflow-taxonomy-harvest.md
+  - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
+  concept_terms:
+  - DAG
+  - task dependency
+  - DagRun
+  - TaskInstance
+  - timetable
+  - asset event
+  - executor boundary
+  methodology_terms:
+  - static taxonomy harvest
+  - component-level decomposition
+  interface_terms:
+  - timetable contract
+  - executor boundary
+  contradiction_records: []
+  adoption_outcomes: []
+  relevance_maps: []
+  recommendation_records: []
+- problem_id: metadata_catalog_lineage_governance
+  pattern_ids:
+  - schema_first_entity_model
+  - lineage_graph
+  - governance_taxonomy
+  - data_contract
+  - mcp_context_interface
+  synthesized_patterns: []
+  pattern_cards: []
+  component_cards:
+  - component_cards/openmetadata-schema-first-entity-model.yaml
+  - component_cards/openmetadata-lineage-resource.yaml
+  - component_cards/openmetadata-governance-taxonomy.yaml
+  - component_cards/openmetadata-mcp-context-interface.yaml
+  project_cards:
+  - project_cards/openmetadata.yaml
+  reports:
+  - reports/R-20260619-openmetadata-taxonomy-harvest.md
+  - reports/R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md
+  concept_terms:
+  - metadata entity
+  - entity reference
+  - lineage edge
+  - column lineage
+  - domain
+  - classification
+  - glossary term
+  - data contract
+  methodology_terms:
+  - static taxonomy harvest
+  - schema-first metadata extraction
+  - component-level decomposition
+  interface_terms:
+  - lineage API resource
+  - governed MCP context interface
+  contradiction_records: []
+  adoption_outcomes: []
+  relevance_maps: []
+  recommendation_records: []

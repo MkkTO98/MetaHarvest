@@ -34,6 +34,7 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `synthesis/`
 - `tasks/`
 - `templates/`
+- `tests/`
 - `tools/`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
@@ -44,11 +45,11 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `source_registry.yaml` keeps local source paths as optional replaceable cache hints; normal consultation does not require local clones to exist.
 - `change_discovery/index.yaml` publishes project-neutral MetaHarvest change records; consuming projects evaluate relevance locally.
 - `tools/query_knowledge.py` provides the smallest descriptive retrieval helper for asking what MetaHarvest knows about a problem, keyword, pattern, or artifact.
-- `reports/R-20260619-infrastructure-status-audit.md` records that current v1 library infrastructure is useful but needs a narrow discoverability backfill for recent taxonomy-diversity harvest artifacts.
-- `tasks/T-20260619-library-discoverability-backfill.md` is the single recommended next task; it is intentionally not implemented yet.
+- `reports/R-20260619-infrastructure-status-audit.md` records the bounded status of retrieval, change discovery, query/list tools, tests, and related decisions.
+- `tasks/T-20260619-library-discoverability-backfill.md` is completed; n8n, Apache Airflow, and OpenMetadata are discoverable through compact retrieval and change-discovery surfaces.
+- `tools/check_coverage_health.py` reports missing analyzed-source coverage across registry, cards, reports, retrieval, and change discovery.
 
 ## Needs Attention
 - Do not let MetaHarvest govern, directly modify, or create tasks inside consumer projects without separate project-local approval.
 - Do not let retrieval or change discovery drift into affected-project lists, project-specific advice, recommendation engines, ecosystem coordination, task suggestions, notification routing, prioritization, or EII-style functionality.
-- Backfill library discoverability coverage for recently harvested n8n, Apache Airflow, and OpenMetadata through existing retrieval/change-discovery mechanisms before treating the library surface as complete for those categories.
 - Historical v1 adoption candidates remain as-is; use the v2 recommendation template for new recommendation artifacts when appropriate.

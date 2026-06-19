@@ -1,7 +1,7 @@
 # MetaHarvest Latest Handoff
 
 Date: 2026-06-19
-Status: infrastructure audit complete; recommended next task created but not implemented
+Status: taxonomy-diversity discoverability backfill complete
 
 ## Current repository context
 
@@ -13,61 +13,63 @@ Current bounded infrastructure surfaces:
 - `change_discovery/`
 - `tools/query_knowledge.py`
 - `tools/list_changes.py`
+- `tools/check_coverage_health.py`
 - related tests
-- related decision records
+- related decision/task records
 
-## Completed in latest audit
+## Completed latest work
 
-Created:
+Implemented task:
 
-- `reports/R-20260619-infrastructure-status-audit.md`
 - `tasks/T-20260619-library-discoverability-backfill.md`
-- `tasks/_SUMMARY.md`
 
-Updated:
+Updated retrieval coverage:
+
+- `retrieval/problem_catalog.yaml`
+- `retrieval/retrieval_index.yaml`
+
+The taxonomy-diversity harvest is now discoverable through compact problem-first routes for:
+
+- `workflow_automation_integration` -> n8n
+- `workflow_orchestration_scheduling` -> Apache Airflow
+- `metadata_catalog_lineage_governance` -> OpenMetadata
+
+Updated change discovery:
+
+- `change_discovery/index.yaml` sequence 7 records the taxonomy-diversity harvest backfill as a project-neutral library change.
+
+Added coverage-health check:
+
+- `tools/check_coverage_health.py`
+
+It reports missing analyzed-source coverage across:
+
+- source registry
+- project cards
+- component cards
+- reports
+- retrieval surfaces
+- change-discovery surfaces
+
+The check reports missing coverage only and does not emit recommendations, project-specific advice, rankings, synthesis, or automatic tasks.
+
+Added tests:
+
+- `tests/test_taxonomy_discoverability_backfill.py`
+
+Updated summaries/context:
 
 - `_SUMMARY.md`
-- `reports/_SUMMARY.md`
 - `retrieval/_SUMMARY.md`
 - `change_discovery/_SUMMARY.md`
-- `change_discovery/index.yaml`
-
-## Infrastructure status
-
-Existing capabilities:
-
-- `tools/list_changes.py` lists project-neutral MetaHarvest changes by sequence/date checkpoint.
-- `tools/query_knowledge.py` performs descriptive problem/keyword/pattern/artifact retrieval.
-- tests enforce that retrieval/change discovery do not emit affected-project lists, project-specific advice, recommendations, priority ranking, automatic task creation, or automatic project modification.
-
-Partial capabilities:
-
-- retrieval works for explicitly indexed and selected scanned records, but not all harvested artifacts have first-class retrieval-index coverage.
-- change discovery exists, but recent taxonomy-diversity harvest records still need a project-neutral backfill.
-
-Incomplete capabilities:
-
-- n8n, Apache Airflow, and OpenMetadata harvest artifacts are not yet fully discoverable through compact retrieval routes.
-- taxonomy-diversity harvest is not yet represented as a dedicated change-discovery record.
-- no deterministic coverage-health check currently ensures analyzed sources are represented across registration, cards, reports, retrieval, and change discovery.
-
-## Recommended next task
-
-Single recommended next task:
-
-- `tasks/T-20260619-library-discoverability-backfill.md`
-
-Do not implement it implicitly. It should be executed as a separate bounded task.
-
-Task intent:
-
-- backfill existing retrieval/change-discovery coverage for n8n, Apache Airflow, and OpenMetadata.
-- add tests for descriptive discoverability.
-- avoid synthesis, recommendations, rankings, target-project relevance logic, new architecture, and changes to other EIP projects.
+- `tools/_SUMMARY.md`
+- `tasks/_SUMMARY.md`
+- `tests/_SUMMARY.md`
+- `latest_handoff.md`
 
 ## Boundaries to preserve
 
-Do not allow retrieval or change discovery to drift into:
+Do not allow retrieval, change discovery, or coverage health to drift into:
 
 - affected-project lists
 - project-specific recommendations
@@ -77,16 +79,22 @@ Do not allow retrieval or change discovery to drift into:
 - task creation inside consumer projects
 - automatic project modification
 - ranking or prioritization of consumer work
+- synthesis generation
+
+## Recommended next focus
+
+Coverage maintenance is the best next focus.
+
+Reason: MetaHarvest now has broader taxonomy coverage and a deterministic coverage-health surface. The compounding gain is to keep harvested artifacts consistently discoverable before expanding sources or mapping relationships more deeply.
+
+Do not implement this recommendation unless explicitly asked.
 
 ## Resume point
 
-If continuing immediately, run validation and commit the bounded infrastructure/audit state if clean.
+If continuing later, first run:
 
-If starting the next task later, begin from:
-
-1. `tasks/T-20260619-library-discoverability-backfill.md`
-2. `reports/R-20260619-infrastructure-status-audit.md`
-3. `retrieval/retrieval_index.yaml`
-4. `change_discovery/index.yaml`
-5. `tests/test_query_knowledge.py`
-6. `tests/test_change_discovery.py`
+```text
+uvx --with pyyaml python tools/check_coverage_health.py --project . --json
+uvx --with pyyaml python tools/list_changes.py --project . --since-sequence 6 --json
+uvx --with pyyaml python tools/query_knowledge.py --project . --problem-id metadata_catalog_lineage_governance --json
+```

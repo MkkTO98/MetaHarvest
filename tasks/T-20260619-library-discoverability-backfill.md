@@ -1,7 +1,7 @@
 # Task: Backfill Library Discoverability Coverage for Taxonomy-Diversity Harvest
 
 Date created: 2026-06-19
-Status: future_task
+Status: completed
 Owner: MetaHarvest
 
 ## Purpose
@@ -92,3 +92,24 @@ Add tests proving:
 - Change discovery includes recent harvest/library-expansion records.
 - No synthesis, recommendations, ranking, governance, or target-project action logic is introduced.
 - All validations pass.
+
+## Completion record
+
+Completed on 2026-06-19.
+
+Implemented:
+
+- problem-first retrieval routes for n8n, Apache Airflow, and OpenMetadata in `retrieval/problem_catalog.yaml`
+- compact retrieval index mappings in `retrieval/retrieval_index.yaml`
+- project-neutral taxonomy harvest change-discovery record in `change_discovery/index.yaml`
+- deterministic coverage-health check in `tools/check_coverage_health.py`
+- validation tests in `tests/test_taxonomy_discoverability_backfill.py`
+
+Preserved boundaries:
+
+- no synthesis
+- no recommendation logic
+- no ranking logic
+- no target-project relevance computation
+- no automatic task generation
+- no modifications outside MetaHarvest
