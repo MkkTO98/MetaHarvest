@@ -1,7 +1,7 @@
 # MetaHarvest Latest Handoff
 
 Date: 2026-06-19
-Status: taxonomy-diversity discoverability backfill complete
+Status: relationship capability audit complete; relationship modeling task created but not implemented
 
 ## Current repository context
 
@@ -17,7 +17,7 @@ Current bounded infrastructure surfaces:
 - related tests
 - related decision/task records
 
-## Completed latest work
+## Completed recent work
 
 Implemented task:
 
@@ -28,7 +28,7 @@ Updated retrieval coverage:
 - `retrieval/problem_catalog.yaml`
 - `retrieval/retrieval_index.yaml`
 
-The taxonomy-diversity harvest is now discoverable through compact problem-first routes for:
+The taxonomy-diversity harvest is discoverable through compact problem-first routes for:
 
 - `workflow_automation_integration` -> n8n
 - `workflow_orchestration_scheduling` -> Apache Airflow
@@ -42,34 +42,32 @@ Added coverage-health check:
 
 - `tools/check_coverage_health.py`
 
-It reports missing analyzed-source coverage across:
+It reports missing analyzed-source coverage across source registry, project cards, component cards, reports, retrieval surfaces, and change-discovery surfaces. The check reports missing coverage only and does not emit recommendations, project-specific advice, rankings, synthesis, or automatic tasks.
 
-- source registry
-- project cards
-- component cards
-- reports
-- retrieval surfaces
-- change-discovery surfaces
+## Latest bounded audit
 
-The check reports missing coverage only and does not emit recommendations, project-specific advice, rankings, synthesis, or automatic tasks.
+Created:
 
-Added tests:
+- `reports/R-20260619-relationship-capability-audit.md`
+- `tasks/T-20260619-minimal-first-class-relationship-index.md`
 
-- `tests/test_taxonomy_discoverability_backfill.py`
+Audit conclusion:
 
-Updated summaries/context:
+- MetaHarvest has deterministic relationship-like metadata through source IDs, project-card links, component-card source IDs, retrieval-index co-location, synthesis fields, and change-discovery path lists.
+- These are not sufficient as first-class artifact relationships.
+- Explicit predicate keys such as `implements`, `contains`, `references`, `depends_on`, `related_to`, `part_of`, and `derived_from` are absent as canonical relationship fields.
+- Retrieval can surface co-indexed evidence and change references, but cannot traverse arbitrary typed relationships.
+- Current doctrine permits project-neutral file-backed relationship modeling as a legitimate library capability, if descriptive-only boundaries are preserved.
 
-- `_SUMMARY.md`
-- `retrieval/_SUMMARY.md`
-- `change_discovery/_SUMMARY.md`
-- `tools/_SUMMARY.md`
-- `tasks/_SUMMARY.md`
-- `tests/_SUMMARY.md`
-- `latest_handoff.md`
+Recommended future task:
+
+- `tasks/T-20260619-minimal-first-class-relationship-index.md`
+
+Do not implement it unless explicitly asked.
 
 ## Boundaries to preserve
 
-Do not allow retrieval, change discovery, or coverage health to drift into:
+Do not allow retrieval, change discovery, coverage health, or future relationship modeling to drift into:
 
 - affected-project lists
 - project-specific recommendations
@@ -81,20 +79,12 @@ Do not allow retrieval, change discovery, or coverage health to drift into:
 - ranking or prioritization of consumer work
 - synthesis generation
 
-## Recommended next focus
-
-Coverage maintenance is the best next focus.
-
-Reason: MetaHarvest now has broader taxonomy coverage and a deterministic coverage-health surface. The compounding gain is to keep harvested artifacts consistently discoverable before expanding sources or mapping relationships more deeply.
-
-Do not implement this recommendation unless explicitly asked.
-
 ## Resume point
 
-If continuing later, first run:
+If relationship work is explicitly requested later, start from:
 
-```text
-uvx --with pyyaml python tools/check_coverage_health.py --project . --json
-uvx --with pyyaml python tools/list_changes.py --project . --since-sequence 6 --json
-uvx --with pyyaml python tools/query_knowledge.py --project . --problem-id metadata_catalog_lineage_governance --json
-```
+1. `reports/R-20260619-relationship-capability-audit.md`
+2. `tasks/T-20260619-minimal-first-class-relationship-index.md`
+3. `retrieval/retrieval_index.yaml`
+4. `tools/query_knowledge.py`
+5. `tools/check_coverage_health.py`

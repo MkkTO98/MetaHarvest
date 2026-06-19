@@ -19,6 +19,7 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `R-20260619-infrastructure-status-audit.md`
 - `R-20260619-n8n-taxonomy-harvest.md`
 - `R-20260619-openmetadata-taxonomy-harvest.md`
+- `R-20260619-relationship-capability-audit.md`
 - `R-20260619-taxonomy-coverage-n8n-airflow-openmetadata.md`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
@@ -26,6 +27,7 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - dbt/Dagster MacroForge-focused ArchitectureHarvest analysis cycle completed on 2026-06-08; recommendations are advisory only and not implemented.
 - n8n, Apache Airflow, and OpenMetadata taxonomy-diversity harvest completed on 2026-06-19; reports are descriptive and introduce no synthesis, ranking, or decision-making logic.
 - `R-20260619-infrastructure-status-audit.md` records the bounded status of retrieval, change discovery, query/list tools, tests, and related decisions.
+- `R-20260619-relationship-capability-audit.md` records that relationship-like metadata exists but first-class typed artifact relationships are not yet implemented.
 
 ## Needs Attention
 - Refresh source-derived records before using them for implementation decisions; upstream repositories may change.
