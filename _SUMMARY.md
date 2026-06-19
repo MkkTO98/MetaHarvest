@@ -48,6 +48,8 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 - `reports/R-20260619-infrastructure-status-audit.md` records the bounded status of retrieval, change discovery, query/list tools, tests, and related decisions.
 - `tasks/T-20260619-library-discoverability-backfill.md` is completed; n8n, Apache Airflow, and OpenMetadata are discoverable through compact retrieval and change-discovery surfaces.
 - `tools/check_coverage_health.py` reports missing analyzed-source coverage across registry, cards, reports, retrieval, and change discovery.
+- `reports/R-20260619-relationship-capability-audit.md` records that MetaHarvest has deterministic relationship-like metadata but not first-class typed artifact relationships.
+- `tasks/T-20260619-minimal-first-class-relationship-index.md` is a future task only; relationship modeling is not implemented.
 
 ## Needs Attention
 - Do not let MetaHarvest govern, directly modify, or create tasks inside consumer projects without separate project-local approval.
