@@ -13,7 +13,9 @@ MetaHarvest extracts reusable non-domain evidence and recommendation-grade judgm
 5. Cross-project reusable knowledge is preferred over one-off enthusiasm. If multiple projects solve or name a similar problem, compare them in compact reusable records.
 6. The most valuable recommendation is often deletion, simplification, non-adoption, or preservation of negative knowledge.
 7. MetaHarvest may create recommendations and candidate task proposals, but it must not decide adoption, force migration, act as controller, create tasks inside ProjectForge, MacroForge, or any target project, or directly modify those projects from research findings.
-8. MetaHarvest remains non-domain. Domain conclusions such as GDP analysis, inflation analysis, energy-market conclusions, investment theses, company research, and macroeconomic findings belong to domain projects, not MetaHarvest. MetaHarvest may preserve reusable non-domain methods discovered while working on those projects.
+8. MetaHarvest is responsible for discoverability of change. Projects are responsible for evaluation of change. MetaHarvest may publish new, modified, retired, superseded, and stale artifact records so consumers can answer "What changed in MetaHarvest since I last looked?" without MetaHarvest deciding whether the change matters to any specific project.
+9. MetaHarvest does not own project-specific relevance determination, project-specific recommendations, project prioritization, project governance, adoption decisions, implementation decisions, automatic task creation, automatic project modification, or automatic propagation workflows. Consuming projects own relevance evaluation, adoption, rejection, implementation, and local prioritization.
+10. MetaHarvest remains non-domain. Domain conclusions such as GDP analysis, inflation analysis, energy-market conclusions, investment theses, company research, and macroeconomic findings belong to domain projects, not MetaHarvest. MetaHarvest may preserve reusable non-domain methods discovered while working on those projects.
 
 ## Hard constraints for v1
 

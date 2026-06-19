@@ -13,7 +13,7 @@ MetaHarvest is an advisory project/subsystem for reusable non-domain knowledge, 
 
 ## Authority boundary
 
-MetaHarvest is advisory only.
+MetaHarvest is advisory only. Ecosystem-wide capability ownership is recorded in `/home/mkkto/srv/EIP/governance/CAPABILITY_OWNERSHIP.md`; that artifact preserves the same boundary: MetaHarvest stores and publishes reusable non-domain knowledge, while consuming projects evaluate relevance and act locally.
 
 MetaHarvest may:
 
@@ -33,7 +33,38 @@ MetaHarvest may not:
 - create tasks inside consumer projects;
 - force adoption of recommendations;
 - bypass project-local approval gates;
-- treat domain conclusions as MetaHarvest-owned knowledge.
+- treat domain conclusions as MetaHarvest-owned knowledge;
+- perform project-specific relevance determination;
+- prioritize consumer-project work;
+- automatically propagate adoption, rejection, or implementation decisions.
+
+## Change-discoverability boundary
+
+MetaHarvest is responsible for discoverability of change. Projects are responsible for evaluation of change.
+
+MetaHarvest owns publication of:
+
+- new artifacts;
+- modified artifacts;
+- retired artifacts;
+- superseded artifacts;
+- staleness information.
+
+Consuming projects own:
+
+- relevance evaluation;
+- adoption;
+- rejection;
+- implementation;
+- local prioritization.
+
+The provider interface may expose a project-neutral change-discovery index that answers: "What changed in MetaHarvest since I last looked?" It must not answer: "Does this matter to my project, and what should I do?"
+
+The provider interface may also expose a project-neutral retrieval helper that answers: "What does MetaHarvest know about problem Y?" It must return descriptive records, evidence sources, contradictions, synthesis records, adoption outcomes, and change references without target-project identity, affected-project computation, local-fit judgment, task suggestions, notification routing, or priority ranking.
+
+This boundary exists because MetaHarvest is an advisory knowledge provider, not an ecosystem coordinator. Change discoverability prevents stale consumer context while preserving local governance, local prioritization, and project autonomy.
+
+Future agents must not turn change discovery into recommendation engines, ecosystem coordinators, project-ranking systems, automatic propagation systems, automatic task creation, automatic project modification, or EII-style functionality inside MetaHarvest.
 
 ## Required provider interface files
 
@@ -49,6 +80,8 @@ source_registry.yaml
 retrieval/problem_catalog.yaml
 retrieval/retrieval_index.yaml
 retrieval/recommendation_rules.yaml
+change_discovery/index.yaml
+tools/query_knowledge.py
 ```
 
 Consumers should not require direct knowledge of all MetaHarvest internal directories as a condition of normal operation.
@@ -73,28 +106,24 @@ Confidence and priority should use decimal representation where meaningful, for 
 
 ## Decision-support consultation workflow
 
-When MetaHarvest is consulted for project creation, architecture review, redesign, subsystem creation, or governance-pattern review, Hermes should answer through compact retrieval first:
+When MetaHarvest is consulted for reusable non-domain knowledge retrieval, Hermes should answer through compact retrieval first:
 
-1. Interpret the problem and find matching entries in `retrieval/problem_catalog.yaml`.
-2. Use `retrieval/retrieval_index.yaml` to find related patterns, synthesized records, contradictions, outcomes, and relevance maps.
-3. Prefer synthesized pattern records over one-off project reports when convergence exists.
-4. Check contradictions before recommending a pattern.
-5. Check outcome models and adoption logs to separate generic recommendations from recommendations proven or disproven in this ecosystem.
-6. Check target-specific relevance maps where available.
-7. Drill down into project cards, component cards, or deep reports only when compact records are insufficient.
+1. Interpret the problem, keyword, pattern id, or artifact id.
+2. Find matching entries in `retrieval/problem_catalog.yaml` and `retrieval/retrieval_index.yaml`.
+3. Return related synthesis records, pattern records, contradictions, generalized adoption outcomes, evidence-source paths, and change-discovery references.
+4. Drill down into project cards, component cards, or deep reports only when compact records are insufficient.
+5. Leave relevance evaluation, adoption, rejection, implementation, task creation, and prioritization to the consuming project.
 
-A consultation result should state:
+A retrieval result should state:
 
-- interpreted problem;
-- relevant patterns or reusable knowledge categories;
-- evidence strength;
-- local fit;
-- tradeoffs;
-- prior outcomes;
-- generic recommendation;
-- ecosystem-weighted recommendation;
-- confidence;
-- next project-local governance gate.
+- interpreted query;
+- matching records;
+- evidence sources;
+- synthesis records;
+- contradictions;
+- generalized adoption outcomes;
+- change-discovery references;
+- source-record confidence or limitations when present.
 
 ## Feedback loop
 

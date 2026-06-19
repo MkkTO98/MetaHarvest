@@ -6,10 +6,11 @@ This folder is part of the ProjectForge file-backed operating system for `MetaHa
 ## Contains
 <!-- PROJECTFORGE:BEGIN-CONTAINS -->
 - `.gitkeep`
+- `D-20260618-change-discoverability-boundary.md`
 <!-- PROJECTFORGE:END-CONTAINS -->
 
 ## Active Work
-- No folder-specific active work recorded.
+- `D-20260618-change-discoverability-boundary.md` records that MetaHarvest owns change discoverability while consuming projects own evaluation, adoption, rejection, implementation, and local priority.
 
 ## Needs Attention
 - No folder-specific issues recorded.
