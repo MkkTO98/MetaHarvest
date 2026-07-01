@@ -1,173 +1,142 @@
 # MetaHarvest
 
-MetaHarvest is an active sibling EIP project and file-backed library for discovering, preserving, organizing, and retrieving reusable non-domain knowledge.
+MetaHarvest is a file-backed advisory subsystem for reusable, non-domain knowledge.
 
-MetaHarvest is historically descended from ArchitectureHarvest. Historical ArchitectureHarvest references remain valid as provenance or generated-project compatibility language, but new active references should use MetaHarvest.
+It collects and curates evidence from architectures, implementations, and tooling ecosystems so AI-assisted projects can reuse proven practices quickly without re-running full research each time.
 
-MetaHarvest's purpose is broader than architecture patterns alone. It preserves reusable non-domain knowledge from projects, systems, architectures, implementations, successes, failures, concepts, methodologies, interfaces, governance structures, decision patterns, and heuristics. It helps ProjectForge, MacroForge, and future projects avoid reinventing infrastructure, reduce unnecessary complexity, preserve lessons, and inspect proven patterns through project-local governance.
+It is designed as an **operating support system** for projects in the ProjectForge ecosystem, not as a runtime part of those projects.
 
-MetaHarvest is not a research archive and not a domain-knowledge repository. It is a file-backed reusable non-domain knowledge library for Hermes.
+---
 
-## Purpose boundaries
+## What MetaHarvest is
 
-MetaHarvest is descriptive by default. It may provide evidence, patterns, concepts, vocabulary, methodologies, decision lessons, governance lessons, heuristics, and historical advisory records. It must not govern projects, enforce standards, create tasks inside other projects, automatically adopt recommendations, automatically implement changes, or directly modify target projects.
+MetaHarvest is:
 
-Projects remain autonomous. Any historical advisory artifacts are inputs to project-local review, not instructions or automatic tasks.
+- a **non-domain knowledge library** for reusable architecture, process, governance, and design lessons;
+- a **decision-support system** that helps with problem-first retrieval and recommendations;
+- a **governance-aware evidence layer** that preserves context, uncertainty, lifecycle, and outcomes;
+- a **Framework-adjacent consumer** for ProjectForge and MacroForge that stays decoupled from any one domain workload.
 
-MetaHarvest remains non-domain. It may preserve reusable non-domain methods discovered while working on domain projects, but it must not store domain conclusions such as GDP analysis, inflation analysis, energy-market knowledge, macroeconomic conclusions, investment theses, or company research. Those belong to domain projects.
+It is explicit about boundaries: MetaHarvest owns reusable knowledge artifacts; consuming projects own local adoption decisions.
 
-## Knowledge categories
+---
 
-MetaHarvest may explicitly reason about reusable non-domain knowledge categories including:
+## Core principles
 
-- architecture patterns;
-- interface patterns;
-- shared concepts;
-- shared vocabulary;
-- shared methodologies;
-- decision patterns;
-- governance patterns;
-- heuristics;
-- anti-patterns and failure patterns.
+1. **Autonomy-first consumption**
+   - Consumers decide what to adopt, defer, reject, replace, retire, or preserve.
+   - MetaHarvest does not execute, modify, or govern other projects.
+2. **Evidence over opinion**
+   - New knowledge enters through explicit source registration, artifact generation, and validation.
+   - Confidence, lineage, and limitations are stored with recommendations.
+3. **Problem-first retrieval**
+   - Retrieval starts from problem statements and evidence-backed patterns, then drills into reports only when needed.
+4. **Reuse over reinvention**
+   - The goal is preserving reusable lessons (including negative outcomes), not copying ecosystems or replacing domain products.
+5. **Governed evolution**
+   - Architecture grows only when stable project evidence shows value and pressure points.
 
-These categories guide descriptive retrieval. They do not create mandatory standards and do not require new storage systems or artifact types by default.
+---
 
-## v1 scope
+## Operating systems inside MetaHarvest
 
-MetaHarvest v1 is local-first and file-only:
+MetaHarvest is organized into five practical systems:
 
-- YAML source registry and cards
-- Markdown summaries, reports, decisions, and indexes
-- generated JSON audit outputs when tools are added later
-- no database
-- no vector store
-- no dashboard or UI
-- no mandatory cloud dependency
-- no execution of third-party code without separate approval
+1. **Source governance and lifecycle**
+   - `source_registry.yaml`, candidate/approved/rejected states, freshness and lineage tracking.
 
-## Storage
+2. **Structured ingestion and analysis**
+   - Standardized record-driven workflow that produces summaries, cards, components, and reports before conclusions are claimed.
 
-MetaHarvest files live in this repository at the project root:
+3. **Retrieval and problem mapping**
+   - `problem_catalog.yaml`, retrieval indexes, and recommendation policy files for fast problem-to-pattern lookup.
 
-```text
-/home/mkkto/srv/EIP/projects/MetaHarvest/
+4. **Knowledge modeling**
+   - Projects, components, patterns, contradictions, relevance maps, and outcome records encoded in compact files for reuse.
+
+5. **Evolution and outcome feedback**
+   - Adoption, rejection, supersession, and staleness metadata ensure decisions are traceable without becoming a controller.
+
+---
+
+## Design philosophy
+
+- **Lightweight**: Minimal fixed surface area, no mandatory external infrastructure.
+- **Local-first**: Works from local files and local tool runs.
+- **Deterministic**: Artifact-first and reproducible for replay.
+- **Evidence-driven**: Canonical outputs are derived from inspected sources, comparisons, and recorded limits.
+- **Project-owned**: Consumers own outcomes and implementation choices.
+- **Minimal architectural growth**: New abstractions only when clear pressure appears in repeated evidence.
+
+### What MetaHarvest is not
+
+MetaHarvest is intentionally not:
+
+- an orchestration platform;
+- a CI/CD framework;
+- a project-management system;
+- a runtime agent platform;
+- a knowledge graph database.
+
+---
+
+## Current status
+
+**Project:** MetaHarvest Stable v1
+
+**Status:** Architecturally stable
+
+**Architecture:** Frozen, subject to constitutional evidence-based evolution.
+
+---
+
+## Getting started
+
+1. Clone and inspect:
+
+```bash
+git clone git@github.com:MkkTO98/MetaHarvest.git
+cd MetaHarvest
 ```
 
-Raw cloned third-party repositories, when materialized for source-level analysis, must live outside the git-tracked source tree, normally at:
+2. Read the governing documents first:
 
-```text
-/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/
+- `CONSTITUTION.md`
+- `INTEGRATION.md`
+- `ingestion/workflow.md` (ingestion and analysis methodology)
+
+3. Start from retrieval interfaces for new consultation tasks:
+
+- `retrieval/problem_catalog.yaml`
+- `retrieval/retrieval_index.yaml`
+- `templates/` and `source_registry.yaml`
+
+4. Optional validation (no project modification required):
+
+```bash
+python3 tools/check_ingestion_workflow.py --project .
 ```
 
-## How Hermes should use this subsystem
+5. For project onboarding and adoption workflows, use existing compatibility paths:
 
-Use MetaHarvest when:
+- `architecture/architectureharvest/` in generated/consuming projects.
 
-- creating a new ProjectForge-managed project
-- planning a major architecture change
-- doing a scheduled architecture/project review
-- encountering repeated failure/debug cycles
-- before building a new subsystem
-- detecting homemade infrastructure that overlaps a known pattern category
-- the user asks for an improvement scan
+---
 
-Do not use MetaHarvest for small bug fixes, minor documentation edits, simple tests, or trivial one-file utilities.
+## Repository structure (high level)
 
-## Normal workflow
+- `projects/` and `projects/*.md` — project-level human summaries.
+- `project_cards/` and `component_cards/` — compact machine-oriented records.
+- `pattern_library/`, `contradictions/`, `synthesis/`, and `outcome_models/` — reusable cross-project learning (where present).
+- `retrieval/` — problem-first discovery and routing.
+- `adoption_candidates/` and `adoption_log/` — recommendation hypotheses and outcomes.
+- `reports/` — deep analysis artifacts and historical evidence.
+- `source_registry.yaml`, `templates/` and `tools/` — source registry and workflow support tooling.
 
-1. Check `source_registry.yaml` for approved, analyzed, stale, rejected, and retired sources.
-2. If a repository is only a candidate, ask the user before approving or cloning it.
-3. For source-level reanalysis, materialize approved repositories only under the configured cache root `/home/mkkto/srv/EIP/projects/ProjectForge/external_sources/`; normal consultation should rely on compact MetaHarvest artifacts first.
-4. Inspect source/docs/issues without executing third-party code.
-5. Produce the four analysis layers:
-   - human summary in `projects/`
-   - project card in `project_cards/`
-   - component cards in `component_cards/`
-   - deep report in `reports/`
-6. Extract or update cross-project patterns in `pattern_library/`.
-7. Preserve target relevance maps under `relevance_maps/<target>/` as historical/project-local review artifacts when they already exist.
-8. Preserve historical advisory candidate artifacts without treating them as automatic recommendations or tasks.
-9. Route any future implementation through normal ProjectForge decision/dry-run/test/coherence gates outside MetaHarvest.
+---
 
-## Key files
+## Notes for first-time contributors
 
-- `CONSTITUTION.md`: doctrine, governance, safety, audit rules, and blindspot controls.
-- `source_registry.yaml`: machine-readable source list and state/staleness metadata.
-- `indexes/`: human-readable navigation and retrieval hints.
-- `templates/`: canonical YAML template shapes for cards and records.
-- `projects/`: human summaries for analyzed projects.
-- `project_cards/`: compact Hermes-readable project cards.
-- `component_cards/`: component-level cards; do not treat projects as monoliths.
-- `pattern_library/`: cross-project reusable patterns.
-- `relevance_maps/`: target-specific fit maps.
-- `adoption_candidates/`: decision-grade recommendation artifacts awaiting target-project review.
-- `adoption_log/`: outcomes after recommendations are accepted/rejected/implemented.
-- `rejected/` and `retired/`: preserved negative knowledge.
-- `audits/` and `reports/`: source audits, target consultations, and deep reports.
+MetaHarvest intentionally preserves historical evidence, including rejected or retired artifacts, so the repo remains a long-lived memory for architectural learning.
 
-## Retrieval discipline
-
-Prefer compact files first:
-
-1. relevant index
-2. source registry entry
-3. project card
-4. component cards
-5. pattern card
-6. relevance map
-7. deep report only when needed
-
-Avoid loading cloned repository trees or large reports into normal context unless a specific audit or analysis task requires it.
-
-## v1 initial candidates
-
-The initial candidate batch is:
-
-- OpenHands
-- LangGraph
-- Aider
-- SWE-agent
-- AutoGen
-
-They are candidates only. They are not approved for cloning until the user explicitly approves them.
-
-## Project feedback loop
-
-Generated ProjectForge projects maintain lightweight local MetaHarvest files under `architecture/architectureharvest/`:
-
-- `relevance_map.yaml`: target-specific active/stale/superseded/retired recommendations.
-- `adoption_candidates.md`: advisory recommendation proposals that still require normal governance.
-- `rejected_candidates.md`: negative knowledge for the project.
-- `review_history.md`: periodic architecture review history.
-- adoption outcome records: optional YAML entries that can be mirrored to `MetaHarvest/adoption_log/` when generally useful.
-
-Architecture reviews answer whether the project architecture changed, new patterns became relevant, recommendations became obsolete, simplification/replacement/deletion opportunities exist, recurring failures are already solved elsewhere, or adopted patterns should be reported back.
-
-Reviews generate recommendations, candidate task proposals, and decision inputs. MetaHarvest may recommend that a project consider opening a task, but it may not create tasks inside another project and must not trigger automatic adoption or implementation.
-
-## Decision-support retrieval layer
-
-MetaHarvest now starts from problems, not source-project enthusiasm. For architecture consultation, use:
-
-```text
-Problem -> Relevant Patterns -> Relevant Components -> Relevant Projects -> Prior Adoption Outcomes -> Recommendation
-```
-
-Canonical retrieval files live under `retrieval/`:
-
-- `problem_catalog.yaml`: problem-first catalog with related patterns, anti-problems, lifecycle metadata, and evidence notes.
-- `retrieval_index.yaml`: compact routing index from problems to patterns, synthesis records, contradictions, outcomes, and relevance maps.
-- `recommendation_rules.yaml`: explainable maturity and recommendation-strength rules.
-- `retrieval_policy.md`: Hermes consultation workflow and context discipline.
-
-Hermes should consult these files before reading project/component/deep reports. Deep reports are evidence, not the first retrieval layer.
-
-## Maturity, contradictions, outcomes, and synthesis
-
-Pattern recommendations must distinguish generic evidence from ProjectForge ecosystem evidence. Cards and recommendations use explicit fields for `evidence_strength`, `adoption_count`, `projects_observed`, `confidence`, `maintenance_cost`, `local_fit`, and `recommendation_strength`.
-
-- `synthesis/`: cross-project synthesized pattern records. These become the preferred recommendation source once multiple projects independently solve the same problem.
-- `contradictions/`: competing architectural approaches with contexts where each wins or loses. Do not force a winner when assumptions differ.
-- `outcome_models/`: file-based rules for weighting ProjectForge/MacroForge/generated-project adoption outcomes.
-
-Lifecycle metadata (`first_seen`, `last_reviewed`, `last_referenced`, `last_adoption`, `adoption_frequency`, and status) helps identify heavily reused, forgotten, stale, superseded, or retired patterns without deleting historical context.
+The compatibility name **ArchitectureHarvest** is retained for historical/provenance context only; new active references should use **MetaHarvest**.
